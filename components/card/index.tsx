@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import React from 'react';
 
 interface IProps extends React.HTMLProps<HTMLDivElement> {
-  shadowSize: 'lg' | 'sm' | 'md' | 'xs' | 'xl';
+  shadowSize?: 'lg' | 'sm' | 'md' | 'xs' | 'xl';
 }
 
 const Card: NextPage<IProps> = ({
@@ -13,9 +13,9 @@ const Card: NextPage<IProps> = ({
 }) => {
   return (
     <div
-      className={`bg-white w-fit shadow-${shadowSize} flex flex-col items-center  ${
-        className || ''
-      }`}
+      className={`bg-white w-fit shadow-${
+        shadowSize || 'sm'
+      } flex flex-col items-center  ${className || ''}`}
       {...rest}
     >
       {children}
