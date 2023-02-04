@@ -77,7 +77,7 @@ const About = () => {
           {aboutCards.map(({ title, content }, index: number) => (
             <Card
               shadowSize="lg"
-              className="bg-red-300 px-2 py-8 flex-col items-center justify-center"
+              className="bg-red-300 text-yellow-100 px-2 py-8 flex-col items-center justify-center"
             >
               <Fade cascade damping={0.2}>
                 <h1 className="text-6xl text-rose-800">{title}</h1>
