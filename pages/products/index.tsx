@@ -1,9 +1,12 @@
+import axios from 'axios';
+import { debounce } from 'lodash';
 import React, {
   DetailedHTMLProps,
   FormEvent,
   FormEventHandler,
   FormHTMLAttributes,
   InputHTMLAttributes,
+  useEffect,
   useState,
 } from 'react';
 import Button from '~/components/atoms/button';
@@ -14,14 +17,35 @@ import Brand from '~/components/molecules/brand';
 import ProductList from '~/components/molecules/productlist/index.tsx';
 import Navbar from '~/components/Navbar';
 import { Footer, SectionContact } from '~/components/section';
-import useData from './useData';
+import useLoading from '~/hooks/useLoading';
+import { IProductList } from '~/interfaces/product';
 
 const Products = () => {
-  const {
-    state: { searchValue, loading, productList },
-    setters: { setSearchValue },
-    actions,
-  } = useData();
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [productList, setProductList] = useState<IProductList[]>([]);
+  const { loading, startloading, stoploading } = useLoading();
+
+  const fetchData = debounce(async () => {
+    if (loading || !searchValue) {
+      return;
+    }
+
+    try {
+      startloading();
+      const { data } = await axios.post('/api/products/list', {
+        name: searchValue,
+      });
+      setProductList(data);
+      stoploading();
+    } catch (error) {
+      stoploading();
+    }
+  }, 1500);
+
+  useEffect(() => {
+    if (loading || !searchValue) return;
+    else fetchData();
+  }, [searchValue]);
 
   const onSearch = (e: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
