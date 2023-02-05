@@ -14,7 +14,7 @@ const SectionContact: FC<IProps> = ({ className }) => {
         className || ''
       }`}
     >
-      <H1 className="text-zinc-900 px-24 text-center">
+      <H1 className="text-zinc-900 px-24 text-center font-bold">
         We always welcome your enquries, feedback and suggestions.
       </H1>
       <Link href="/contact">

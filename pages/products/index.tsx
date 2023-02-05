@@ -49,7 +49,7 @@ const Products = () => {
 
       <div className="px-48 ">
         {!searchValue ? (
-          <Brand brand="Clumsy Candy" />
+          <Brand brand="Clumsy Candy" fontFamily="Mallow" />
         ) : loading && searchValue ? (
           <div className="w-full h-[48vh] bg-white flex items-center justify-center">
             <Loader />

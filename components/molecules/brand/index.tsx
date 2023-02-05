@@ -8,9 +8,10 @@ import useData from './useData';
 
 interface IParams {
   brand: string;
+  fontFamily?: string;
 }
 
-const Brand = ({ brand }: IParams) => {
+const Brand = ({ brand, fontFamily }: IParams) => {
   const {
     state: { brandProducts, loading },
     actions: { fetchData },
@@ -20,13 +21,16 @@ const Brand = ({ brand }: IParams) => {
     <div className="flex flex-col items-center">
       <Fade triggerOnce={true}>
         <Slide triggerOnce={true} direction="down">
-          <H1>{brand}</H1>
+          <H1 style={{ fontFamily }}>{brand}</H1>
         </Slide>
       </Fade>
       <Fade>
         <div className="bg-black h-1 w-[48vw] mt-4"></div>
       </Fade>
-      <div className="w-full flex items-center justify-center">
+      <div
+        className="w-full flex items-center justify-center"
+        style={{ fontFamily }}
+      >
         <ProductList list={brandProducts} loading={loading} />
       </div>
     </div>
