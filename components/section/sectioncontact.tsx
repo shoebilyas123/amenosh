@@ -1,11 +1,19 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { H1 } from '../atoms/headings';
-import Button from '../button';
+import Button from '../atoms/button';
 
-const SectionContact: FC = () => {
+interface IProps {
+  className?: string;
+}
+
+const SectionContact: FC<IProps> = ({ className }) => {
   return (
-    <div className="w-full flex flex-col items-center justify-center p-24 bg-rose-200">
+    <div
+      className={`w-full flex flex-col items-center justify-center p-24 bg-rose-200 ${
+        className || ''
+      }`}
+    >
       <H1 className="text-zinc-900 px-24 text-center">
         We always welcome your enquries, feedback and suggestions.
       </H1>

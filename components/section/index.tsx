@@ -1,5 +1,5 @@
 import Footer from './footer';
 import AboutBanner from './aboutbanner';
-import SectionContanct from './sectioncontact';
+import SectionContact from './sectioncontact';
 
-export { Footer, AboutBanner, SectionContanct };
+export { Footer, AboutBanner, SectionContact };

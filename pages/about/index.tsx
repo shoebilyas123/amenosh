@@ -6,7 +6,7 @@ import DisplayCarousel from '~/components/molecules/displayCarousel';
 
 // local Imports
 import Navbar from '~/components/Navbar';
-import { AboutBanner, Footer, SectionContanct } from '~/components/section';
+import { AboutBanner, Footer, SectionContact } from '~/components/section';
 import { aboutCards } from 'constants/about';
 
 const About = () => {
@@ -90,7 +90,7 @@ const About = () => {
           ))}
         </div>
       </div>
-      <SectionContanct />
+      <SectionContact />
       <Footer />
     </div>
   );

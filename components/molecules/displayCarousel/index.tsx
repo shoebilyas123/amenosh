@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Button from '~/components/button';
+import Button from '~/components/atoms/button';
 import useToggler from '~/hooks/useToggler';
 
 interface IProps {

@@ -4,10 +4,12 @@ interface IProps extends React.HTMLProps<HTMLInputElement> {
   label?: string;
 }
 
-const Input: FC<IProps> = ({ label, ...props }) => {
+const Input: FC<IProps> = ({ label, className, ...props }) => {
   return (
     <input
-      className="border px-4 py-2 outline-none focus:border-rose-800"
+      className={`border px-4 py-2 outline-none focus:border-rose-800 ${
+        className || ''
+      }`}
       {...props}
     />
   );

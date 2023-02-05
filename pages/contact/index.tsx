@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMediaQuery } from 'react-responsive';
-import Button from '~/components/button';
+import Button from '~/components/atoms/button';
 import Card from '~/components/card';
 import EvenSection from '~/components/HomeSections/SectionEven';
-import Input from '~/components/input';
+import Input from '~/components/atoms/input';
 import SmoothScroll from '~/components/Layout/SmoothScroll';
 import Navbar from '~/components/Navbar';
 import Footer from '~/components/section/footer';

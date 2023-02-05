@@ -32,7 +32,7 @@ import OddSection from '~/components/HomeSections/SectionOdd';
 import Navbar from '~/components/Navbar';
 import { SplashScreen } from '~/components/SplashScreen';
 import SmoothScroll from '~/components/Layout/SmoothScroll';
-import Button from '~/components/button';
+import Button from '~/components/atoms/button';
 
 import Card from '~/components/card';
 import Footer from '~/components/section/footer';
