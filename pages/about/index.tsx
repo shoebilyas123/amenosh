@@ -77,10 +77,13 @@ const About = () => {
           {aboutCards.map(({ title, content }, index: number) => (
             <Card
               shadowSize="lg"
-              className="bg-red-300 text-yellow-100 px-2 py-8 flex-col items-center justify-center"
+              style={{
+                background: '#b4c7d9',
+              }}
+              className=" text-zinc-600 px-2 py-8 flex-col items-center justify-center"
             >
               <Fade cascade damping={0.2}>
-                <h1 className="text-6xl text-rose-800">{title}</h1>
+                <h1 className="text-6xl font-bold text-zinc-900">{title}</h1>
 
                 <Slide direction={index % 2 === 0 ? 'down' : 'up'}>
                   <p className="p-10">{content}</p>

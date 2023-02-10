@@ -11,12 +11,17 @@ const AboutBanner: FC<IProps> = ({ visionContent }) => {
     <div
       className="relative w-screen h-[65vh] bg-black p-0 m-0 overflow-hidden flex items-center justify-end"
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1503455637927-730bce8583c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')`,
+        backgroundImage: `url('https://images.unsplash.com/photo-1621939514649-280e2ee25f60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')`,
         backgroundSize: '100%',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="w-[50%] h-full bg-gradient-to-br from-rose-400 bg-fuchsia-900 text-white flex flex-col px-24 items-start justify-center">
+      <div
+        className="w-[50%] h-full text-white flex flex-col px-24 items-start justify-center"
+        style={{
+          background: `linear-gradient(to right, #163c61, #0c243c)`,
+        }}
+      >
         <motion.h1
           initial={{ y: 25, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

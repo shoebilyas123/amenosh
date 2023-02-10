@@ -16,6 +16,7 @@ const Button: NextPage<HTMLMotionProps<'button'>> = ({
       whileHover={{
         scale: 1.1,
       }}
+      style={{ background: '#0c243c' }}
       {...props}
     >
       {children}

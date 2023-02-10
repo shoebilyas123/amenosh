@@ -10,9 +10,12 @@ interface IProps {
 const SectionContact: FC<IProps> = ({ className }) => {
   return (
     <div
-      className={`w-full flex flex-col items-center justify-center p-24 bg-rose-200 ${
+      className={`w-full flex flex-col items-center justify-center p-24 ${
         className || ''
       }`}
+      style={{
+        background: '#91a9bf',
+      }}
     >
       <H1 className="text-zinc-900 px-24 text-center font-bold">
         We always welcome your enquries, feedback and suggestions.

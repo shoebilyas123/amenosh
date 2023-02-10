@@ -47,7 +47,7 @@ const Home = () => {
         <SmoothScroll active={isBigScreen}>
           {/* Intro Section */}
           <EvenSection
-            fallbackColor="#94073d"
+            fallbackColor="#163c61"
             background="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
             heading=""
             content={

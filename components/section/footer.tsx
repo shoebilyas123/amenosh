@@ -4,7 +4,12 @@ import { AiFillMail, AiFillPhone } from 'react-icons/ai';
 
 const Footer = () => {
   return (
-    <div className="w-[100vw] overflow-hidden bg-rose-900 text-white pb-12">
+    <div
+      className="w-[100vw] overflow-hidden text-white pb-12"
+      style={{
+        background: '#0c243c',
+      }}
+    >
       <div className="w-full grid grid-cols-4 gap-4 px-24 py-12">
         <div className="flex flex-col items-left space-x-1">
           <h1 className="text-3xl">Contacts</h1>

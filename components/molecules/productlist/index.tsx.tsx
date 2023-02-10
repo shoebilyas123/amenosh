@@ -33,7 +33,12 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
                     src={item.images[0]}
                     style={{ objectFit: 'cover', height: 270 }}
                   />
-                  <p className="w-full text-center py-2 px-4 text-white bg-rose-500">
+                  <p
+                    className="w-full text-white text-center py-2 px-4 text-whit"
+                    style={{
+                      background: '#0c234c',
+                    }}
+                  >
                     {item.title}
                   </p>
                 </div>

@@ -4,3 +4,11 @@ export interface IEmailPayload {
   message: string;
   email: string;
 }
+
+export interface ISendEmailParam {
+  to: string;
+  from: string;
+  subject: string;
+  text: string;
+  html: string;
+}

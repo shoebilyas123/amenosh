@@ -54,7 +54,10 @@ const Products = () => {
   return (
     <div className="w-screen">
       <Navbar isFixed={false} />
-      <div className="flex flex-row items-center border justify-center mb-8 p-8 bg-rose-50">
+      <div
+        className="flex flex-row items-center border justify-center mb-8 p-8 "
+        style={{ background: '#b4c7d9' }}
+      >
         <form onSubmit={onSearch} className="space-x-2">
           <Input
             value={searchValue}
