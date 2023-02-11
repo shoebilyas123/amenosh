@@ -17,7 +17,7 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
           <Loader />
         </div>
       ) : list.length > 0 ? (
-        <div className="grid grid-cols-4 gap-8 mt-8 overflow-hidden">
+        <div className="grid sm:grid-cols-1 md:grid-cols-4 sm:gap-2 md:gap-8 mt-8 overflow-hidden">
           {list.map((item, index: number) => (
             <Fade triggerOnce={true} delay={250}>
               <Slide
