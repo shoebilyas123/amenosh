@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { debounce } from 'lodash';
+import { NextPage } from 'next';
 import React, {
   DetailedHTMLProps,
   FormEvent,
@@ -19,8 +20,13 @@ import Navbar from '~/components/Navbar';
 import { Footer, SectionContact } from '~/components/section';
 import useLoading from '~/hooks/useLoading';
 import { IProductList } from '~/interfaces/product';
+import { getProductList } from '~/lib/graphcms';
 
-const Products = () => {
+interface IProps {
+  products: IProductList[];
+}
+
+const Products: NextPage<IProps> = ({ products }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [productList, setProductList] = useState<IProductList[]>([]);
   const { loading, startloading, stoploading } = useLoading();
@@ -83,7 +89,7 @@ const Products = () => {
           </div>
         ) : (
           <ProductList
-            list={productList}
+            list={products}
             loading={loading}
             emptyMessage="No Products Found"
           />
@@ -94,5 +100,11 @@ const Products = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const products = await getProductList({});
+
+  return { props: { products } };
+}
 
 export default Products;

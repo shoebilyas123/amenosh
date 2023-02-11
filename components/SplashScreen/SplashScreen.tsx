@@ -39,7 +39,7 @@ export const SplashScreen = ({ children }: { children: React.ReactNode }) => {
               stiffness: 180,
             },
           }}
-          className="h-screen w-screen absolute top-0 left-0 bg-violet-700 flex content-center items-center justify-center z-[100]"
+          className="h-screen w-screen absolute top-0 left-0 bg-sky-700 flex content-center items-center justify-center z-[100]"
         >
           <motion.div
             animate={{
@@ -56,7 +56,7 @@ export const SplashScreen = ({ children }: { children: React.ReactNode }) => {
           >
             <Roll>
               <h1 className="text-center sm:text-6xl text-4xl font-bold text-white">
-                Welcome !
+                Hi !
               </h1>
             </Roll>
           </motion.div>
