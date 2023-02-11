@@ -13,7 +13,7 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center w-full p-12 bg-rose-50">
+        <div className="flex items-center justify-center w-full p-12 bg-sky-100">
           <Loader />
         </div>
       ) : list.length > 0 ? (

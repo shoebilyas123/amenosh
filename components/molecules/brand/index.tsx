@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import { Fade, Slide, Reveal } from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
 
 import { H1 } from '~/components/atoms/headings';
 import ProductList from '../productlist/index.tsx';
 import useData from './useData';
+import { GetServerSideProps } from 'next';
+import { getProductList } from '~/lib/graphcms';
+import { IProductList } from '~/interfaces/product';
 
-interface IParams {
-  brand: string;
-  fontFamily?: string;
-}
+// interface IProps {
+//   brand: string;
+//   fontFamily?: string;
+//   products?: IProductList[];
+// }
 
-const Brand = ({ brand, fontFamily }: IParams) => {
-  const {
-    state: { brandProducts, loading },
-    actions: { fetchData },
-  } = useData({ brand });
+const Brand = () =>
+  // { brand, fontFamily, products }
+  {
+    // const [brandProducts, setBrandProducts] = useState<IProductList[]>(
+    // (products || []).filter((product) => product.brand === brand)
+    // );
 
-  return (
-    <div className="flex flex-col items-center">
-      <Fade triggerOnce={true}>
+    return (
+      <div className="flex flex-col items-center">
+        {/* <Fade triggerOnce={true}>
         <Slide triggerOnce={true} direction="down">
           <H1 style={{ fontFamily }}>{brand}</H1>
         </Slide>
@@ -31,10 +36,15 @@ const Brand = ({ brand, fontFamily }: IParams) => {
         className="w-full flex items-center justify-center"
         style={{ fontFamily }}
       >
-        <ProductList list={brandProducts} loading={loading} />
+        <ProductList list={brandProducts} loading={false} />
+      </div> */}
       </div>
-    </div>
-  );
+    );
+  };
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const products = await getProductList({});
+  return { props: { products } };
 };
 
 export default Brand;
