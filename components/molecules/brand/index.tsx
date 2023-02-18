@@ -9,42 +9,34 @@ import { GetServerSideProps } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 
-// interface IProps {
-//   brand: string;
-//   fontFamily?: string;
-//   products?: IProductList[];
-// }
+interface IProps {
+  brand: string;
+  fontFamily?: string;
+  products?: IProductList[];
+}
 
-const Brand = () =>
-  // { brand, fontFamily, products }
-  {
-    // const [brandProducts, setBrandProducts] = useState<IProductList[]>(
-    // (products || []).filter((product) => product.brand === brand)
-    // );
-
-    return (
-      <div className="flex flex-col items-center">
-        {/* <Fade triggerOnce={true}>
+const Brand: FC<IProps> = ({ brand, fontFamily, products }) => {
+  return (
+    <div className="flex flex-col items-center">
+      <Fade triggerOnce={true}>
         <Slide triggerOnce={true} direction="down">
-          <H1 style={{ fontFamily }}>{brand}</H1>
+          <H1 style={{ fontFamily, color: '#0c243c' }}>{brand}</H1>
         </Slide>
       </Fade>
       <Fade>
-        <div className="bg-black h-1 w-[48vw] mt-4"></div>
+        <div
+          className="bg-black h-1 w-[48vw] mt-4"
+          style={{ background: '#0c243c' }}
+        ></div>
       </Fade>
       <div
         className="w-full flex items-center justify-center"
         style={{ fontFamily }}
       >
-        <ProductList list={brandProducts} loading={false} />
-      </div> */}
+        <ProductList list={products || []} loading={false} />
       </div>
-    );
-  };
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const products = await getProductList({});
-  return { props: { products } };
+    </div>
+  );
 };
 
 export default Brand;

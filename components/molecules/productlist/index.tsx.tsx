@@ -5,7 +5,7 @@ import { IProductList } from '~/interfaces/product';
 
 interface IProps {
   list: IProductList[];
-  loading: boolean;
+  loading?: boolean;
   emptyMessage?: string;
 }
 
@@ -17,7 +17,7 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
           <Loader />
         </div>
       ) : list.length > 0 ? (
-        <div className="grid sm:grid-cols-1 md:grid-cols-4 sm:gap-2 md:gap-8 mt-8 overflow-hidden">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:gap-2 md:gap-8 mt-8 overflow-hidden">
           {list.map((item, index: number) => (
             <Fade triggerOnce={true} delay={250}>
               <Slide
@@ -26,15 +26,15 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
                 direction={index % 2 ? 'down' : 'up'}
               >
                 <div
-                  className="flex flex-col items-center"
-                  style={{ width: 320, height: 340 }}
+                  className="w-full flex flex-col items-center"
+                  // style={{ width: 320, height: 340 }}
                 >
                   <img
                     src={item.images[0]}
                     style={{ objectFit: 'cover', height: 270 }}
                   />
                   <p
-                    className="w-full text-white text-center py-2 px-4 text-whit"
+                    className="w-full truncate text-white text-center py-2 px-4 hover:bg-sky-900"
                     style={{
                       background: '#0c234c',
                     }}

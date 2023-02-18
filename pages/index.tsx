@@ -8,16 +8,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Autoplay,
-  Controller,
-  FreeMode,
-  Keyboard,
-  Navigation,
-  Pagination,
-  Scrollbar,
-  Thumbs,
-} from 'swiper';
+import { Autoplay, Pagination } from 'swiper';
 import {
   AiFillAccountBook,
   AiFillFacebook,
@@ -27,226 +18,132 @@ import {
   AiFillPhone,
 } from 'react-icons/ai';
 
-import EvenSection from '~/components/HomeSections/SectionEven';
-import OddSection from '~/components/HomeSections/SectionOdd';
 import Navbar from '~/components/Navbar';
 import { SplashScreen } from '~/components/SplashScreen';
-import SmoothScroll from '~/components/Layout/SmoothScroll';
 import Button from '~/components/atoms/button';
 
-import Card from '~/components/card';
 import Footer from '~/components/section/footer';
+import ProductList from '~/components/molecules/productlist/index.tsx';
+import { GetServerSideProps, NextPage } from 'next';
+import { getProductList } from '~/lib/graphcms';
+import { IProductList } from '~/interfaces/product';
+import FadeSlide from '~/components/animations/FadeSlide';
 
-const Home = () => {
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1024px)' });
+import ContactUsIllustration from '~/components/illustrations/contactus';
+import { colors } from '~/constants/colors';
+import { Fade } from 'react-awesome-reveal';
 
+interface IProps {
+  products: IProductList[];
+}
+
+const Home: NextPage<IProps> = ({ products }) => {
   return (
-    <div>
+    <div className="overflow-hidden w-screen">
       <SplashScreen>
-        <Navbar />
-        <SmoothScroll active={isBigScreen}>
-          {/* Intro Section */}
-          <EvenSection
-            fallbackColor="#163c61"
-            background="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
-            heading=""
-            content={
-              <div className="flex flex-row items-center px-24 text-white">
-                <div>
-                  <h1 className="text-6xl mb-4">Welcome To Amenosh</h1>
-                  <p className="w-[30vw] mb-4">
-                    AMENOSH is a parent brand under which there will be multiple
-                    brands. First brand to launch under AMENOSH is Clumsy candy
-                    in 6 different flavors - Orange, Ripe Mango, Litchi, Imli,
-                    Ginger, and Lemon-Mint. The only SKU we are launching with
-                    is a candy jar with 170 candy units per flavor, making it 6
-                    different SKUs.
-                  </p>
-                  <Link href="/about">
-                    <Button>View More</Button>
-                  </Link>
-                </div>
-                <div className="w-[50vw] px-24 h-[55vh] top-0 left-0 ">
-                  <Swiper
-                    loop={true}
-                    navigation={true}
-                    grabCursor={true}
-                    pagination={{
-                      clickable: true,
-                    }}
-                    autoplay={{
-                      delay: 2500,
-                      disableOnInteraction: false,
-                    }}
-                    className="w-[100%] h-[100%] border-2 border-white shadow-lg"
-                    modules={[Pagination, Autoplay]}
-                    spaceBetween={50}
-                    slidesPerView={1}
-                  >
-                    <SwiperSlide className="w-full">
-                      <img
-                        src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
-                        className="w-full"
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide className="w-full">
-                      <img
-                        src="https://images.unsplash.com/photo-1567653418876-5bb0e566e1c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                        className="w-full"
-                      />
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
-              </div>
-            }
-            showBG={false}
-          />
-          <OddSection
-            fallbackColor="#fff"
-            background="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FuZHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-            heading=""
-            showBG={false}
-            className=""
-            content={
-              <div className="flex flex-col items-center justify-center">
-                <h1 className="text-6xl mb-4 text-zinc-800">Our Products</h1>
-                <Swiper
-                  loop={true}
-                  slidesPerView={3}
-                  slidesPerGroup={3}
-                  spaceBetween={30}
-                  freeMode={true}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  modules={[FreeMode, Pagination, Keyboard, Scrollbar]}
-                  className="mySwiper w-[70vw] mx-auto mb-12 pl-6 flex items-center justify-center"
-                >
-                  <SwiperSlide>
-                    <Card className="rounded-none border border-rose-700">
-                      <img
-                        src="https://images.unsplash.com/photo-1599929219210-7c422e4d5208?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        style={{
-                          width: 250,
-                          height: 300,
-                          objectFit: 'cover',
-                        }}
-                        className="object-cover mb-4"
-                      />
-                      <Button>Clumsy Candy Orange</Button>
-                    </Card>
-                  </SwiperSlide>
+        <Navbar isFixed={false} />
+        {/* Intro Section */}
 
-                  <SwiperSlide>
-                    <Card>
-                      <img
-                        src="https://images.unsplash.com/photo-1599929219210-7c422e4d5208?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        style={{
-                          width: 250,
-                          height: 300,
-                          objectFit: 'cover',
-                        }}
-                        className="object-cover mb-4"
-                      />
-                      <Button>Clumsy Candy Litchi</Button>
-                    </Card>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <Card>
-                      <img
-                        src="https://images.unsplash.com/photo-1599929219210-7c422e4d5208?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        style={{
-                          width: 250,
-                          height: 300,
-                          objectFit: 'cover',
-                        }}
-                        className="object-cover mb-4"
-                      />
-                      <Button>Clumsy Candy Imli</Button>
-                    </Card>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <Card>
-                      <img
-                        src="https://images.unsplash.com/photo-1599929219210-7c422e4d5208?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        style={{
-                          width: 250,
-                          height: 300,
-                          objectFit: 'cover',
-                        }}
-                        className="object-cover mb-4"
-                      />
-                      <Button>Clumsy Candy Lemon Mint</Button>
-                    </Card>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Card>
-                      <img
-                        src="https://images.unsplash.com/photo-1599929219210-7c422e4d5208?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        style={{
-                          width: 250,
-                          height: 300,
-                          objectFit: 'cover',
-                        }}
-                        className="object-cover mb-4"
-                      />
-                      <Button>Clumsy Candy Orange</Button>
-                    </Card>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Card>
-                      <img
-                        src="https://images.unsplash.com/photo-1599929219210-7c422e4d5208?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        style={{
-                          width: 250,
-                          height: 300,
-                          objectFit: 'cover',
-                        }}
-                        className="object-cover mb-4"
-                      />
-                      <Button>Clumsy Candy Orange</Button>
-                    </Card>
-                  </SwiperSlide>
-                </Swiper>
+        {/* // fallbackColor="#163c61" */}
+        <div
+          className="flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col-reverse lg:flex-row items-center px-0 sm:px-24 text-white"
+          style={{
+            background: colors.primDark,
+          }}
+        >
+          <div className="space-y-8 mt-8 mb-8 flex flex-col items-center">
+            <FadeSlide slideDirection="down">
+              <h1 className="text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
+                Welcome To Amenosh
+              </h1>
+            </FadeSlide>
+            <Fade triggerOnce={true}>
+              <p className="w-100 mb-4 mx-12 text-center lg:mx-0 lg:text-left">
+                AMENOSH is a parent brand under which there will be multiple
+                brands. First brand to launch under AMENOSH is Clumsy candy in 6
+                different flavors - Orange, Ripe Mango, Litchi, Imli, Ginger,
+                and Lemon-Mint. The only SKU we are launching with is a candy
+                jar with 170 candy units per flavor, making it 6 different SKUs.
+              </p>
+            </Fade>
+            <FadeSlide slideDirection="up">
+              <Link href="/about">
                 <Button>View More</Button>
-              </div>
-            }
-          />
-        </SmoothScroll>
-        <EvenSection
-          fallbackColor="#fff"
-          background="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-          heading=""
-          showBG={true}
-          content={
-            <div className="mx-4 flex flex-col items-center justify-center p-12">
-              <h1 className="text-6xl mb-8 text-zinc-900">
+              </Link>
+            </FadeSlide>
+          </div>
+          <div className="lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12 lg:mt-0 px-2 sm:px-24 top-0 left-0">
+            <Swiper
+              loop={true}
+              navigation={true}
+              grabCursor={true}
+              pagination={{
+                clickable: true,
+              }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              className="w-[100%] h-[100%] shadow-lg"
+              modules={[Pagination, Autoplay]}
+              spaceBetween={50}
+              slidesPerView={1}
+            >
+              {products.map((product) => (
+                <SwiperSlide className="w-full h-full">
+                  <img
+                    src={product.images[0]}
+                    className="w-full h-full"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+
+        <div className=" md:h-screen w-screen mt-12 flex flex-col items-center justify-center sm:p-4 space-y-8">
+          <FadeSlide triggerOnce={true} slideDirection="up">
+            <h1 className="text-6xl mb-4 text-zinc-800">Our Products</h1>
+          </FadeSlide>
+
+          <ProductList list={products.slice(0, 4)} />
+          <Link href={'/products'} className="mt-12">
+            <Button>View More</Button>
+          </Link>
+        </div>
+
+        <div className="mx-4 flex h-screen w-screen flex-row items-center justify-center p-2 md:p-12">
+          <div className="w-[45%] overlfow-hidden hidden h-full lg:flex z-10">
+            <FadeSlide slideDirection="left">
+              <ContactUsIllustration />
+            </FadeSlide>
+          </div>
+          <div className="w-[55%] z-20 bg-white h-full flex flex-col items-center justify-center">
+            <FadeSlide slideDirection="down">
+              <h1 className="text-6xl  mb-8 text-zinc-900 text-center">
                 If You Have Any Queries, Feel Free To Reach Out
               </h1>
+            </FadeSlide>
+            <FadeSlide slideDirection="up">
               <Link href="/contact">
                 <Button>Contact Us</Button>
               </Link>
-
-              <div className="mt-4 flex flex-row items-center space-x-2">
-                <div className="rounded-full w-8 h-8 p-1 flex items-center justify-center border-2 hover:bg-rose-800 cursor-pointer">
-                  <AiFillInstagram className="w-full h-full text-rose-800 hover:text-white" />
-                </div>
-                <div className="rounded-full w-8 h-8 p-1 flex items-center justify-center border-2 hover:bg-rose-800 cursor-pointer">
-                  <AiFillFacebook className="w-full h-full text-rose-800 hover:text-white" />
-                </div>
-                <div className="rounded-full w-8 h-8 p-1 flex items-center justify-center border-2 border-rose-800 hover:bg-rose-800 cursor-pointer">
-                  <AiFillLinkedin className="w-full h-full text-rose-800 hover:text-white" />
-                </div>
-              </div>
-            </div>
-          }
-        />
+            </FadeSlide>
+          </div>
+        </div>
         <Footer />
       </SplashScreen>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const products = await getProductList({});
+
+  return {
+    props: { products },
+  };
 };
 
 export default Home;

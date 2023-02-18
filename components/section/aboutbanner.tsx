@@ -9,15 +9,16 @@ interface IProps {
 const AboutBanner: FC<IProps> = ({ visionContent }) => {
   return (
     <div
-      className="relative w-screen h-[65vh] bg-black p-0 m-0 overflow-hidden flex items-center justify-end"
+      className="relative w-screen h-[65vh] bg-black p-0 m-0 overflow-hidden flex flex-col md:flex-row items-center justify-end"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1621939514649-280e2ee25f60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')`,
         backgroundSize: '100%',
-        backgroundRepeat: 'no-repeat',
+        // backgroundRepeat: 'no-repeat',
+        objectFit: 'cover',
       }}
     >
       <div
-        className="w-[50%] h-full text-white flex flex-col px-24 items-start justify-center"
+        className="w-[100%] md:w-[50%] h-full text-white flex flex-col px-2 md:px-24 items-start justify-center"
         style={{
           background: `linear-gradient(to right, #163c61, #0c243c)`,
         }}
@@ -42,7 +43,7 @@ const AboutBanner: FC<IProps> = ({ visionContent }) => {
             delay: 0.2,
             duration: 0.6,
           }}
-          className=" text-white pr-24 mt-6"
+          className=" text-white pr-0 md:pr-24 mt-6"
         >
           {visionContent
             ? visionContent

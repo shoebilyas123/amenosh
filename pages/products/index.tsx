@@ -7,24 +7,30 @@ import Navbar from '~/components/Navbar';
 import { Footer, SectionContact } from '~/components/section';
 import { IProductList } from '~/interfaces/product';
 import { getProductList } from '~/lib/graphcms';
+import { groupBy } from 'lodash';
 
 interface IProps {
   products: IProductList[];
 }
 
 const Products: NextPage<IProps> = ({ products }) => {
-  console.log({ products });
+  const productsByBrand = groupBy(products, 'brand');
+
+  console.log(productsByBrand);
 
   return (
     <div className="w-screen">
       <Navbar isFixed={false} />
 
-      <div className="w-full flex justify-center sm:px-2 md:px-48">
-        <ProductList
-          list={products}
-          loading={false}
-          emptyMessage="No Products Found"
-        />
+      <div className="w-full flex justify-center sm:px-2 md:px-24 lg:px-36 mt-8">
+        {Object.keys(productsByBrand).map((brandKey) => (
+          <Brand
+            brand={brandKey}
+            products={productsByBrand[brandKey]}
+            key={brandKey}
+            fontFamily={'Mallow'}
+          />
+        ))}
       </div>
       <SectionContact className="mt-12" />
       <Footer />

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useViewportScroll, motion, motionValue } from 'framer-motion';
 import { NextPage } from 'next';
-import Image from 'next/image';
+import { IoCallSharp } from 'react-icons/io5';
+import { BsFillInfoCircleFill, BsFillCartFill } from 'react-icons/bs';
 
 import AmenoshLogoSVG from './../../assets/images/amenoshlogo.png';
 
@@ -10,14 +11,17 @@ const navItems = [
   {
     name: 'Products',
     path: '/products',
+    icon: BsFillCartFill,
   },
   {
     name: 'About',
     path: '/about',
+    icon: BsFillInfoCircleFill,
   },
   {
     name: 'Contact',
     path: '/contact',
+    icon: IoCallSharp,
   },
 ];
 
@@ -26,15 +30,33 @@ interface IProps {
   isFixed?: boolean;
 }
 
+let server = typeof window === 'undefined';
+
 const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
   const { scrollYProgress } = useViewportScroll();
   const [opacityState, setOpacityState] = React.useState(0);
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: !server && window.innerWidth,
+    height: !server && window.innerWidth,
+  });
+
   scrollYProgress.onChange((value) => {
     value = parseFloat(value.toFixed(3));
 
     if (opacityState === Math.min(value, 0.2) * 4.2) return;
     setOpacityState(Math.min(value, 0.2) * 4.2);
   });
+
+  const getWindowDimensions = () => {
+    setWindowDimensions({
+      width: window.innerWidth,
+      height: window.innerWidth,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', getWindowDimensions);
+  }, []);
 
   return (
     <div
@@ -52,15 +74,8 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
       >
         <div className="flex items-center overflow-hidden">
           <Link href="/">
-            {/* <h1
-              className={`text-4xl ${
-                textColor === 'DARK' ? 'text-white' : 'text-rose-800'
-              } px-2 sm:px-12 cursor-pointer`}
-            >
-              AMENOSH
-            </h1> */}
             <img
-              src={`https://media.graphassets.com/KKiLmvRQTuOpkSaMBLq8`}
+              src={`https://media.graphassets.com/rcQl0lwKQM6YISxmkZRN`}
               width={275}
               height={125}
             />
@@ -73,7 +88,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                 <a
                   className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
                 >
-                  {item.name}
+                  {windowDimensions.width < 450 ? <item.icon /> : item.name}
                 </a>
               </div>
             </Link>
