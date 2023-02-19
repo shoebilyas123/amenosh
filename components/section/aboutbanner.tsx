@@ -13,12 +13,11 @@ const AboutBanner: FC<IProps> = ({ visionContent }) => {
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1621939514649-280e2ee25f60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')`,
         backgroundSize: '100%',
-        // backgroundRepeat: 'no-repeat',
         objectFit: 'cover',
       }}
     >
       <div
-        className="w-[100%] md:w-[50%] h-full text-white flex flex-col px-2 md:px-24 items-start justify-center"
+        className="w-[100%] md:w-[50%] h-full text-white flex flex-col px-6 sm:px-6 lg:px-24 items-center text-center sm:text-left sm:items-start justify-center"
         style={{
           background: `linear-gradient(to right, #163c61, #0c243c)`,
         }}

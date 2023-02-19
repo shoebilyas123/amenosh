@@ -11,17 +11,17 @@ import { aboutCards } from 'constants/about';
 
 const About = () => {
   return (
-    <div>
-      <Navbar />
+    <div className='w-screen overflow-hidden'>
+      <Navbar isFixed={false}/>
       <AboutBanner />
-      <div className="px-48 my-4">
+      <div className="w-full px-4 sm:px-12 lg:px-48 my-4">
         <div className="w-full flex justify-center">
           <p>Home / </p>
-          <p className="text-rose-800">About</p>
+          <p className="text-sky-800">About</p>
         </div>
 
-        <div className="flex flex-row items-start justify-around mt-8 w-full  ">
-          <div className="flex flex-col items-start w-[45%]">
+        <div className="flex flex-col sm:flex-row items-start justify-around mt-8 w-full  ">
+          <div className="flex flex-col items-start w-[100%] sm:w-[45%]">
             <Fade triggerOnce={true}>
               <Slide direction="left" triggerOnce={true}>
                 <h1 className="text-6xl text-zinc-900 mb-4">Heading 1</h1>
@@ -56,8 +56,7 @@ const About = () => {
           </div>
           <DisplayCarousel
             imgHeight={550}
-            width={`[45%]`}
-            height={`[550px]`}
+            className={`m-0 w-[90vw] sm:w-[55%] md:w-[55%] sm:h-[550px] h-[250px]`}
             overlay={{
               isButton: true,
               text: 'Our Products',
@@ -72,7 +71,7 @@ const About = () => {
         </div>
         <div
           id="about-display-cards"
-          className="w-full px-4 grid grid-cols-3 items-center space-x-2 my-24"
+          className="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 items-center space-x-2 my-24"
         >
           {aboutCards.map(({ title, content }, index: number) => (
             <Card
@@ -80,7 +79,7 @@ const About = () => {
               style={{
                 background: '#b4c7d9',
               }}
-              className=" text-zinc-600 px-2 py-8 flex-col items-center justify-center"
+              className="w-100 text-zinc-600 px-2 py-8 flex-col items-center justify-center"
             >
               <Fade cascade damping={0.2}>
                 <h1 className="text-6xl font-bold text-zinc-900">{title}</h1>

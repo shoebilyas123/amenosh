@@ -6,8 +6,8 @@ import Button from '~/components/atoms/button';
 import useToggler from '~/hooks/useToggler';
 
 interface IProps {
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
   imgHeight: number;
   overlay?: {
     url: string;
@@ -15,6 +15,7 @@ interface IProps {
     isButton: boolean;
   };
   images: Array<string>;
+  className?:string;
 }
 
 const DisplayCarousel: FC<IProps> = ({
@@ -23,12 +24,13 @@ const DisplayCarousel: FC<IProps> = ({
   overlay,
   imgHeight,
   images,
+  className,
 }) => {
   const { open, close, isOpen } = useToggler();
 
   return (
     <div
-      className={`w-${width} h-${height} relative overflow-hidden flex items-center p-0 m-4`}
+      className={`relative overflow-hidden flex items-center p-0 m-4 ${className}`}
       onMouseEnter={() => open()}
       onMouseLeave={() => close()}
     >

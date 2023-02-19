@@ -57,16 +57,16 @@ const ContactUs = () => {
   }, [successMessage]);
 
   return (
-    <div className="w-[100vw] overflow-hidden">
+    <div className="w-screen overflow-hidden">
       <Navbar textColor="LIGHT" isFixed={false} />
-      <div className="w-[100%] pt-8 border flex flex-col items-center justify-center">
+      <div className="w-screen pt-8 border flex flex-col items-center justify-center overflow-hidden">
         <h1 className="text-4xl text-center">We'd Love To Hear From You!</h1>
         <Card className="border-none shadow-lg">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="sm:w-full flex flex-col space-y-4 w-full px-4 md:px-24 py-8 "
           >
-            <div className="flex flex-col md:flex-row  space-y-4 md:space-x-4">
+            <div className="flex flex-col md:flex-row  space-y-4 md:space-x-4 md:space-y-0">
               <div className="flex flex-col items-left">
                 <label>First Name</label>
                 <input
