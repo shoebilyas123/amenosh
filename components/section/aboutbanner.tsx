@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import SmoothScroll from '../Layout/SmoothScroll';
+import { colors } from '~/constants/colors';
 
 interface IProps {
   visionContent?: string;
@@ -19,7 +20,7 @@ const AboutBanner: FC<IProps> = ({ visionContent }) => {
       <div
         className="w-[100%] md:w-[50%] h-full text-white flex flex-col px-6 sm:px-6 lg:px-24 items-center text-center sm:text-left sm:items-start justify-center"
         style={{
-          background: `linear-gradient(to right, #163c61, #0c243c)`,
+          background: `linear-gradient(to right, #163c61, ${colors.primary})`,
         }}
       >
         <motion.h1

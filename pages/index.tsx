@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -23,7 +23,31 @@ interface IProps {
   products: IProductList[];
 }
 
+let isServer = typeof window === 'undefined';
+
 const Home: NextPage<IProps> = ({ products }) => {
+  // @ts-ignore
+  const Homewave = !isServer && document?.getElementById('homepage-banner');
+
+  if (!isServer)
+    (Homewave as HTMLElement).style.transition = 'all .2 ease-in-out 0';
+
+  const mouseMoveWave = (event: any) => {
+    const mousePosition = { x: event.pageX, y: event.pageY };
+    // @ts-ignore
+    Homewave.style.transform = `translateY(${
+      (mousePosition.y + mousePosition.x) / 25
+    }px)`;
+  };
+
+  !isServer && document.body?.addEventListener('mousemove', mouseMoveWave);
+
+  useEffect(() => {
+    return () => {
+      document?.body.removeEventListener('mousemove', mouseMoveWave);
+    };
+  }, []);
+
   return (
     <div className="overflow-hidden w-screen">
       <Navbar isFixed={false} />
@@ -31,12 +55,21 @@ const Home: NextPage<IProps> = ({ products }) => {
 
       {/* // fallbackColor="#163c61" */}
       <div
-        className="flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col-reverse lg:flex-row items-center px-0 sm:px-24 text-white"
+        className="relative flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col-reverse lg:flex-row items-center px-0 sm:px-24 text-white"
         style={{
-          background: colors.primDark,
+          // background: colors.homeWavePrimary,
+          background: `url(
+            "https://images.unsplash.com/photo-1574981927289-b8c07f3b2350?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          )`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          position: 'relative',
+          color: '#FFF',
+          textAlign: 'center',
+          overflow: 'hidden',
         }}
       >
-        <div className="space-y-8 mt-8 mb-8 flex flex-col items-center">
+        <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-40">
           <FadeSlide slideDirection="down">
             <h1 className="text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
               Welcome To Amenosh
@@ -57,7 +90,7 @@ const Home: NextPage<IProps> = ({ products }) => {
             </Link>
           </FadeSlide>
         </div>
-        <div className="lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12 lg:mt-0 px-2 sm:px-24 top-0 left-0">
+        <div className="z-40 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12 lg:mt-0 px-2 sm:px-24 top-0 left-0">
           <Swiper
             loop={true}
             navigation={true}
@@ -85,6 +118,24 @@ const Home: NextPage<IProps> = ({ products }) => {
             ))}
           </Swiper>
         </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          className="left-0 bottom-0 absolute w-screen z-50"
+          id="homepage-banner"
+        >
+          <path
+            fill="#fff"
+            fill-opacity="1"
+            d="M0,224L48,213.3C96,203,192,181,288,170.7C384,160,480,160,576,176C672,192,768,224,864,229.3C960,235,1056,213,1152,176C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+        <div
+          className="w-[100vw] h-screen absolute top-0 left-0 -z-5"
+          style={{
+            background: `linear-gradient(to right, ${colors.homeWavePrimary},${colors.homeWavePrimary}, rgba(0,0,0,0))`,
+          }}
+        ></div>
       </div>
 
       <div className=" md:h-screen w-screen mt-12 flex flex-col items-center justify-center sm:p-4 space-y-8">
@@ -98,25 +149,6 @@ const Home: NextPage<IProps> = ({ products }) => {
         </Link>
       </div>
 
-      {/* <div className="mx-4 flex h-screen w-screen flex-row items-center justify-center p-2 md:p-12">
-        <div className="w-[45%] overlfow-hidden hidden h-full lg:flex z-10">
-          <FadeSlide slideDirection="left">
-            <ContactUsIllustration />
-          </FadeSlide>
-        </div>
-        <div className="w-[55%] z-20 bg-white h-full flex flex-col items-center justify-center">
-          <FadeSlide slideDirection="down">
-            <h1 className="text-6xl  mb-8 text-zinc-900 text-center">
-              If You Have Any Queries, Feel Free To Reach Out
-            </h1>
-          </FadeSlide>
-          <FadeSlide slideDirection="up">
-            <Link href="/contact">
-              <Button>Contact Us</Button>
-            </Link>
-          </FadeSlide>
-        </div>
-      </div> */}
       <Contact />
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { AiFillMail, AiFillPhone } from 'react-icons/ai';
+import { colors } from '~/constants/colors';
 
 const footerPageLinks = [
   {
@@ -37,11 +38,9 @@ const Footer = () => {
   return (
     <div
       className="w-[100vw] overflow-hidden text-white bg-black pb-12"
-      style={
-        {
-          // background: '#0c243c',
-        }
-      }
+      style={{
+        background: colors.primary,
+      }}
     >
       <div className="w-full grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
         <div className="flex flex-col items-left space-x-1">

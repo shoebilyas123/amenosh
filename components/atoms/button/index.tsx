@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import React, { HTMLProps } from 'react';
 import { HTMLMotionProps, motion } from 'framer-motion';
+import { colors } from '~/constants/colors';
 
 const Button: NextPage<HTMLMotionProps<'button'>> = ({
   children,
@@ -16,7 +17,7 @@ const Button: NextPage<HTMLMotionProps<'button'>> = ({
       whileHover={{
         scale: 1.1,
       }}
-      style={{ background: '#0c243c' }}
+      style={{ background: colors.primary }}
       {...props}
     >
       {children}

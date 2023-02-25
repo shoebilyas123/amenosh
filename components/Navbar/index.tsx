@@ -6,6 +6,7 @@ import { IoCallSharp, IoHomeOutline } from 'react-icons/io5';
 import { BsFillInfoCircleFill, BsFillCartFill } from 'react-icons/bs';
 
 import AmenoshLogoSVG from './../../assets/images/amenoshlogo.png';
+import { colors } from '~/constants/colors';
 
 const navItems = [
   {
@@ -69,7 +70,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
         isFixed ? 'fixed' : ''
       } z-50 w-screen flex  justify-between items-stretch h-16 `}
       style={{
-        background: `#0c243c`,
+        background: colors.primary,
       }}
     >
       <div

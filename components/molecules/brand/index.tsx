@@ -8,6 +8,7 @@ import useData from './useData';
 import { GetServerSideProps } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
+import { colors } from '~/constants/colors';
 
 interface IProps {
   brand: string;
@@ -20,13 +21,13 @@ const Brand: FC<IProps> = ({ brand, fontFamily, products }) => {
     <div className="flex flex-col items-center">
       <Fade triggerOnce={true}>
         <Slide triggerOnce={true} direction="down">
-          <H1 style={{ fontFamily, color: '#0c243c' }}>{brand}</H1>
+          <H1 style={{ fontFamily, color: colors.primary }}>{brand}</H1>
         </Slide>
       </Fade>
       <Fade>
         <div
           className="bg-black h-1 w-[48vw] mt-4"
-          style={{ background: '#0c243c' }}
+          style={{ background: colors.primary }}
         ></div>
       </Fade>
       <div
