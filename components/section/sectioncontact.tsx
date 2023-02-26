@@ -2,27 +2,46 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { H1 } from '../atoms/headings';
 import Button from '../atoms/button';
+import { colors } from '~/constants/colors';
 
 interface IProps {
   className?: string;
+  showWave?: boolean;
+  waveColor?: string;
 }
 
-const SectionContact: FC<IProps> = ({ className }) => {
+const SectionContact: FC<IProps> = ({ className, waveColor, showWave }) => {
   return (
     <div
-      className={`w-full flex flex-col items-center justify-center p-12 ${
+      className={`overflow-hidden w-full relative flex flex-col items-center justify-center p-12 ${
         className || ''
       }`}
       style={{
-        background: '#91a9bf',
+        background: colors.secondary,
       }}
     >
-      <h1 className="text-zinc-900 px-24 text-center xs:text-lg sm:text-xl md:text-4xl lg:text-6xl font-bold">
-        We always welcome your enquiries, feedback and suggestions.
-      </h1>
-      <Link href="/contact">
-        <Button className="mt-8 ">Contact</Button>
-      </Link>
+      <div className="z-50 w-full flex flex-col items-center justify-center">
+        <h1 className="z-50 text-white px-24 text-center xs:text-lg sm:text-xl md:text-4xl lg:text-6xl font-bold">
+          We always welcome your enquiries, feedback and suggestions.
+        </h1>
+        <Link href="/contact" className="z-50">
+          <Button className="mt-8 ">Contact</Button>
+        </Link>
+      </div>
+      {showWave && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          className="left-0 -bottom-24 absolute w-screen z-0"
+          id="homepage-banner"
+        >
+          <path
+            fill={waveColor || '#fff'}
+            fill-opacity="1"
+            d="M0,224L48,213.3C96,203,192,181,288,170.7C384,160,480,160,576,176C672,192,768,224,864,229.3C960,235,1056,213,1152,176C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+      )}
     </div>
   );
 };

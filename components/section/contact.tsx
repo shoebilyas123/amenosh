@@ -47,7 +47,7 @@ const Contact = () => {
   }, [successMessage]);
 
   return (
-    <div className="w-screen pt-8 border flex flex-col items-center justify-center overflow-hidden">
+    <div className="z-50  w-screen pt-8 border flex flex-col items-center justify-center overflow-hidden">
       <h1 className="text-4xl text-center">We'd Love To Hear From You!</h1>
       <Card className="border-none shadow-lg">
         <form

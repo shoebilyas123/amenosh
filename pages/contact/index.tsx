@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMediaQuery } from 'react-responsive';
 import { AiOutlineLoading } from 'react-icons/ai';
@@ -16,11 +16,16 @@ import useLoading from '~/hooks/useLoading';
 import { sendEmail } from '~/lib/email';
 import { H1 } from '~/components/atoms/headings';
 import Contact from '~/components/section/contact';
+import Image from 'next/image';
 
 const ContactUs = () => {
   return (
     <div className="w-screen overflow-hidden">
       <Navbar textColor="LIGHT" isFixed={false} />
+      <img
+        src={'/images/contactdoodle.png'}
+        className={`fixed -left-48 -z-40 rotate-12`}
+      />
       <Contact />
       <Footer />
     </div>

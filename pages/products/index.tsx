@@ -8,6 +8,7 @@ import { Footer, SectionContact } from '~/components/section';
 import { IProductList } from '~/interfaces/product';
 import { getProductList } from '~/lib/graphcms';
 import { groupBy } from 'lodash';
+import LoadingPage from '~/components/animations/LoadingPage';
 
 interface IProps {
   products: IProductList[];
@@ -15,8 +16,6 @@ interface IProps {
 
 const Products: NextPage<IProps> = ({ products }) => {
   const productsByBrand = groupBy(products, 'brand');
-
-  console.log(productsByBrand);
 
   return (
     <div className="w-screen">
@@ -32,7 +31,7 @@ const Products: NextPage<IProps> = ({ products }) => {
           />
         ))}
       </div>
-      <SectionContact className="mt-12" />
+      <SectionContact showWave={false} className="mt-12" />
       <Footer />
     </div>
   );

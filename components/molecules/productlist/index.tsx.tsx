@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Fade, Slide } from 'react-awesome-reveal';
 import Loader from '~/components/atoms/loader';
+import { colors } from '~/constants/colors';
 import { IProductList } from '~/interfaces/product';
 
 interface IProps {
@@ -34,9 +35,9 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
                     style={{ objectFit: 'cover', height: 270 }}
                   />
                   <p
-                    className="w-full truncate text-white text-center py-2 px-4 hover:bg-sky-900"
+                    className="w-full truncate text-white text-center py-2 px-4"
                     style={{
-                      background: '#0c234c',
+                      background: colors.primary,
                     }}
                   >
                     {item.title}

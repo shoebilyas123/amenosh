@@ -6,18 +6,18 @@
 //   textDark: '',
 // };
 
-export const colors = {
-  homeWavePrimary: '#4056A1',
-  primary: '#4056A1',
-  secondary: '',
-  textLight: '',
-  textDark: '',
-};
-
 // export const colors = {
-//   homeWavePrimary: '#17e9e0',
-//   primary: '#a64ac9',
+//   homeWavePrimary: '#4056A1',
+//   primary: '#4056A1',
 //   secondary: '',
 //   textLight: '',
 //   textDark: '',
 // };
+
+export const colors = {
+  homeWavePrimary: '#03344f',
+  primary: '#4056A1',
+  secondary: '#03344f',
+  textLight: '',
+  textDark: '',
+};

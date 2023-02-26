@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,6 +18,7 @@ import ContactUsIllustration from '~/components/illustrations/contactus';
 import { colors } from '~/constants/colors';
 import { Fade } from 'react-awesome-reveal';
 import Contact from '~/components/section/contact';
+import Image from 'next/image';
 
 interface IProps {
   products: IProductList[];
@@ -27,26 +28,26 @@ let isServer = typeof window === 'undefined';
 
 const Home: NextPage<IProps> = ({ products }) => {
   // @ts-ignore
-  const Homewave = !isServer && document?.getElementById('homepage-banner');
-
-  if (!isServer)
-    (Homewave as HTMLElement).style.transition = 'all .2 ease-in-out 0';
+  const waveRef = useRef<any>();
 
   const mouseMoveWave = (event: any) => {
     const mousePosition = { x: event.pageX, y: event.pageY };
     // @ts-ignore
-    Homewave.style.transform = `translateY(${
+    waveRef.current.style.transform = `translateY(${
       (mousePosition.y + mousePosition.x) / 25
     }px)`;
   };
 
-  !isServer && document.body?.addEventListener('mousemove', mouseMoveWave);
-
   useEffect(() => {
+    if (waveRef && !isServer) {
+      waveRef.current.style.transition = 'all .2 ease-in-out 0';
+      document.body?.addEventListener('mousemove', mouseMoveWave);
+    }
+
     return () => {
       document?.body.removeEventListener('mousemove', mouseMoveWave);
     };
-  }, []);
+  }, [waveRef]);
 
   return (
     <div className="overflow-hidden w-screen">
@@ -69,7 +70,7 @@ const Home: NextPage<IProps> = ({ products }) => {
           overflow: 'hidden',
         }}
       >
-        <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-40">
+        <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-50">
           <FadeSlide slideDirection="down">
             <h1 className="text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
               Welcome To Amenosh
@@ -90,7 +91,7 @@ const Home: NextPage<IProps> = ({ products }) => {
             </Link>
           </FadeSlide>
         </div>
-        <div className="z-40 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12 lg:mt-0 px-2 sm:px-24 top-0 left-0">
+        <div className="z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12 lg:mt-0 px-2 sm:px-24 top-0 left-0">
           <Swiper
             loop={true}
             navigation={true}
@@ -113,6 +114,7 @@ const Home: NextPage<IProps> = ({ products }) => {
                   src={product.images[0]}
                   className="w-full h-full"
                   style={{ objectFit: 'cover' }}
+                  // layout="fill"
                 />
               </SwiperSlide>
             ))}
@@ -121,8 +123,9 @@ const Home: NextPage<IProps> = ({ products }) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
-          className="left-0 bottom-0 absolute w-screen z-50"
+          className="hidden md:block left-0 bottom-0 absolute w-screen z-20"
           id="homepage-banner"
+          ref={waveRef}
         >
           <path
             fill="#fff"
@@ -131,7 +134,7 @@ const Home: NextPage<IProps> = ({ products }) => {
           ></path>
         </svg>
         <div
-          className="w-[100vw] h-screen absolute top-0 left-0 -z-5"
+          className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
           style={{
             background: `linear-gradient(to right, ${colors.homeWavePrimary},${colors.homeWavePrimary}, rgba(0,0,0,0))`,
           }}
