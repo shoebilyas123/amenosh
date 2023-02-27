@@ -8,15 +8,20 @@ import useData from './useData';
 import { GetServerSideProps } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
-import { colors } from '~/constants/colors';
+import { ICommonProps } from '~/interfaces/common';
+import { appendFileSync } from 'fs';
 
-interface IProps {
+interface IProps extends ICommonProps {
   brand: string;
   fontFamily?: string;
   products?: IProductList[];
 }
 
-const Brand: FC<IProps> = ({ brand, fontFamily, products }) => {
+const Brand: FC<IProps> = ({ brand, fontFamily, products, config }) => {
+  const {
+    appSettings: { colors },
+  } = config;
+
   return (
     <div className="flex flex-col items-center">
       <Fade triggerOnce={true}>
@@ -34,7 +39,7 @@ const Brand: FC<IProps> = ({ brand, fontFamily, products }) => {
         className="w-full flex items-center justify-center"
         style={{ fontFamily }}
       >
-        <ProductList list={products || []} loading={false} />
+        <ProductList config={config} list={products || []} loading={false} />
       </div>
     </div>
   );

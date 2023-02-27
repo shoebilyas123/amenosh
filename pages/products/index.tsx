@@ -8,22 +8,23 @@ import { Footer, SectionContact } from '~/components/section';
 import { IProductList } from '~/interfaces/product';
 import { getProductList } from '~/lib/graphcms';
 import { groupBy } from 'lodash';
-import LoadingPage from '~/components/animations/LoadingPage';
+import { ICommonProps } from '~/interfaces/common';
 
-interface IProps {
+interface IProps extends ICommonProps {
   products: IProductList[];
 }
 
-const Products: NextPage<IProps> = ({ products }) => {
+const Products: NextPage<IProps> = ({ products, config }) => {
   const productsByBrand = groupBy(products, 'brand');
 
   return (
     <div className="w-screen">
-      <Navbar isFixed={false} />
+      <Navbar config={config} isFixed={false} />
 
       <div className="w-full flex justify-center sm:px-2 md:px-24 lg:px-36 mt-8">
         {Object.keys(productsByBrand).map((brandKey) => (
           <Brand
+            config={config}
             brand={brandKey}
             products={productsByBrand[brandKey]}
             key={brandKey}
@@ -31,8 +32,8 @@ const Products: NextPage<IProps> = ({ products }) => {
           />
         ))}
       </div>
-      <SectionContact showWave={false} className="mt-12" />
-      <Footer />
+      <SectionContact config={config} showWave={false} className="mt-12" />
+      <Footer config={config} />
     </div>
   );
 };

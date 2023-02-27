@@ -2,15 +2,23 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { H1 } from '../atoms/headings';
 import Button from '../atoms/button';
-import { colors } from '~/constants/colors';
+import { ICommonProps } from '~/interfaces/common';
 
-interface IProps {
+interface IProps extends ICommonProps {
   className?: string;
   showWave?: boolean;
   waveColor?: string;
 }
 
-const SectionContact: FC<IProps> = ({ className, waveColor, showWave }) => {
+const SectionContact: FC<IProps> = ({
+  className,
+  waveColor,
+  showWave,
+  config,
+}) => {
+  const {
+    appSettings: { colors },
+  } = config;
   return (
     <div
       className={`overflow-hidden w-full relative flex flex-col items-center justify-center p-12 ${
@@ -25,7 +33,9 @@ const SectionContact: FC<IProps> = ({ className, waveColor, showWave }) => {
           We always welcome your enquiries, feedback and suggestions.
         </h1>
         <Link href="/contact" className="z-50">
-          <Button className="mt-8 ">Contact</Button>
+          <Button config={config} className="mt-8 ">
+            Contact
+          </Button>
         </Link>
       </div>
       {showWave && (

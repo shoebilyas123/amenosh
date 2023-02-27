@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { FC } from 'react';
 import { AiFillMail, AiFillPhone } from 'react-icons/ai';
-import { colors } from '~/constants/colors';
+import { ICommonProps } from '~/interfaces/common';
 
 const footerPageLinks = [
   {
@@ -34,7 +34,11 @@ const socials = [
   { link: 'https://www.youtube.com/@amenoshfoods', title: 'YouTube' },
 ];
 
-const Footer = () => {
+const Footer: FC<ICommonProps> = ({
+  config: {
+    appSettings: { colors },
+  },
+}) => {
   return (
     <>
       <div

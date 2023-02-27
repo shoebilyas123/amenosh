@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineLoading } from 'react-icons/ai';
 import useLoading from '~/hooks/useLoading';
@@ -6,8 +6,9 @@ import { IEmailPayload } from '~/interfaces/email';
 import { sendEmail } from '~/lib/email';
 import Button from '~/components/atoms/button';
 import Card from '~/components/card';
+import { ICommonProps } from '~/interfaces/common';
 
-const Contact = () => {
+const Contact: FC<ICommonProps> = ({ config }) => {
   const {
     register,
     handleSubmit,
@@ -105,7 +106,11 @@ const Contact = () => {
             </div>
           )}
 
-          <Button type="submit" className="flex items-center justify-center">
+          <Button
+            config={config}
+            type="submit"
+            className="flex items-center justify-center"
+          >
             {loading && <AiOutlineLoading />}Send Message
           </Button>
         </form>

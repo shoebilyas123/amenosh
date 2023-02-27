@@ -45,4 +45,32 @@ export const getProductList = async ({
   return transformedProduct;
 };
 
+export const getCandyWrappers = async () => {
+  const query = `
+  {
+    assets(where: {groupName: "Candy Wrappers"}) {
+      id
+      url
+    }
+  }
+  `;
+
+  const { assets } = await client.request(query);
+  return assets;
+};
+
+export const getAppConfig = async () => {
+  const query = `
+  {
+    configs {
+      appSettings
+    }
+  }
+  `;
+  const { configs } = await client.request(query);
+  console.log({ configs });
+
+  return configs[0];
+};
+
 export default client;

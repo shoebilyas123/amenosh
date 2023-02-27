@@ -1,11 +1,14 @@
 import { NextPage } from 'next';
 import React, { HTMLProps } from 'react';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import { colors } from '~/constants/colors';
+import { ICommonProps } from '~/interfaces/common';
 
-const Button: NextPage<HTMLMotionProps<'button'>> = ({
+const Button: NextPage<HTMLMotionProps<'button'> & ICommonProps> = ({
   children,
   className,
+  config: {
+    appSettings: { colors },
+  },
   ...props
 }) => {
   return (

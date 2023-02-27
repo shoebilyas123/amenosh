@@ -4,8 +4,9 @@ import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Button from '~/components/atoms/button';
 import useToggler from '~/hooks/useToggler';
+import { ICommonProps } from '~/interfaces/common';
 
-interface IProps {
+interface IProps extends ICommonProps {
   width?: string;
   height?: string;
   imgHeight: number;
@@ -15,7 +16,7 @@ interface IProps {
     isButton: boolean;
   };
   images: Array<string>;
-  className?:string;
+  className?: string;
 }
 
 const DisplayCarousel: FC<IProps> = ({
@@ -24,6 +25,7 @@ const DisplayCarousel: FC<IProps> = ({
   overlay,
   imgHeight,
   images,
+  config,
   className,
 }) => {
   const { open, close, isOpen } = useToggler();
@@ -40,7 +42,7 @@ const DisplayCarousel: FC<IProps> = ({
           <div className="w-[100%] h-[100%] absolute z-50 flex items-center justify-center">
             <Link href={`${overlay?.url}`}>
               {overlay?.isButton ? (
-                <Button>{overlay.text}</Button>
+                <Button config={config}>{overlay.text}</Button>
               ) : (
                 <span className="text-white hover:text-bg-rose-600">
                   {overlay?.text}

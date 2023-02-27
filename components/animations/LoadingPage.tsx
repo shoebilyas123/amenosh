@@ -1,14 +1,19 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
-import { colors } from '~/constants/colors';
+import { ICommonProps } from '~/interfaces/common';
 
 import styles from './LoadingPage.module.css';
 
-interface IProps {
+interface IProps extends ICommonProps {
   img?: string;
 }
 
-const LoadingPage: FC<IProps> = ({ img }) => {
+const LoadingPage: FC<IProps> = ({
+  img,
+  config: {
+    appSettings: { colors },
+  },
+}) => {
   return (
     <div
       className="fixed flex items-center justify-center w-screen h-screen top-0 left-0"

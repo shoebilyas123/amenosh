@@ -7,10 +7,10 @@ import { BsFillInfoCircleFill, BsFillCartFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import AmenoshLogoSVG from './../../assets/images/amenoshlogo.png';
-import { colors } from '~/constants/colors';
 import useToggler from '~/hooks/useToggler';
 import useLoading from '~/hooks/useLoading';
 import LoadingPage from '../animations/LoadingPage';
+import { ICommonProps } from '~/interfaces/common';
 
 const navItems = [
   {
@@ -35,14 +35,21 @@ const navItems = [
   },
 ];
 
-interface IProps {
+interface IProps extends ICommonProps {
   textColor?: 'DARK' | 'LIGHT';
   isFixed?: boolean;
 }
 
 let server = typeof window === 'undefined';
 
-const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
+const Navbar: NextPage<IProps> = ({
+  textColor = 'DARK',
+  isFixed = true,
+  config,
+}) => {
+  const {
+    appSettings: { colors },
+  } = config;
   const { scrollYProgress } = useViewportScroll();
   const url = typeof window !== 'undefined' && window.URL;
   const [opacityState, setOpacityState] = React.useState(0);
@@ -87,7 +94,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
 
   return (
     <>
-      {loading && <LoadingPage />}
+      {loading && <LoadingPage config={config} />}
       <div
         className={`${
           isFixed ? 'fixed' : ''

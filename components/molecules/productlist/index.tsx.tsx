@@ -1,16 +1,23 @@
 import React, { FC } from 'react';
 import { Fade, Slide } from 'react-awesome-reveal';
 import Loader from '~/components/atoms/loader';
-import { colors } from '~/constants/colors';
+import { ICommonProps } from '~/interfaces/common';
 import { IProductList } from '~/interfaces/product';
 
-interface IProps {
+interface IProps extends ICommonProps {
   list: IProductList[];
   loading?: boolean;
   emptyMessage?: string;
 }
 
-const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
+const ProductList: FC<IProps> = ({
+  list,
+  loading,
+  emptyMessage,
+  config: {
+    appSettings: { colors },
+  },
+}) => {
   return (
     <>
       {loading ? (

@@ -10,23 +10,28 @@ import Button from '~/components/atoms/button';
 import Footer from '~/components/section/footer';
 import ProductList from '~/components/molecules/productlist/index.tsx';
 import { GetServerSideProps, NextPage } from 'next';
-import { getProductList } from '~/lib/graphcms';
+import { getCandyWrappers, getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 import FadeSlide from '~/components/animations/FadeSlide';
 
 import ContactUsIllustration from '~/components/illustrations/contactus';
-import { colors } from '~/constants/colors';
 import { Fade } from 'react-awesome-reveal';
 import Contact from '~/components/section/contact';
 import Image from 'next/image';
+import Candies from '~/components/animations/Candies';
+import { ICommonProps } from '~/interfaces/common';
 
-interface IProps {
+interface IProps extends ICommonProps {
   products: IProductList[];
+  candyWrappers: Array<{ url: string; id: string }>;
 }
 
 let isServer = typeof window === 'undefined';
 
-const Home: NextPage<IProps> = ({ products }) => {
+const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
+  const {
+    appSettings: { colors },
+  } = config;
   // @ts-ignore
   const waveRef = useRef<any>();
 
@@ -51,12 +56,12 @@ const Home: NextPage<IProps> = ({ products }) => {
 
   return (
     <div className="overflow-hidden w-screen">
-      <Navbar isFixed={false} />
+      <Navbar config={config} isFixed={false} />
       {/* Intro Section */}
 
       {/* // fallbackColor="#163c61" */}
       <div
-        className="relative flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col-reverse lg:flex-row items-center px-0 sm:px-24 text-white"
+        className="relative flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col lg:flex-row items-center px-0 sm:px-24 text-white"
         style={{
           // background: colors.homeWavePrimary,
           background: `url(
@@ -87,11 +92,11 @@ const Home: NextPage<IProps> = ({ products }) => {
           </Fade>
           <FadeSlide slideDirection="up">
             <Link href="/about">
-              <Button>View More</Button>
+              <Button config={config}>View More</Button>
             </Link>
           </FadeSlide>
         </div>
-        <div className="z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12 lg:mt-0 px-2 sm:px-24 top-0 left-0">
+        <div className="relative z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12  px-2 lg:px-24 lg:mt-0 top-0 left-0">
           <Swiper
             loop={true}
             navigation={true}
@@ -111,6 +116,7 @@ const Home: NextPage<IProps> = ({ products }) => {
             {products.map((product) => (
               <SwiperSlide className="w-full h-full">
                 <img
+                  key={product.id}
                   src={product.images[0]}
                   className="w-full h-full"
                   style={{ objectFit: 'cover' }}
@@ -146,23 +152,24 @@ const Home: NextPage<IProps> = ({ products }) => {
           <h1 className="text-6xl mb-4 text-zinc-800">Our Products</h1>
         </FadeSlide>
 
-        <ProductList list={products.slice(0, 4)} />
+        <ProductList config={config} list={products.slice(0, 4)} />
         <Link href={'/products'} className="mt-12">
-          <Button>View More</Button>
+          <Button config={config}>View More</Button>
         </Link>
       </div>
 
-      <Contact />
-      <Footer />
+      <Contact config={config} />
+      <Footer config={config} />
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const products = await getProductList({});
+  const candyWrappers = await getCandyWrappers();
 
   return {
-    props: { products },
+    props: { products, candyWrappers },
   };
 };
 

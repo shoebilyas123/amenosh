@@ -9,19 +9,22 @@ import DisplayCarousel from '~/components/molecules/displayCarousel';
 import Navbar from '~/components/Navbar';
 import { AboutBanner, Footer, SectionContact } from '~/components/section';
 import { aboutCards } from 'constants/about';
-import { colors } from '~/constants/colors';
 import { GetServerSideProps, NextPage } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
+import { ICommonProps } from '~/interfaces/common';
 
-interface IProps {
+interface IProps extends ICommonProps {
   productImages: Array<string>;
 }
 
-const About: NextPage<IProps> = ({ productImages }) => {
+const About: NextPage<IProps> = ({ productImages, config }) => {
+  const {
+    appSettings: { colors },
+  } = config;
   return (
     <div className="w-screen overflow-hidden">
-      <Navbar isFixed={false} />
+      <Navbar config={config} isFixed={false} />
       {/* <AboutBanner /> */}
       <div className="w-full px-4 sm:px-12 lg:px-48 my-4">
         <div className="w-full flex justify-center">
@@ -76,6 +79,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
             </Fade>
           </div>
           <DisplayCarousel
+            config={config}
             imgHeight={550}
             className={`m-0 w-[90vw] sm:w-[55%] md:w-[55%] sm:h-[550px] h-[250px]`}
             overlay={{
@@ -109,8 +113,12 @@ const About: NextPage<IProps> = ({ productImages }) => {
           ))}
         </div> */}
       </div>
-      <SectionContact showWave={true} waveColor={colors.secondary} />
-      <Footer />
+      <SectionContact
+        config={config}
+        showWave={true}
+        waveColor={colors.secondary}
+      />
+      <Footer config={config} />
     </div>
   );
 };
