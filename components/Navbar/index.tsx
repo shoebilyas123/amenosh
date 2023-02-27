@@ -101,7 +101,7 @@ const Navbar: NextPage<IProps> = ({
           isFixed ? 'fixed' : ''
         } z-50 w-screen flex  justify-between items-stretch h-16 `}
         style={{
-          background: colors.primary,
+          background: colors.navbarColor,
         }}
       >
         <div
@@ -166,7 +166,7 @@ const Navbar: NextPage<IProps> = ({
       {windowDimensions.width < 640 && isOpen && (
         <div
           className="absolute flex flex-col w-screen h-fit left-0"
-          style={{ background: colors.primary, zIndex: '999999' }}
+          style={{ background: colors.navbarColor, zIndex: '999999' }}
         >
           {navItems.map((item) => (
             <Link href={item.path} key={item.name}>

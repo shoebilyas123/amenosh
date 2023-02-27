@@ -44,7 +44,7 @@ const Footer: FC<ICommonProps> = ({
       <div
         className="w-[100vw] relative overflow-hidden text-white bg-black pb-12"
         style={{
-          background: colors.primary,
+          background: colors.footerColor,
         }}
       >
         <div className="w-full grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
