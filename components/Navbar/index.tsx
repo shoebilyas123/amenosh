@@ -11,6 +11,7 @@ import useToggler from '~/hooks/useToggler';
 import useLoading from '~/hooks/useLoading';
 import LoadingPage from '../animations/LoadingPage';
 import { ICommonProps } from '~/interfaces/common';
+import FadeSlide from '../animations/FadeSlide';
 
 const navItems = [
   {
@@ -113,11 +114,16 @@ const Navbar: NextPage<IProps> = ({
               navItems.slice(0, 2).map((item) => (
                 <Link href={item.path} key={item.name}>
                   <div className="flex items-center" onClick={startloading}>
-                    <a
-                      className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
-                    >
-                      {item.name}
-                    </a>
+                    <FadeSlide slideDirection="right" triggerOnce={false}>
+                      <a
+                        className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
+                        style={{
+                          fontFamily: 'Mallow',
+                        }}
+                      >
+                        {item.name}
+                      </a>
+                    </FadeSlide>
                   </div>
                 </Link>
               ))}
@@ -134,11 +140,14 @@ const Navbar: NextPage<IProps> = ({
               navItems.slice(2, 4).map((item) => (
                 <Link href={item.path} key={item.name}>
                   <div className="flex items-center" onClick={startloading}>
-                    <a
-                      className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
-                    >
-                      {item.name}
-                    </a>
+                    <FadeSlide slideDirection="left" triggerOnce={false}>
+                      <a
+                        className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
+                        style={{ fontFamily: 'Mallow' }}
+                      >
+                        {item.name}
+                      </a>
+                    </FadeSlide>
                   </div>
                 </Link>
               ))}
