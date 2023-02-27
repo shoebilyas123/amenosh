@@ -42,7 +42,13 @@ const ProductList: FC<IProps> = ({
                     style={{ objectFit: 'cover', height: 270 }}
                   />
                   <p
-                    className="w-full truncate text-white text-center py-2 px-4"
+                    className={`w-full truncate ${
+                      ['#fff', '#ffffff'].some(
+                        (clr) => clr === colors.primary.toLowerCase()
+                      )
+                        ? 'text-neutral-900'
+                        : 'text-white'
+                    } text-center py-2 px-4`}
                     style={{
                       background: colors.primary,
                     }}

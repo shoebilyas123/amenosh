@@ -97,7 +97,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
           </FadeSlide>
         </div>
         <div className="relative z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12  px-2 lg:px-24 lg:mt-0 top-0 left-0">
-          <Swiper
+          {/* <Swiper
             loop={true}
             navigation={true}
             grabCursor={true}
@@ -124,7 +124,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
                 />
               </SwiperSlide>
             ))}
-          </Swiper>
+          </Swiper> */}
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

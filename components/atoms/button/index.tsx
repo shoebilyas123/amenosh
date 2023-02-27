@@ -11,12 +11,15 @@ const Button: NextPage<HTMLMotionProps<'button'> & ICommonProps> = ({
   },
   ...props
 }) => {
+  console.log({ colors });
   return (
     // @ts-ignore-next-line
     <motion.button
-      className={`rounded-full text-white w-fit px-4 py-2 bg-rose-800 hover:shadow-lg ${
-        className || ''
-      }`}
+      className={`rounded-full ${
+        ['#fff', '#ffffff'].some((clr) => clr === colors.primary.toLowerCase())
+          ? 'text-neutral-900'
+          : 'text-white'
+      } w-fit px-4 py-2 bg-rose-800 hover:shadow-lg ${className || ''}`}
       whileHover={{
         scale: 1.1,
       }}

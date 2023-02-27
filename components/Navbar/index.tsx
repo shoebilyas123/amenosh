@@ -99,7 +99,7 @@ const Navbar: NextPage<IProps> = ({
       <div
         className={`${
           isFixed ? 'fixed' : ''
-        } z-50 w-screen flex  justify-between items-stretch h-16 `}
+        } z-50 w-screen flex  justify-between items-stretch h-24 `}
         style={{
           background: colors.navbarColor,
         }}
@@ -107,16 +107,22 @@ const Navbar: NextPage<IProps> = ({
         <div
           className={`${
             isFixed ? 'fixed' : ''
-          } z-50 flex w-screen h-16 border-b-[1px] lg:border-0 justify-center items-stretch md:pr-12 sm:pr-2`}
+          } z-50 flex w-screen h-24 lg:border-0 justify-center items-stretch md:pr-12 sm:pr-2`}
         >
-          <div className="flex gap-1 sm:gap-4 items-stretch sm:mr-12 mr-4 ">
+          <div className="flex gap-1 sm:gap-4 items-center sm:mr-12 mr-4 ">
             {windowDimensions.width > 640 &&
               navItems.slice(0, 2).map((item) => (
                 <Link href={item.path} key={item.name}>
                   <div className="flex items-center" onClick={startloading}>
                     <FadeSlide slideDirection="right" triggerOnce={false}>
                       <a
-                        className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
+                        className={`text-white text-lg px-1 hover:${
+                          ['#fff', '#ffffff'].some(
+                            (clr) => clr === colors.navbarColor.toLowerCase()
+                          )
+                            ? 'text-white'
+                            : 'text-neutral-900'
+                        } hover:scale-125  transition-all cursor-pointer`}
                         style={{
                           fontFamily: 'Mallow',
                         }}

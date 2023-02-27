@@ -42,7 +42,15 @@ const Footer: FC<ICommonProps> = ({
   return (
     <>
       <div
-        className="w-[100vw] relative overflow-hidden text-white bg-black pb-12"
+        className={`w-[100vw] relative overflow-hidden pb-12
+        ${
+          ['#fff', '#ffffff'].some(
+            (clr) => clr === colors.footerColor.toLowerCase()
+          )
+            ? 'text-neutral-900'
+            : 'text-white'
+        }
+        `}
         style={{
           background: colors.footerColor,
         }}
@@ -51,7 +59,10 @@ const Footer: FC<ICommonProps> = ({
           <div className="flex flex-col items-left space-x-1">
             <h1 className="text-3xl">Contacts</h1>
             {socials.map(({ link, title }) => (
-              <a href={link} className="hover:text-sky-300">
+              <a
+                href={link}
+                className={`hover:text-neutral-900 transition-all`}
+              >
                 {title}
               </a>
             ))}
@@ -64,7 +75,9 @@ const Footer: FC<ICommonProps> = ({
             <h1 className="text-3xl">Pages</h1>
             {footerPageLinks.map(({ path, title }) => (
               <Link href={path} className="">
-                <p className="flex items-center hover:text-sky-300 hover:translate-x-1  transition-all cursor-pointer">
+                <p
+                  className={`flex items-center hover:text-neutral-900 hover:translate-x-1  transition-all cursor-pointer `}
+                >
                   {title}
                 </p>
               </Link>
@@ -74,7 +87,7 @@ const Footer: FC<ICommonProps> = ({
           <div className="flex flex-col items-left space-x-1">
             <h1 className="text-3xl">Products</h1>
             <Link href="/contact" className="flex items-center">
-              <p className="flex items-center hover:text-sky-300 cursor-pointer">
+              <p className="flex items-center hover:text-neutral-900 cursor-pointer">
                 Clumsy Candy
               </p>
             </Link>
