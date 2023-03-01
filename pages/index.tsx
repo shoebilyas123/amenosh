@@ -86,7 +86,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
           </Fade>
           <FadeSlide slideDirection="up">
             <Link href="/about">
-              <Button>View More</Button>
+              <Button>Explore</Button>
             </Link>
           </FadeSlide>
         </div>
