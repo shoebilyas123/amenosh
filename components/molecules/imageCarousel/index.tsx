@@ -24,7 +24,7 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
   console.log({ isFullScreen });
 
   return (
-    <div className="w-[35vw]">
+    <div className="w-100 mx-6 mb-6 md:w-[35vw]">
       {isFullScreen && (
         <div
           style={{ zIndex: 999999 }}

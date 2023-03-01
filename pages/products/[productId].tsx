@@ -61,14 +61,17 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
       <div className="flex flex-col md:flex-row md:items-start md:space-x-4 justify-center w-screen my-8">
         <ImageCarousel images={productImages} />
 
-        <div className="w-[40vw] space-y-4">
+        <div className="w-100 mx-6 md:w-[40vw] space-y-4">
           <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
+          <p className="text-xl font-bold">
+            Price - <span className="text-green-900"> &#x20B9;{price}</span>
+          </p>
           <div>
             <H1 className="text-lg font-medium">Description</H1>
             <p>{description}</p>
           </div>
 
-          <div className="w-[50%]">
+          <div className="w-[100%]">
             <H1
               className="text-lg font-medium w-full text-center"
               style={{
@@ -98,9 +101,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
               </tbody>
             </table>
           </div>
-          <p className="text-xl font-bold">
-            Price - <span className="text-green-900"> &#x20B9;{price}</span>
-          </p>
+
           <Card
             style={{
               background: colors.footerColor,
@@ -141,6 +142,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const images = product.map((prod: IProductList) => prod.images[0]);
 
   console.log({ product });
+  console.log({ images });
+
   return {
     props: {
       product: product[0],
