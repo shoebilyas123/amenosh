@@ -7,14 +7,17 @@ import { sendEmail } from '~/lib/email';
 import Button from '~/components/atoms/button';
 import Card from '~/components/card';
 import { ICommonProps } from '~/interfaces/common';
+import { H1 } from '../atoms/headings';
+import { useConfig } from '~/store';
 
-const Contact: FC<ICommonProps> = ({ config }) => {
+const Contact: FC<ICommonProps> = ({}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<IEmailPayload>();
+  const { config } = useConfig();
   const { loading, startloading, stoploading } = useLoading();
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -48,22 +51,7 @@ const Contact: FC<ICommonProps> = ({ config }) => {
   }, [successMessage]);
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center">
-      <Card className="bg-slate-50 shadow-lg w-fit p-4 mt-8 space-y-2">
-        <p>Contact Details</p>
-        <div className="flex flex-col items-start">
-          <p className="flex items-center space-x-2">
-            <AiFillMail /> <span>support@amenosh.com</span>
-          </p>
-          <p className="flex items-center space-x-2">
-            <AiFillPhone /> <span>+91-7037305039</span>
-          </p>
-          <p>
-            434/A, Paradise,Hasnain Lane, Ameer Nishan East,Aligarh-202002,
-            U.P., India
-          </p>
-        </div>
-      </Card>
+    <div className="flex w-screen border border-red-600 flex-col items-center justify-center">
       <div className="z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
         <h1 className="text-4xl text-center">We'd Love To Hear From You!</h1>
         <Card className="border-none shadow-lg">
@@ -125,6 +113,34 @@ const Contact: FC<ICommonProps> = ({ config }) => {
             <Button type="submit" className="flex items-center justify-center">
               {loading && <AiOutlineLoading />}Send Message
             </Button>
+
+            <Card
+              style={{
+                background: config?.appSettings.colors.footerColor,
+                color: ['#fff', '#ffffff'].some(
+                  (clr) => config?.appSettings.colors.homeWavePrimary
+                )
+                  ? 'white'
+                  : 'black',
+                border: `4px solid ${config.appSettings.colors.homeWavePrimary}`,
+              }}
+              className="bg-slate-50 shadow-lg mb-8 p-4 mt-8 space-y-2"
+            >
+              <H1 className="text-lg font-bold">Contact Details</H1>
+              <div className="flex flex-col items-start space-y-2">
+                <p className="flex items-center space-x-2">
+                  <AiFillMail /> <span>support@amenosh.com</span>
+                </p>
+                <p className="flex items-center space-x-2">
+                  <AiFillPhone /> <span>+91-7037305039</span>
+                </p>
+                <H1 className="text-lg font-medium"> Address</H1>
+                <p>
+                  434/A, Paradise,Hasnain Lane, Ameer Nishan
+                  East,Aligarh-202002, U.P., India
+                </p>
+              </div>
+            </Card>
           </form>
         </Card>
       </div>

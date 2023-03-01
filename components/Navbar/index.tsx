@@ -44,7 +44,6 @@ let server = typeof window === 'undefined';
 const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
   const { scrollYProgress } = useViewportScroll();
   const { config } = useConfig();
-  const url = typeof window !== 'undefined' && window.URL;
   const [opacityState, setOpacityState] = React.useState(0);
   const { close, isOpen, open } = useToggler();
   const [windowDimensions, setWindowDimensions] = useState({
@@ -88,28 +87,29 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
           <div className="flex gap-1 sm:gap-4 items-center sm:mr-12 mr-4 ">
             {windowDimensions.width > 640 &&
               navItems.slice(0, 2).map((item) => (
-                <Link href={item.path} key={item.name}>
-                  <div className="flex items-center">
-                    <FadeSlide slideDirection="right" triggerOnce={false}>
-                      <a
-                        className={`text-white text-lg px-1 hover:${
-                          ['#fff', '#ffffff'].some(
-                            (clr) =>
-                              clr ===
-                              config.appSettings?.colors.navbarColor.toLowerCase()
-                          )
-                            ? 'text-white'
-                            : 'text-neutral-900'
-                        } hover:scale-125  transition-all cursor-pointer`}
-                        style={{
-                          fontFamily: 'Mallow',
-                        }}
-                      >
-                        {item.name}
-                      </a>
-                    </FadeSlide>
-                  </div>
-                </Link>
+                <div className="flex items-center">
+                  {/* <Link href={item.path} key={item.name}> */}
+                  <FadeSlide slideDirection="right" triggerOnce={false}>
+                    <Link
+                      href={item.path}
+                      className={`text-white text-lg px-1 hover:${
+                        ['#fff', '#ffffff'].some(
+                          (clr) =>
+                            clr ===
+                            config.appSettings?.colors.navbarColor.toLowerCase()
+                        )
+                          ? 'text-white'
+                          : 'text-neutral-900'
+                      } hover:scale-125  transition-all cursor-pointer`}
+                      style={{
+                        fontFamily: 'Mallow',
+                      }}
+                    >
+                      {item.name}
+                    </Link>
+                  </FadeSlide>
+                </div>
+                // </Link>
               ))}
             <div className="flex items-center overflow-hidden">
               <Link href="/">

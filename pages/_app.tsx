@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
 
 MyApp.getInitialProps = async () => {
   const config = await getAppConfig();
+
   return {
     pageProps: { config },
   };
