@@ -10,8 +10,11 @@ import useToggler from '~/hooks/useToggler';
 import { ICommonProps } from '~/interfaces/common';
 import FadeSlide from '../animations/FadeSlide';
 import { useConfig } from '~/store';
+import { Fade } from 'react-awesome-reveal';
+import FullScreenMenu from './FullScreenMenu';
+import Hamburger from '../animations/Hamburger';
 
-const navItems = [
+export const navItems = [
   {
     name: 'Products',
     path: '/products',
@@ -144,36 +147,23 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
               ))}
 
             {windowDimensions.width < 640 && (
-              <div
-                className={`flex items-center justify-end cursor-pointer`}
-                onClick={isOpen ? close : open}
-              >
-                <GiHamburgerMenu className={'text-4xl text-white'} />
-              </div>
+              // <div
+              //   className={`flex items-center justify-end cursor-pointer`}
+              //   onClick={isOpen ? close : open}
+              // >
+              //   <GiHamburgerMenu className={'text-4xl text-white'} />
+              // </div>
+
+              <Hamburger
+                onClick={() => (isOpen ? close() : open())}
+                isOpen={isOpen}
+              />
             )}
           </div>
         </div>
       </div>
       {windowDimensions.width < 640 && isOpen && (
-        <div
-          className="absolute flex flex-col w-screen h-fit left-0"
-          style={{
-            background: config.appSettings?.colors.navbarColor,
-            zIndex: '999999',
-          }}
-        >
-          {navItems.map((item) => (
-            <Link href={item.path} key={item.name}>
-              <div className="flex px-4 py-2 items-center">
-                <p
-                  className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
-                >
-                  {item.name}
-                </p>
-              </div>
-            </Link>
-          ))}{' '}
-        </div>
+        <FullScreenMenu onClick={close} />
       )}
     </>
   );

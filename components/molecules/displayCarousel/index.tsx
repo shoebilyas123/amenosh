@@ -67,7 +67,7 @@ const DisplayCarousel: FC<IProps> = ({
             <img
               src={img}
               style={{
-                objectFit: 'cover',
+                objectFit: 'contain',
                 overflow: 'hidden',
                 height: `${imgHeight}px`,
                 width: '100%',

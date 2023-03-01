@@ -32,6 +32,7 @@ const Footer: FC<ICommonProps> = ({}) => {
                 <Icon />
                 <a
                   href={link}
+                  target="_blank"
                   className={` hover:text-neutral-900 transition-all`}
                 >
                   {title}
