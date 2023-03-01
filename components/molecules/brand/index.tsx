@@ -10,6 +10,7 @@ import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 import { ICommonProps } from '~/interfaces/common';
 import { appendFileSync } from 'fs';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   brand: string;
@@ -18,6 +19,11 @@ interface IProps extends ICommonProps {
 }
 
 const Brand: FC<IProps> = ({ brand, fontFamily, products, config }) => {
+  const {
+    config: {
+      appSettings: { colors },
+    },
+  } = useConfig();
   return (
     <div className="flex flex-col items-center">
       <Fade triggerOnce={true}>
