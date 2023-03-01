@@ -1,7 +1,9 @@
 export interface ICommonProps {
-  config: {
-    appSettings: {
-      colors: any;
-    };
+  config?: IConfig;
+}
+
+export interface IConfig {
+  appSettings: {
+    colors: any;
   };
 }

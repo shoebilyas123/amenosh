@@ -3,6 +3,7 @@ import { Fade, Slide } from 'react-awesome-reveal';
 import Loader from '~/components/atoms/loader';
 import { ICommonProps } from '~/interfaces/common';
 import { IProductList } from '~/interfaces/product';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   list: IProductList[];
@@ -10,14 +11,9 @@ interface IProps extends ICommonProps {
   emptyMessage?: string;
 }
 
-const ProductList: FC<IProps> = ({
-  list,
-  loading,
-  emptyMessage,
-  config: {
-    appSettings: { colors },
-  },
-}) => {
+const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
+  const { config } = useConfig();
+
   return (
     <>
       {loading ? (
@@ -44,13 +40,15 @@ const ProductList: FC<IProps> = ({
                   <p
                     className={`w-full truncate ${
                       ['#fff', '#ffffff'].some(
-                        (clr) => clr === colors.primary.toLowerCase()
+                        (clr) =>
+                          clr ===
+                          config.appSettings?.colors.primary.toLowerCase()
                       )
                         ? 'text-neutral-900'
                         : 'text-white'
                     } text-center py-2 px-4`}
                     style={{
-                      background: colors.primary,
+                      background: config.appSettings?.colors.primary,
                     }}
                   >
                     {item.title}

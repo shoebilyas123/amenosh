@@ -1,24 +1,28 @@
-import { useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import type { AppProps, AppContext } from 'next/app';
-import { Provider } from 'react-redux';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import '../styles/globals.css';
 import 'swiper/css';
 import { getAppConfig } from '~/lib/graphcms';
+import { GetServerSideProps } from 'next';
+import { ConfigProvider } from '~/store';
 
 function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
   return (
     <ParallaxProvider>
-      <Component {...pageProps} />
+      <ConfigProvider config={pageProps.config}>
+        <Component {...pageProps} />
+      </ConfigProvider>
     </ParallaxProvider>
   );
 }
 
-MyApp.getInitialProps = async (ctx: AppContext) => {
+MyApp.getInitialProps = async () => {
   const config = await getAppConfig();
   return {
     pageProps: { config },
   };
 };
+
 export default MyApp;

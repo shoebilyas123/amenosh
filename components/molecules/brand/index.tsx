@@ -3,7 +3,7 @@ import { Fade, Slide, Reveal } from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
 
 import { H1 } from '~/components/atoms/headings';
-import ProductList from '../productlist/index.tsx';
+import ProductList from '../productlist';
 import useData from './useData';
 import { GetServerSideProps } from 'next';
 import { getProductList } from '~/lib/graphcms';
@@ -18,10 +18,6 @@ interface IProps extends ICommonProps {
 }
 
 const Brand: FC<IProps> = ({ brand, fontFamily, products, config }) => {
-  const {
-    appSettings: { colors },
-  } = config;
-
   return (
     <div className="flex flex-col items-center">
       <Fade triggerOnce={true}>

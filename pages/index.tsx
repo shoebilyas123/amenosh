@@ -1,25 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper';
+import { Fade } from 'react-awesome-reveal';
 
 import Navbar from '~/components/Navbar';
 import Button from '~/components/atoms/button';
-
 import Footer from '~/components/section/footer';
-import ProductList from '~/components/molecules/productlist/index.tsx';
-import { GetServerSideProps, NextPage } from 'next';
+import ProductList from '~/components/molecules/productlist/index';
 import { getCandyWrappers, getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 import FadeSlide from '~/components/animations/FadeSlide';
 
-import ContactUsIllustration from '~/components/illustrations/contactus';
-import { Fade } from 'react-awesome-reveal';
 import Contact from '~/components/section/contact';
-import Image from 'next/image';
-import Candies from '~/components/animations/Candies';
 import { ICommonProps } from '~/interfaces/common';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   products: IProductList[];
@@ -28,10 +23,9 @@ interface IProps extends ICommonProps {
 
 let isServer = typeof window === 'undefined';
 
-const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
-  const {
-    appSettings: { colors },
-  } = config;
+const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
+  const { config } = useConfig();
+  console.log({ products });
   // @ts-ignore
   const waveRef = useRef<any>();
 
@@ -56,7 +50,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
 
   return (
     <div className="overflow-hidden w-screen">
-      <Navbar config={config} isFixed={false} />
+      <Navbar isFixed={false} />
       {/* Intro Section */}
 
       {/* // fallbackColor="#163c61" */}
@@ -92,7 +86,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
           </Fade>
           <FadeSlide slideDirection="up">
             <Link href="/about">
-              <Button config={config}>View More</Button>
+              <Button>View More</Button>
             </Link>
           </FadeSlide>
         </div>
@@ -142,7 +136,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
         <div
           className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
           style={{
-            background: `linear-gradient(to right, ${colors.homeWavePrimary},${colors.homeWavePrimary}, rgba(0,0,0,0))`,
+            background: `linear-gradient(to right, ${config?.appSettings?.colors.homeWavePrimary},${config.appSettings?.colors.homeWavePrimary}, rgba(0,0,0,0))`,
           }}
         ></div>
       </div>
@@ -152,14 +146,14 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
           <h1 className="text-6xl mb-4 text-zinc-800">Our Products</h1>
         </FadeSlide>
 
-        <ProductList config={config} list={products.slice(0, 4)} />
+        <ProductList list={products.slice(0, 4)} />
         <Link href={'/products'} className="mt-12">
-          <Button config={config}>View More</Button>
+          <Button>View More</Button>
         </Link>
       </div>
 
-      <Contact config={config} />
-      <Footer config={config} />
+      <Contact />
+      <Footer />
     </div>
   );
 };
@@ -167,7 +161,6 @@ const Home: NextPage<IProps> = ({ products, candyWrappers, config }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const products = await getProductList({});
   const candyWrappers = await getCandyWrappers();
-
   return {
     props: { products, candyWrappers },
   };

@@ -12,6 +12,7 @@ import useLoading from '~/hooks/useLoading';
 import LoadingPage from '../animations/LoadingPage';
 import { ICommonProps } from '~/interfaces/common';
 import FadeSlide from '../animations/FadeSlide';
+import { useConfig } from '~/store';
 
 const navItems = [
   {
@@ -43,15 +44,9 @@ interface IProps extends ICommonProps {
 
 let server = typeof window === 'undefined';
 
-const Navbar: NextPage<IProps> = ({
-  textColor = 'DARK',
-  isFixed = true,
-  config,
-}) => {
-  const {
-    appSettings: { colors },
-  } = config;
+const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
   const { scrollYProgress } = useViewportScroll();
+  const { config } = useConfig();
   const url = typeof window !== 'undefined' && window.URL;
   const [opacityState, setOpacityState] = React.useState(0);
   const { close, isOpen, open } = useToggler();
@@ -95,13 +90,13 @@ const Navbar: NextPage<IProps> = ({
 
   return (
     <>
-      {loading && <LoadingPage config={config} />}
+      {loading && <LoadingPage />}
       <div
         className={`${
           isFixed ? 'fixed' : ''
         } z-50 w-screen flex  justify-between items-stretch h-24 `}
         style={{
-          background: colors.navbarColor,
+          background: config.appSettings?.colors.navbarColor,
         }}
       >
         <div
@@ -118,7 +113,9 @@ const Navbar: NextPage<IProps> = ({
                       <a
                         className={`text-white text-lg px-1 hover:${
                           ['#fff', '#ffffff'].some(
-                            (clr) => clr === colors.navbarColor.toLowerCase()
+                            (clr) =>
+                              clr ===
+                              config.appSettings?.colors.navbarColor.toLowerCase()
                           )
                             ? 'text-white'
                             : 'text-neutral-900'
@@ -145,10 +142,18 @@ const Navbar: NextPage<IProps> = ({
             {windowDimensions.width > 640 &&
               navItems.slice(2, 4).map((item) => (
                 <Link href={item.path} key={item.name}>
-                  <div className="flex items-center" onClick={startloading}>
+                  <div className="flex items-center">
                     <FadeSlide slideDirection="left" triggerOnce={false}>
                       <a
-                        className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
+                        className={`text-white text-lg px-1  hover:${
+                          ['#fff', '#ffffff'].some(
+                            (clr) =>
+                              clr ===
+                              config.appSettings?.colors.navbarColor.toLowerCase()
+                          )
+                            ? 'text-white'
+                            : 'text-neutral-900'
+                        }  hover:scale-125  transition-all cursor-pointer`}
                         style={{ fontFamily: 'Mallow' }}
                       >
                         {item.name}
@@ -172,7 +177,10 @@ const Navbar: NextPage<IProps> = ({
       {windowDimensions.width < 640 && isOpen && (
         <div
           className="absolute flex flex-col w-screen h-fit left-0"
-          style={{ background: colors.navbarColor, zIndex: '999999' }}
+          style={{
+            background: config.appSettings?.colors.navbarColor,
+            zIndex: '999999',
+          }}
         >
           {navItems.map((item) => (
             <Link href={item.path} key={item.name}>

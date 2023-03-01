@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { ICommonProps } from '~/interfaces/common';
+import { useConfig } from '~/store';
 
 import styles from './LoadingPage.module.css';
 
@@ -8,12 +9,9 @@ interface IProps extends ICommonProps {
   img?: string;
 }
 
-const LoadingPage: FC<IProps> = ({
-  img,
-  config: {
-    appSettings: { colors },
-  },
-}) => {
+const LoadingPage: FC<IProps> = ({ img }) => {
+  const { config } = useConfig();
+
   return (
     <div
       className="fixed flex items-center justify-center w-screen h-screen top-0 left-0"
@@ -29,7 +27,7 @@ const LoadingPage: FC<IProps> = ({
           className={styles['circle-loading']}
           style={{
             animationDelay: '0s',
-            background: colors.primary,
+            background: config.appSettings?.colors.primary,
           }}
         ></div>
 
@@ -37,7 +35,7 @@ const LoadingPage: FC<IProps> = ({
           className={styles['circle-loading']}
           style={{
             animationDelay: '.2s',
-            background: colors.secondary,
+            background: config.appSettings?.colors.secondary,
           }}
         ></div>
       </div>

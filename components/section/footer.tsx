@@ -1,72 +1,42 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { AiFillMail, AiFillPhone } from 'react-icons/ai';
+import { footerPageLinks, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
+import { useConfig } from '~/store';
 
-const footerPageLinks = [
-  {
-    path: '/',
-    title: 'Home',
-  },
-  {
-    path: '/products',
-    title: 'Products',
-  },
-  {
-    path: '/about-us',
-    title: 'About Us',
-  },
-  {
-    path: '/contact',
-    title: 'Contact Us',
-  },
-];
-
-const socials = [
-  { link: 'https://www.instagram.com/amenoshfoods/', title: 'Instagram' },
-  { link: 'https://twitter.com/AmenoshFoods', title: 'Twitter' },
-  { link: 'https://www.linkedin.com/company/amenosh/', title: 'LinkedIn' },
-  {
-    link: 'https://www.facebook.com/profile.php?id=100090047241883',
-    title: 'Facebook',
-  },
-  { link: 'https://in.pinterest.com/amenoshfoods/', title: 'Pinterest' },
-  { link: 'https://www.youtube.com/@amenoshfoods', title: 'YouTube' },
-];
-
-const Footer: FC<ICommonProps> = ({
-  config: {
-    appSettings: { colors },
-  },
-}) => {
+const Footer: FC<ICommonProps> = ({}) => {
+  const { config } = useConfig();
   return (
     <>
       <div
         className={`w-[100vw] relative overflow-hidden pb-12
         ${
           ['#fff', '#ffffff'].some(
-            (clr) => clr === colors.footerColor.toLowerCase()
+            (clr) =>
+              clr === config.appSettings?.colors.footerColor.toLowerCase()
           )
             ? 'text-neutral-900'
             : 'text-white'
         }
         `}
         style={{
-          background: colors.footerColor,
+          background: config.appSettings?.colors.footerColor,
         }}
       >
         <div className="w-full grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
-          <div className="flex flex-col items-left space-x-1">
-            <h1 className="text-3xl">Contacts</h1>
-            {socials.map(({ link, title }) => (
+          <div className="flex flex-col items-left space-y-1">
+            <h1 className="text-3xl">Follow Us</h1>
+            {socials.map(({ link, title, Icon }) => (
               <a
                 href={link}
-                className={`hover:text-neutral-900 transition-all`}
+                className={`flex items-center hover:text-neutral-900 transition-all`}
               >
+                <Icon />
                 {title}
               </a>
             ))}
-            <p className="flex items-center mt-4">
+            <p className="flex items-center">
               <AiFillMail /> support@amenosh.com
             </p>
           </div>
@@ -94,7 +64,7 @@ const Footer: FC<ICommonProps> = ({
           </div>
         </div>
         <div className="text-xs w-full flex items-center justify-center">
-          &copy; 2023 Amenosh. All Rights Reserved.
+          &copy; {`2023 Amenosh. All Rights Reserved.`}
         </div>
       </div>
     </>
