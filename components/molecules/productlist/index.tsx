@@ -1,6 +1,9 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 import { Fade, Slide } from 'react-awesome-reveal';
 import Loader from '~/components/atoms/loader';
+import useMouseEnterLeave from '~/hooks/useMousEnterLeave';
 import { ICommonProps } from '~/interfaces/common';
 import { IProductList } from '~/interfaces/product';
 import { useConfig } from '~/store';
@@ -13,6 +16,9 @@ interface IProps extends ICommonProps {
 
 const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
   const { config } = useConfig();
+
+  const { activeFor, onMouseEnter, onMouseLeave } = useMouseEnterLeave();
+  const router = useRouter();
 
   return (
     <>
@@ -30,15 +36,21 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
                 direction={index % 2 ? 'down' : 'up'}
               >
                 <div
-                  className="w-full flex flex-col items-center"
-                  // style={{ width: 320, height: 340 }}
+                  onClick={() => router.push(`/products/${item.id}`)}
+                  className={`w-full flex flex-col items-center border ${
+                    activeFor === index
+                      ? 'border-1 border-opacity-10'
+                      : 'border-transparent'
+                  }`}
+                  onMouseEnter={() => onMouseEnter(index)}
+                  onMouseLeave={() => onMouseLeave(index)}
                 >
                   <img
                     src={item.images[0]}
                     style={{ objectFit: 'cover', height: 270 }}
                   />
                   <p
-                    className={`w-full truncate ${
+                    className={`w-full truncate  ${
                       ['#fff', '#ffffff'].some(
                         (clr) =>
                           clr ===
@@ -46,9 +58,14 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
                       )
                         ? 'text-neutral-900'
                         : 'text-white'
-                    } text-center py-2 px-4`}
+                    } text-center py-2 px-4 transition-all`}
                     style={{
-                      background: config.appSettings?.colors.primary,
+                      ...(activeFor === index
+                        ? {
+                            background: config.appSettings.colors.secondary,
+                            color: 'white',
+                          }
+                        : { background: config.appSettings?.colors.primary }),
                     }}
                   >
                     {item.title}

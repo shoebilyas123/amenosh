@@ -28,13 +28,30 @@ const Brand: FC<IProps> = ({ brand, fontFamily, products, config }) => {
     <div className="flex flex-col items-center">
       <Fade triggerOnce={true}>
         <Slide triggerOnce={true} direction="down">
-          <H1 style={{ fontFamily, color: colors.primary }}>{brand}</H1>
+          <H1
+            style={{
+              fontFamily,
+              color: ['#fff', '#ffffff'].some(
+                (c) => c == colors.primary.toLowerCase()
+              )
+                ? colors.secondary
+                : colors.primary,
+            }}
+          >
+            {brand}
+          </H1>
         </Slide>
       </Fade>
       <Fade>
         <div
           className="bg-black h-1 w-[48vw] mt-4"
-          style={{ background: colors.primary }}
+          style={{
+            background: ['#fff', '#ffffff'].some(
+              (c) => c == colors.primary.toLowerCase()
+            )
+              ? colors.secondary
+              : colors.primary,
+          }}
         ></div>
       </Fade>
       <div

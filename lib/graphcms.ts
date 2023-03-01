@@ -9,15 +9,17 @@ client.setHeader(
 export const getProductList = async ({
   name,
   brand,
+  productId,
 }: {
   name?: string;
   brand?: string;
+  productId?: string;
 }) => {
   const query = `
   {
-      products(where:{name_contains: "${name || ''}"${
-    brand ? `, brand: ${brand || ''}` : ''
-  }}) {
+      products(where:{name_contains: "${name || ''}" ${
+    brand ? `, brand: "${brand || ''}"` : ''
+  } ${productId ? `, id: "${productId}"` : ''} }) {
         createdAt
         displayOnPage
         id
