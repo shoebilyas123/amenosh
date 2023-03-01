@@ -88,28 +88,27 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             {windowDimensions.width > 640 &&
               navItems.slice(0, 2).map((item) => (
                 <div className="flex items-center">
-                  {/* <Link href={item.path} key={item.name}> */}
                   <FadeSlide slideDirection="right" triggerOnce={false}>
-                    <Link
-                      href={item.path}
-                      className={`text-white text-lg px-1 hover:${
-                        ['#fff', '#ffffff'].some(
-                          (clr) =>
-                            clr ===
-                            config.appSettings?.colors.navbarColor.toLowerCase()
-                        )
-                          ? 'text-white'
-                          : 'text-neutral-900'
-                      } hover:scale-125  transition-all cursor-pointer`}
-                      style={{
-                        fontFamily: 'Mallow',
-                      }}
-                    >
-                      {item.name}
+                    <Link href={item.path}>
+                      <a
+                        className={`text-white text-lg px-1 hover:${
+                          ['#fff', '#ffffff'].some(
+                            (clr) =>
+                              clr ===
+                              config.appSettings?.colors.navbarColor.toLowerCase()
+                          )
+                            ? 'text-white'
+                            : 'text-neutral-900'
+                        } hover:scale-125  transition-all cursor-pointer`}
+                        style={{
+                          fontFamily: 'Mallow',
+                        }}
+                      >
+                        {item.name}
+                      </a>
                     </Link>
                   </FadeSlide>
                 </div>
-                // </Link>
               ))}
             <div className="flex items-center overflow-hidden">
               <Link href="/">
@@ -122,9 +121,9 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             </div>
             {windowDimensions.width > 640 &&
               navItems.slice(2, 4).map((item) => (
-                <Link href={item.path} key={item.name}>
-                  <div className="flex items-center">
-                    <FadeSlide slideDirection="left" triggerOnce={false}>
+                <div className="flex items-center">
+                  <FadeSlide slideDirection="left" triggerOnce={false}>
+                    <Link href={item.path} key={item.name}>
                       <a
                         className={`text-white text-lg px-1  hover:${
                           ['#fff', '#ffffff'].some(
@@ -139,9 +138,9 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                       >
                         {item.name}
                       </a>
-                    </FadeSlide>
-                  </div>
-                </Link>
+                    </Link>
+                  </FadeSlide>
+                </div>
               ))}
 
             {windowDimensions.width < 640 && (
