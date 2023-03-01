@@ -4,15 +4,12 @@ import Navbar from '~/components/Navbar';
 import Footer from '~/components/section/footer';
 import Contact from '~/components/section/contact';
 import { ICommonProps } from '~/interfaces/common';
+import { NextPage } from 'next';
 
-const ContactUs: FC<ICommonProps> = ({}) => {
+const ContactUs: NextPage<ICommonProps> = ({}) => {
   return (
     <div className="w-screen overflow-hidden">
       <Navbar textColor="LIGHT" isFixed={false} />
-      {/* <img
-        src={'/images/contactdoodle.png'}
-        className={`fixed -left-48 -z-40 rotate-12`}
-      /> */}
       <Contact />
       <Footer />
     </div>

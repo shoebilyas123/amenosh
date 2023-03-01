@@ -49,7 +49,7 @@ export const footerPageLinks = [
     title: 'Products',
   },
   {
-    path: '/about-us',
+    path: '/about',
     title: 'About Us',
   },
   {

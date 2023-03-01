@@ -90,7 +90,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                 <div className="flex items-center">
                   <FadeSlide slideDirection="right" triggerOnce={false}>
                     <Link href={item.path}>
-                      <a
+                      <p
                         className={`text-white text-lg px-1 hover:${
                           ['#fff', '#ffffff'].some(
                             (clr) =>
@@ -105,7 +105,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                         }}
                       >
                         {item.name}
-                      </a>
+                      </p>
                     </Link>
                   </FadeSlide>
                 </div>
@@ -121,10 +121,10 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             </div>
             {windowDimensions.width > 640 &&
               navItems.slice(2, 4).map((item) => (
-                <div className="flex items-center">
+                <div className="flex items-center" key={item.name}>
                   <FadeSlide slideDirection="left" triggerOnce={false}>
-                    <Link href={item.path} key={item.name}>
-                      <a
+                    <Link href={item.path}>
+                      <p
                         className={`text-white text-lg px-1  hover:${
                           ['#fff', '#ffffff'].some(
                             (clr) =>
@@ -137,7 +137,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                         style={{ fontFamily: 'Mallow' }}
                       >
                         {item.name}
-                      </a>
+                      </p>
                     </Link>
                   </FadeSlide>
                 </div>
@@ -165,11 +165,11 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
           {navItems.map((item) => (
             <Link href={item.path} key={item.name}>
               <div className="flex px-4 py-2 items-center">
-                <a
+                <p
                   className={`text-white text-lg px-1 hover:text-blue-400 hover:scale-125  transition-all cursor-pointer`}
                 >
                   {item.name}
-                </a>
+                </p>
               </div>
             </Link>
           ))}{' '}
