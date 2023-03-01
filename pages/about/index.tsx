@@ -13,18 +13,21 @@ import { GetServerSideProps, NextPage } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 import { ICommonProps } from '~/interfaces/common';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   productImages: Array<string>;
 }
 
-const About: NextPage<IProps> = ({ productImages, config }) => {
+const About: NextPage<IProps> = ({ productImages }) => {
   const {
-    appSettings: { colors },
-  } = config;
+    config: {
+      appSettings: { colors },
+    },
+  } = useConfig();
   return (
     <div className="w-screen overflow-hidden">
-      <Navbar config={config} isFixed={false} />
+      <Navbar isFixed={false} />
       {/* <AboutBanner /> */}
       <div className="w-full px-4 sm:px-12 lg:px-48 my-4">
         <div className="w-full flex justify-center">
@@ -79,7 +82,6 @@ const About: NextPage<IProps> = ({ productImages, config }) => {
             </Fade>
           </div>
           <DisplayCarousel
-            config={config}
             imgHeight={550}
             className={`m-0 w-[90vw] sm:w-[55%] md:w-[55%] sm:h-[550px] h-[250px]`}
             overlay={{
@@ -113,12 +115,8 @@ const About: NextPage<IProps> = ({ productImages, config }) => {
           ))}
         </div> */}
       </div>
-      <SectionContact
-        config={config}
-        showWave={true}
-        waveColor={colors.secondary}
-      />
-      <Footer config={config} />
+      <SectionContact showWave={true} waveColor={colors.secondary} />
+      <Footer />
     </div>
   );
 };
@@ -126,7 +124,6 @@ const About: NextPage<IProps> = ({ productImages, config }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const products: any = await getProductList({});
 
-  console.log({ products });
   const images = products.map((prod: IProductList) => prod.images[0]);
 
   return {

@@ -42,7 +42,7 @@ const DisplayCarousel: FC<IProps> = ({
           <div className="w-[100%] h-[100%] absolute z-50 flex items-center justify-center">
             <Link href={`${overlay?.url}`}>
               {overlay?.isButton ? (
-                <Button config={config}>{overlay.text}</Button>
+                <Button>{overlay.text}</Button>
               ) : (
                 <span className="text-white hover:text-bg-rose-600">
                   {overlay?.text}

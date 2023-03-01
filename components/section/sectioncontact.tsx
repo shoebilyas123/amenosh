@@ -36,9 +36,7 @@ const SectionContact: FC<IProps> = ({
           We always welcome your enquiries, feedback and suggestions.
         </h1>
         <Link href="/contact" className="z-50">
-          <Button config={config} className="mt-8 ">
-            Contact
-          </Button>
+          <Button className="mt-8 ">Contact</Button>
         </Link>
       </div>
       {showWave && (

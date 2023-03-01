@@ -41,7 +41,7 @@ const Brand: FC<IProps> = ({ brand, fontFamily, products, config }) => {
         className="w-full flex items-center justify-center"
         style={{ fontFamily }}
       >
-        <ProductList config={config} list={products || []} loading={false} />
+        <ProductList list={products || []} loading={false} />
       </div>
     </div>
   );

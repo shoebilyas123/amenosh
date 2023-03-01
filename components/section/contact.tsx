@@ -122,11 +122,7 @@ const Contact: FC<ICommonProps> = ({ config }) => {
               </div>
             )}
 
-            <Button
-              config={config}
-              type="submit"
-              className="flex items-center justify-center"
-            >
+            <Button type="submit" className="flex items-center justify-center">
               {loading && <AiOutlineLoading />}Send Message
             </Button>
           </form>

@@ -24,7 +24,6 @@ const Products: NextPage<IProps> = ({ products }) => {
       <div className="w-full flex justify-center sm:px-2 md:px-24 lg:px-36 mt-8">
         {Object.keys(productsByBrand).map((brandKey) => (
           <Brand
-            config={config}
             brand={brandKey}
             products={productsByBrand[brandKey]}
             key={brandKey}
@@ -32,8 +31,8 @@ const Products: NextPage<IProps> = ({ products }) => {
           />
         ))}
       </div>
-      <SectionContact config={config} showWave={false} className="mt-12" />
-      <Footer config={config} />
+      <SectionContact showWave={false} className="mt-12" />
+      <Footer />
     </div>
   );
 };
