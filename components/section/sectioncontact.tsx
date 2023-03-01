@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { H1 } from '../atoms/headings';
 import Button from '../atoms/button';
 import { ICommonProps } from '~/interfaces/common';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   className?: string;
@@ -17,8 +18,10 @@ const SectionContact: FC<IProps> = ({
   config,
 }) => {
   const {
-    appSettings: { colors },
-  } = config;
+    config: {
+      appSettings: { colors },
+    },
+  } = useConfig();
   return (
     <div
       className={`overflow-hidden w-full relative flex flex-col items-center justify-center p-12 ${

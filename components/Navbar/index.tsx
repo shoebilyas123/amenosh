@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useViewportScroll, motion, motionValue } from 'framer-motion';
+import { useViewportScroll } from 'framer-motion';
 import { NextPage } from 'next';
 import { IoCallSharp, IoHomeOutline } from 'react-icons/io5';
 import { BsFillInfoCircleFill, BsFillCartFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-import AmenoshLogoSVG from './../../assets/images/amenoshlogo.png';
 import useToggler from '~/hooks/useToggler';
-import useLoading from '~/hooks/useLoading';
-import LoadingPage from '../animations/LoadingPage';
 import { ICommonProps } from '~/interfaces/common';
 import FadeSlide from '../animations/FadeSlide';
 import { useConfig } from '~/store';
@@ -50,13 +47,11 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
   const url = typeof window !== 'undefined' && window.URL;
   const [opacityState, setOpacityState] = React.useState(0);
   const { close, isOpen, open } = useToggler();
-  const { loading, startloading, stoploading } = useLoading();
   const [windowDimensions, setWindowDimensions] = useState({
     width: !server && window.innerWidth,
     height: !server && window.innerWidth,
   });
 
-  let timeout: any = null;
   scrollYProgress.onChange((value) => {
     value = parseFloat(value.toFixed(3));
 
@@ -75,22 +70,8 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
     window.addEventListener('resize', getWindowDimensions);
   }, []);
 
-  useEffect(() => {
-    if (!loading) {
-      startloading();
-      timeout = setTimeout(() => {
-        stoploading();
-      }, 500);
-    } else stoploading();
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-
   return (
     <>
-      {loading && <LoadingPage />}
       <div
         className={`${
           isFixed ? 'fixed' : ''
@@ -108,7 +89,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             {windowDimensions.width > 640 &&
               navItems.slice(0, 2).map((item) => (
                 <Link href={item.path} key={item.name}>
-                  <div className="flex items-center" onClick={startloading}>
+                  <div className="flex items-center">
                     <FadeSlide slideDirection="right" triggerOnce={false}>
                       <a
                         className={`text-white text-lg px-1 hover:${

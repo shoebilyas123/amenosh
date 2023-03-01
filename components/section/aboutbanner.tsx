@@ -2,17 +2,19 @@ import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import SmoothScroll from '../Layout/SmoothScroll';
 import { ICommonProps } from '~/interfaces/common';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   visionContent?: string;
 }
 
-const AboutBanner: FC<IProps> = ({
-  visionContent,
-  config: {
-    appSettings: { colors },
-  },
-}) => {
+const AboutBanner: FC<IProps> = ({ visionContent }) => {
+  const {
+    config: {
+      appSettings: { colors },
+    },
+  } = useConfig();
+
   return (
     <div
       className="relative w-screen h-[65vh] bg-black p-0 m-0 overflow-hidden flex flex-col md:flex-row items-center justify-end"

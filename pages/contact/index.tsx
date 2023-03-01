@@ -9,10 +9,10 @@ const ContactUs: FC<ICommonProps> = ({ config }) => {
   return (
     <div className="w-screen overflow-hidden">
       <Navbar config={config} textColor="LIGHT" isFixed={false} />
-      <img
+      {/* <img
         src={'/images/contactdoodle.png'}
         className={`fixed -left-48 -z-40 rotate-12`}
-      />
+      /> */}
       <Contact config={config} />
       <Footer config={config} />
     </div>

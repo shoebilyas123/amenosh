@@ -28,13 +28,15 @@ const Footer: FC<ICommonProps> = ({}) => {
           <div className="flex flex-col items-left space-y-1">
             <h1 className="text-3xl">Follow Us</h1>
             {socials.map(({ link, title, Icon }) => (
-              <a
-                href={link}
-                className={`flex items-center hover:text-neutral-900 transition-all`}
-              >
+              <p className="flex items-center">
                 <Icon />
-                {title}
-              </a>
+                <a
+                  href={link}
+                  className={` hover:text-neutral-900 transition-all`}
+                >
+                  {title}
+                </a>
+              </p>
             ))}
             <p className="flex items-center">
               <AiFillMail /> support@amenosh.com
