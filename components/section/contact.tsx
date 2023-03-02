@@ -116,15 +116,9 @@ const Contact: FC<ICommonProps> = ({}) => {
 
             <Card
               style={{
-                background: config?.appSettings.colors.footerColor,
-                color: ['#fff', '#ffffff'].some(
-                  (clr) => config?.appSettings.colors.homeWavePrimary
-                )
-                  ? 'white'
-                  : 'black',
                 border: `4px solid ${config.appSettings.colors.homeWavePrimary}`,
               }}
-              className="bg-slate-50 shadow-lg mb-8 p-4 mt-8 space-y-2"
+              className="bg-slate-50 text-neutral-800 shadow-lg mb-8 p-4 mt-8 space-y-2"
             >
               <H1 className="text-lg font-bold">Contact Details</H1>
               <div className="flex flex-col items-start space-y-2">
