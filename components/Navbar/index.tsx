@@ -104,7 +104,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                             : 'text-neutral-900'
                         } hover:scale-125  transition-all cursor-pointer`}
                         style={{
-                          fontFamily: 'Mallow',
+                          fontFamily: "'Lobster', cursive",
                         }}
                       >
                         {item.name}
@@ -137,7 +137,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                             ? 'text-white'
                             : 'text-neutral-900'
                         }  hover:scale-125  transition-all cursor-pointer`}
-                        style={{ fontFamily: 'Mallow' }}
+                        style={{ fontFamily: " 'Lobster', cursive" }}
                       >
                         {item.name}
                       </p>

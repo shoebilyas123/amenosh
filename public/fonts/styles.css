@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: 'Mallow';
+  src: url('./SoftMarshmallow.otf');
+}
+
+@font-face {
+  font-family: 'Bubble';
+  src: url('./BubbleCandyDemoRegular.ttf');
+}
+
+@font-face {
+  font-family: 'Chunky';
+  src: url('./ChunkyUnicornDemoRegular.ttf');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: 'Quicksand', sans-serif;
+}

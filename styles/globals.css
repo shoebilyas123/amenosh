@@ -1,23 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: 'Mallow';
-  src: url('../assets/fonts/SoftMarshmallow.otf');
-}
-
-@font-face {
-  font-family: 'Bubble';
-  src: url('../assets/fonts/BubbleCandyDemoRegular.ttf');
-}
-
-@font-face {
-  font-family: 'Chunky';
-  src: url('../assets/fonts/ChunkyUnicornDemoRegular.ttf');
-}
 
 html,
 body {

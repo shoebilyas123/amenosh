@@ -27,7 +27,7 @@ const Products: NextPage<IProps> = ({ products }) => {
             brand={brandKey}
             products={productsByBrand[brandKey]}
             key={brandKey}
-            fontFamily={'Mallow'}
+            fontFamily={" 'Lobster', cursive"}
           />
         ))}
       </div>
