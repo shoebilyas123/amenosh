@@ -135,14 +135,19 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  res,
+  query,
+}) => {
   const product: any = await getProductList({
     productId: (query.productId as string) || '',
   });
   const images = product.map((prod: IProductList) => prod.images[0]);
 
-  console.log({ product });
-  console.log({ images });
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
 
   return {
     props: {

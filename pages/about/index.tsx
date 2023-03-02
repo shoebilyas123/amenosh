@@ -121,10 +121,14 @@ const About: NextPage<IProps> = ({ productImages }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const products: any = await getProductList({});
 
   const images = products.map((prod: IProductList) => prod.images[0]);
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
 
   return {
     props: {

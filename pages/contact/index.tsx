@@ -4,7 +4,7 @@ import Navbar from '~/components/Navbar';
 import Footer from '~/components/section/footer';
 import Contact from '~/components/section/contact';
 import { ICommonProps } from '~/interfaces/common';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 
 const ContactUs: NextPage<ICommonProps> = ({}) => {
   return (
@@ -14,6 +14,15 @@ const ContactUs: NextPage<ICommonProps> = ({}) => {
       <Footer />
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
+
+  return { props: {} };
 };
 
 export default ContactUs;

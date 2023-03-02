@@ -158,9 +158,15 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const products = await getProductList({});
   const candyWrappers = await getCandyWrappers();
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
+
   return {
     props: { products, candyWrappers },
   };
