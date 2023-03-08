@@ -23,8 +23,10 @@ const About: NextPage<IProps> = ({ productImages }) => {
   const {
     config: {
       appSettings: { colors },
+      contentControls: { aboutContent },
     },
   } = useConfig();
+
   return (
     <div className="w-screen overflow-hidden">
       <Navbar isFixed={false} />
@@ -44,39 +46,12 @@ const About: NextPage<IProps> = ({ productImages }) => {
             </Fade>
             <Fade triggerOnce={true}>
               <Slide direction="right" triggerOnce={true}>
-                <p className="text-zinc-700">
-                  <p>
-                    AMENOSH is a food startup brand recently launched in
-                    February 2023. We aim to launch high quality innovative{' '}
-                    <span className="text-green-700 font-bold">
-                      MADE IN INDIA
-                    </span>{' '}
-                    food products under multiple sub-brands in near future. Our
-                    aim is to delight the modern day consumer whose culinary
-                    preferences are unique combinations of ethnic and
-                    cosmopolitan, and whose palate is constantly evolving
-                    seeking variety and indulgence.
-                  </p>
-                  <br />
-                  <p>
-                    Clumsy candy is an in-house brand of AMENOSH with
-                    sugar-boiled candies in six unique flavors so delicious that
-                    they leave you craving for more.
-                  </p>
-                  <br />
-                  <p>
-                    Clumsy candies are made with the choicest ingredients to WOW
-                    our customers.
-                    <FaHeart className="text-rose-800" />
-                  </p>
-                  <br />
-                  <p>
-                    We use fruit powders and active ingredients in all our
-                    candies. In some of our candies, such as Lemon-Mint and
-                    Ginger, we have even eliminated artificial colors and
-                    flavors (and used Natural colors and Natural flavors
-                    instead) to make them more safe for consumption.`
-                  </p>
+                <p className="text-zinc-700 space-y-4 text-justify">
+                  {aboutContent.split('\n').map((str: string) => (
+                    <>
+                      <p>{str}</p>
+                    </>
+                  ))}
                 </p>
               </Slide>
             </Fade>

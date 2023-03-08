@@ -25,10 +25,8 @@ let isServer = typeof window === 'undefined';
 
 const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
   const { config } = useConfig();
-  console.log({ products });
   // @ts-ignore
   const waveRef = useRef<any>();
-
   const mouseMoveWave = (event: any) => {
     const mousePosition = { x: event.pageX, y: event.pageY };
     // @ts-ignore
@@ -57,9 +55,9 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
       <div
         className="relative flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col lg:flex-row items-center px-0 sm:px-24 text-white"
         style={{
-          // background: colors.homeWavePrimary,
+          // background: colors.bannerColor,
           background: `url(
-            "https://images.unsplash.com/photo-1574981927289-b8c07f3b2350?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+           ${config.contentControls.bannerImage}
           )`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -77,11 +75,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
           </FadeSlide>
           <Fade triggerOnce={true}>
             <p className="w-100 mb-4 mx-12 text-center lg:mx-0 lg:text-left">
-              AMENOSH is a parent brand under which there will be multiple
-              brands. First brand to launch under AMENOSH is Clumsy candy in 6
-              different flavors - Orange, Ripe Mango, Litchi, Imli, Ginger, and
-              Lemon-Mint. The only SKU we are launching with is a candy jar with
-              170 candy units per flavor, making it 6 different SKUs.
+              {config.contentControls.welcomeContent}
             </p>
           </Fade>
           <FadeSlide slideDirection="up">
@@ -136,7 +130,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
         <div
           className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
           style={{
-            background: `linear-gradient(to right, ${config?.appSettings?.colors.homeWavePrimary},${config.appSettings?.colors.homeWavePrimary}, rgba(0,0,0,0))`,
+            background: `linear-gradient(to right, ${config?.appSettings?.colors.bannerColor},${config.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
           }}
         ></div>
       </div>

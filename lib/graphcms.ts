@@ -30,17 +30,19 @@ export const getProductList = async ({
           url
         }
         brand
+        description
       }
   }
   `;
   const { products } = await client.request(query);
 
   const transformedProduct = products.map(
-    ({ name, id, images, brand }: any) => ({
+    ({ name, id, images, brand, description }: any) => ({
       title: name,
       images: images.map((img: any) => img.url),
       id,
       brand,
+      description,
     })
   );
 
@@ -70,9 +72,51 @@ export const getAppConfig = async () => {
   }
   `;
   const { configs } = await client.request(query);
-  console.log({ configs });
 
   return configs[0];
+};
+
+export const getContentControls = async () => {
+  const query = `
+  {
+    contentControls {
+      id
+      welcomeContent
+      bannerImage {
+        id
+        url
+      }
+      aboutContent
+      phone
+      address
+      email
+    }
+  }
+  `;
+
+  const { contentControls } = await client.request(query);
+
+  const transformContentControl = contentControls.map(
+    ({
+      id,
+      welcomeContent,
+      aboutContent,
+      bannerImage,
+      phone,
+      email,
+      address,
+    }: any) => ({
+      id,
+      welcomeContent,
+      aboutContent,
+      bannerImage: bannerImage.url,
+      phone,
+      email,
+      address,
+    })
+  )[0];
+
+  return transformContentControl;
 };
 
 export default client;

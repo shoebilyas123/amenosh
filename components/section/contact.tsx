@@ -9,6 +9,7 @@ import Card from '~/components/card';
 import { ICommonProps } from '~/interfaces/common';
 import { H1 } from '../atoms/headings';
 import { useConfig } from '~/store';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 
 const Contact: FC<ICommonProps> = ({}) => {
   const {
@@ -35,6 +36,10 @@ const Contact: FC<ICommonProps> = ({}) => {
       stoploading();
     }
   };
+
+  const {
+    contentControls: { address, email, phone },
+  } = config;
 
   useEffect(() => {
     if (!successMessage && !errorMessage) return;
@@ -116,23 +121,20 @@ const Contact: FC<ICommonProps> = ({}) => {
 
             <Card
               style={{
-                border: `4px solid ${config.appSettings.colors.homeWavePrimary}`,
+                border: `4px solid ${config.appSettings.colors.bannerColor}`,
               }}
               className="bg-slate-50 text-neutral-800 shadow-lg mb-8 p-4 mt-8 space-y-2"
             >
               <H1 className="text-lg font-bold">Contact Details</H1>
               <div className="flex flex-col items-start space-y-2">
                 <p className="flex items-center space-x-2">
-                  <AiFillMail /> <span>support@amenosh.com</span>
+                  <AiFillMail /> <span>{email}</span>
                 </p>
                 <p className="flex items-center space-x-2">
-                  <AiFillPhone /> <span>+91-7037305039</span>
+                  <BsFillTelephoneFill /> <span>{phone}</span>
                 </p>
                 <H1 className="text-lg font-medium"> Address</H1>
-                <p>
-                  434/A, Paradise,Hasnain Lane, Ameer Nishan
-                  East,Aligarh-202002, U.P., India
-                </p>
+                <p>{address}</p>
               </div>
             </Card>
           </form>

@@ -21,14 +21,13 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
       appSettings: { colors },
     },
   } = useConfig();
-  console.log({ isFullScreen });
 
   return (
     <div className="w-100 mx-6 mb-6 md:w-[35vw]">
       {isFullScreen && (
         <div
           style={{ zIndex: 999999 }}
-          className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center"
+          className="fixed -top-2 -left-2 w-screen h-screen flex items-center justify-center"
         >
           <div
             className="fixed w-full h-full bg-black opacity-30"
@@ -54,7 +53,7 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
                   largeImageSrc={currentFullScreenImage}
                 />
               </div>
-              <div className="flex flex-wrap ">
+              <div className="flex flex-wrap">
                 {images.map((img) => {
                   return (
                     <img

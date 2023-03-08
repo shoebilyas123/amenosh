@@ -17,9 +17,7 @@ const useData = ({ brand }: IParams) => {
     try {
       startloading();
       const { data } = await axios.post('/api/products/list');
-      console.log({ data });
       setBrandProducts(data);
-      console.log({ brandProducts });
       stoploading();
     } catch (error) {
       stoploading();

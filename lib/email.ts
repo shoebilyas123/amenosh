@@ -8,7 +8,6 @@ export const sendEmail = async (params: IEmailPayload) => {
     recipientName: 'Amenosh Test',
   };
 
-  console.log(templateParams);
   return await send(
     process.env.EMAILJS_SERVICE_ID || '',
     process.env.EMAILJS_TEMPLATE_ID || '',

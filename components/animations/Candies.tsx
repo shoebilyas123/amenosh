@@ -21,7 +21,6 @@ const Candies: FC<IProps> = ({ url, currentIndex }) => {
 
     if (Math.abs(elPos.x - mousePosition.x) < 50) {
       if (mousePosition.x < elPos.x) {
-        console.log({ elPos });
         refTemp.current.style.transform = `translateX(${
           (refTemp.current.getBoundingClientRect().x - mousePosition.x) / 100
         })`;

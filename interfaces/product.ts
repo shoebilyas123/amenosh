@@ -3,4 +3,5 @@ export interface IProductList {
   id: string;
   images: string[];
   brand: string;
+  description: any;
 }

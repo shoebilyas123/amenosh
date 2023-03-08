@@ -50,9 +50,8 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
       appSettings: { colors },
     },
   } = useConfig();
-  const { name, price, details, description } = DUMMYDATA;
-
-  const detailsKeys = Object.keys(details);
+  const { price, details, description } = product.description;
+  const detailsKeys = Object.keys(details[0]);
 
   return (
     <div className="w-screen overflow-hidden">
@@ -93,7 +92,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
                     <td>
                       {
                         // @ts-ignore
-                        details[`${Dkey}`]
+                        details[0][Dkey]
                       }
                     </td>
                   </tr>
@@ -116,8 +115,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const product: any = await getProductList({
     productId: (query.productId as string) || '',
   });
-  const images = product.map((prod: IProductList) => prod.images[0]);
-
+  const images = product.map((prod: IProductList) => prod.images).flat();
   res.setHeader(
     'Cache-Control',
     'public, s-maxage=10, stale-while-revalidate=59'

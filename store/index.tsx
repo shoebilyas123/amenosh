@@ -7,7 +7,17 @@ const useConfigController = (config: IConfig) => {
   };
 };
 const ConfigContext = createContext<ReturnType<typeof useConfigController>>({
-  config: { appSettings: { colors: {} } },
+  config: {
+    appSettings: { colors: {} },
+    contentControls: {
+      aboutContent: '',
+      bannerImage: '',
+      welcomeContent: '',
+      phone: '',
+      email: '',
+      address: '',
+    },
+  },
 });
 
 interface ICtxProps {
@@ -16,7 +26,6 @@ interface ICtxProps {
 }
 
 export const ConfigProvider: FC<ICtxProps> = ({ config, children }) => {
-  console.log({ config });
   return (
     <ConfigContext.Provider value={useConfigController(config)}>
       {children}
