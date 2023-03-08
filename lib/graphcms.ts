@@ -36,13 +36,15 @@ export const getProductList = async ({
   `;
   const { products } = await client.request(query);
 
+  console.log(products);
+
   const transformedProduct = products.map(
     ({ name, id, images, brand, description }: any) => ({
       title: name,
       images: images.map((img: any) => img.url),
       id,
       brand,
-      description,
+      description: description || {},
     })
   );
 
@@ -90,6 +92,8 @@ export const getContentControls = async () => {
       phone
       address
       email
+      workingHoursTimings
+      workingHoursDays
     }
   }
   `;
@@ -105,6 +109,8 @@ export const getContentControls = async () => {
       phone,
       email,
       address,
+      workingHoursTimings,
+      workingHoursDays,
     }: any) => ({
       id,
       welcomeContent,
@@ -113,6 +119,8 @@ export const getContentControls = async () => {
       phone,
       email,
       address,
+      workingHoursTimings,
+      workingHoursDays,
     })
   )[0];
 

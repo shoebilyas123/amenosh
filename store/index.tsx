@@ -16,6 +16,8 @@ const ConfigContext = createContext<ReturnType<typeof useConfigController>>({
       phone: '',
       email: '',
       address: '',
+      workingHoursDays: '',
+      workingHoursTimings: '',
     },
   },
 });

@@ -51,7 +51,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
     },
   } = useConfig();
   const { price, details, description } = product.description;
-  const detailsKeys = Object.keys(details[0]);
+  let detailsKeys = Object.keys(details || {});
 
   return (
     <div className="w-screen overflow-hidden">
@@ -63,11 +63,12 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
         <div className="w-100 mx-6 md:w-[40vw] space-y-4">
           <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
           <p className="text-xl font-bold">
-            Price - <span className="text-green-900"> &#x20B9;{price}</span>
+            Price -{' '}
+            <span className="text-green-900"> &#x20B9;{price || ''}</span>
           </p>
           <div>
             <H1 className="text-lg font-medium">Description</H1>
-            <p>{description}</p>
+            <p>{description || ''}</p>
           </div>
 
           <div className="w-[100%]">
@@ -80,25 +81,27 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
             >
               Details
             </H1>
-            <table className="table-auto border w-[100%]">
-              <tbody className="space-y-2">
-                {detailsKeys.map((Dkey: string, index: number) => (
-                  <tr
-                    className={`${
-                      index % 2 === 0 ? 'bg-slate-100' : 'bg-white'
-                    }`}
-                  >
-                    <td className="px-4 py-2">{Dkey}</td>
-                    <td>
-                      {
-                        // @ts-ignore
-                        details[0][Dkey]
-                      }
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {detailsKeys && (
+              <table className="table-auto border w-[100%]">
+                <tbody className="space-y-2">
+                  {detailsKeys?.map((Dkey: string, index: number) => (
+                    <tr
+                      className={`${
+                        index % 2 === 0 ? 'bg-slate-100' : 'bg-white'
+                      }`}
+                    >
+                      <td className="px-4 py-2">{Dkey}</td>
+                      <td>
+                        {
+                          // @ts-ignore
+                          details[Dkey]
+                        }
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>
@@ -113,7 +116,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   query,
 }) => {
   const product: any = await getProductList({
-    productId: (query.productId as string) || '',
+    name: (query.productId as string) || '',
   });
   const images = product.map((prod: IProductList) => prod.images).flat();
   res.setHeader(

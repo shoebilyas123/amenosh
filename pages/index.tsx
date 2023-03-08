@@ -109,7 +109,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
 
       <div className=" md:h-screen w-screen mt-12 flex flex-col items-center justify-center sm:p-4 space-y-8">
         <FadeSlide triggerOnce={true} slideDirection="up">
-          <h1 className="text-6xl mb-4 text-zinc-800">Our Products</h1>
+          <h1 className="text-4xl mb-4 text-zinc-800">Our Products</h1>
         </FadeSlide>
 
         <ProductList list={products.slice(0, 4)} />

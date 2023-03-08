@@ -13,5 +13,7 @@ export interface IConfig {
     phone: string;
     email: string;
     address: string;
+    workingHoursDays: string;
+    workingHoursTimings: string;
   };
 }
