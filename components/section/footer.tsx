@@ -4,6 +4,7 @@ import { AiFillMail, AiFillPhone } from 'react-icons/ai';
 import { footerPageLinks, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
+import { H1 } from '../atoms/headings';
 
 const Footer: FC<ICommonProps> = ({}) => {
   const { config } = useConfig();
@@ -64,6 +65,14 @@ const Footer: FC<ICommonProps> = ({}) => {
                 Clumsy Candy
               </p>
             </Link>
+          </div>
+
+          <div className="flex flex-col items-left space-x-1">
+            <h1 className="text-3xl">Working Hours</h1>
+            <div>
+              <p>{config.contentControls.workingHoursDays}</p>
+              <p>{config.contentControls.workingHoursTimings}</p>
+            </div>
           </div>
         </div>
         <div className="text-lg w-full flex items-center justify-center">

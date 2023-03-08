@@ -123,7 +123,7 @@ const Contact: FC<ICommonProps> = ({}) => {
               style={{
                 border: `4px solid ${config.appSettings.colors.bannerColor}`,
               }}
-              className="bg-slate-50 text-neutral-800 shadow-lg mb-8 p-4 mt-8 space-y-2"
+              className="w-[100%] bg-slate-50 text-neutral-800 shadow-lg mb-8 p-4 mt-8 space-y-2"
             >
               <H1 className="text-lg font-bold">Contact Details</H1>
               <div className="flex flex-col items-start space-y-2">
@@ -139,11 +139,6 @@ const Contact: FC<ICommonProps> = ({}) => {
                     <p>{str}</p>
                   ))}
                 </p>
-                <H1 className="text-lg font-medium">Working Hours</H1>
-                <div>
-                  <p>{config.contentControls.workingHoursDays}</p>
-                  <p>{config.contentControls.workingHoursTimings}</p>
-                </div>
               </div>
             </Card>
           </form>

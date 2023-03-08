@@ -13,9 +13,9 @@ const Card: NextPage<IProps> = ({
 }) => {
   return (
     <div
-      className={`w-fit shadow-${
-        shadowSize || 'sm'
-      } flex flex-col items-center  ${className || ''}`}
+      className={` shadow-${shadowSize || 'sm'} flex flex-col items-center  ${
+        className || ''
+      }`}
       {...rest}
     >
       {children}
