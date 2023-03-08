@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { GrFormNextLink, GrFormPreviousLink } from 'react-icons/gr';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import { useConfig } from '~/store';
 
@@ -45,6 +46,9 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
                 className="flex items-center content-center m-auto border no-tailwind"
                 onClick={onImageClick}
               >
+                <span className="w-fit bg-white">
+                  <GrFormPreviousLink />
+                </span>
                 <GlassMagnifier
                   imageSrc={currentFullScreenImage}
                   magnifierSize="50%"
@@ -52,6 +56,9 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
                   imageAlt="Product Image"
                   largeImageSrc={currentFullScreenImage}
                 />
+                <span className="w-fit bg-white">
+                  <GrFormNextLink className="bg-white" />
+                </span>
               </div>
               <div className="flex flex-wrap">
                 {images.map((img) => {

@@ -113,7 +113,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                   </FadeSlide>
                 </div>
               ))}
-            <div className="flex items-center overflow-hidden">
+            <div className="flex items-center cursor-pointer overflow-hidden">
               <Link href="/">
                 <img
                   src={`https://media.graphassets.com/rcQl0lwKQM6YISxmkZRN`}
