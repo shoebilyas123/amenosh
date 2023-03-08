@@ -84,36 +84,8 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             </Link>
           </FadeSlide>
         </div>
-        <div className="relative z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-[50vh] mt-12  px-2 lg:px-24 lg:mt-0 top-0 left-0">
-          {/* <Swiper
-            loop={true}
-            navigation={true}
-            grabCursor={true}
-            pagination={{
-              clickable: true,
-            }}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            className="w-[100%] h-[100%] shadow-lg"
-            modules={[Pagination, Autoplay]}
-            spaceBetween={50}
-            slidesPerView={1}
-          >
-            {products.map((product) => (
-              <SwiperSlide className="w-full h-full">
-                <img
-                  key={product.id}
-                  src={product.images[0]}
-                  className="w-full h-full"
-                  style={{ objectFit: 'cover' }}
-                  // layout="fill"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
-        </div>
+
+        <div className="relative z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-fit mt-12  px-2 lg:px-24 lg:mt-0 top-0 left-0"></div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
@@ -130,7 +102,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
         <div
           className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
           style={{
-            background: `linear-gradient(to right, ${config?.appSettings?.colors.bannerColor},${config.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
+            background: `linear-gradient(60deg, ${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
           }}
         ></div>
       </div>

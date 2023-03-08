@@ -62,7 +62,7 @@ const Contact: FC<ICommonProps> = ({}) => {
         <Card className="border-none shadow-lg">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="sm:w-full flex flex-col space-y-4 w-full px-4 md:px-24 py-8 "
+            className="sm:w-full flex flex-col items-center justify-center space-y-4 w-full px-4 md:px-24 py-8 "
           >
             <div className="flex flex-col md:flex-row  space-y-4 md:space-x-4 md:space-y-0">
               <div className="flex flex-col items-left">
@@ -134,7 +134,11 @@ const Contact: FC<ICommonProps> = ({}) => {
                   <BsFillTelephoneFill /> <span>{phone}</span>
                 </p>
                 <H1 className="text-lg font-medium"> Address</H1>
-                <p>{address}</p>
+                <p>
+                  {address.split('\n').map((str: string) => (
+                    <p>{str}</p>
+                  ))}
+                </p>
               </div>
             </Card>
           </form>

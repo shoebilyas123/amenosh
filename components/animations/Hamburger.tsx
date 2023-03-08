@@ -18,7 +18,7 @@ const Hamburger: FC<IProps> = ({ onClick, isOpen }) => {
       ref={hamRef}
       id={styles['nav-icon-hamburger']}
       onClick={onClickHandler}
-      className={isOpen ? 'open' : ''}
+      className={isOpen ? styles['open'] : ''}
     >
       <span style={{ background: 'white' }}></span>
       <span style={{ background: 'white' }}></span>

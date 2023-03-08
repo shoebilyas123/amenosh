@@ -33,7 +33,7 @@ const SectionContact: FC<IProps> = ({
     >
       <div className="z-50 w-full flex flex-col items-center justify-center">
         <h1 className="z-50 text-white px-24 text-center xs:text-lg sm:text-xl md:text-4xl lg:text-6xl font-bold">
-          We always welcome your enquiries, feedback and suggestions.
+          We always welcome your enquiries, feedback, and suggestions.
         </h1>
         <Link href="/contact" className="z-50">
           <Button className="mt-8 ">Contact</Button>

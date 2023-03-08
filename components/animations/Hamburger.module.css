@@ -1,8 +1,8 @@
 #nav-icon-hamburger {
-  width: 60px;
-  height: 45px;
+  width: 45px;
+  height: 35px;
   position: relative;
-  margin: 50px auto;
+  margin: 40px auto;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -17,7 +17,7 @@
 #nav-icon-hamburger span {
   display: block;
   position: absolute;
-  height: 9px;
+  height: 4px;
   width: 100%;
   border-radius: 9px;
   opacity: 1;

@@ -40,7 +40,7 @@ const Footer: FC<ICommonProps> = ({}) => {
               </p>
             ))}
             <p className="flex items-center">
-              <AiFillMail /> support@amenosh.com
+              <AiFillMail /> {config.contentControls.email}
             </p>
           </div>
 
@@ -59,15 +59,15 @@ const Footer: FC<ICommonProps> = ({}) => {
 
           <div className="flex flex-col items-left space-x-1">
             <h1 className="text-3xl">Products</h1>
-            <Link href="/contact" className="flex items-center">
+            <Link href="/products" className="flex items-center">
               <p className="flex items-center hover:text-neutral-900 cursor-pointer">
                 Clumsy Candy
               </p>
             </Link>
           </div>
         </div>
-        <div className="text-xs w-full flex items-center justify-center">
-          &copy; {`2023 Amenosh. All Rights Reserved.`}
+        <div className="text-lg w-full flex items-center justify-center">
+          &copy;{`2023 Amenosh. All Rights Reserved.`}
         </div>
       </div>
     </>
