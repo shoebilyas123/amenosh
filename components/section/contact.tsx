@@ -56,7 +56,7 @@ const Contact: FC<ICommonProps> = ({}) => {
   }, [successMessage]);
 
   return (
-    <div className="flex w-screen border border-red-600 flex-col items-center justify-center">
+    <div className="flex w-screen flex-col items-center justify-center">
       <div className="z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
         <h1 className="text-4xl text-center">We'd Love To Hear From You!</h1>
         <Card className="border-none shadow-lg">
