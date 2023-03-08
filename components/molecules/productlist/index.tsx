@@ -37,7 +37,7 @@ const ProductList: FC<IProps> = ({ list, loading, emptyMessage }) => {
               >
                 <div
                   onClick={() => router.push(`/products/${item.title}`)}
-                  className={`w-full flex flex-col items-center border ${
+                  className={`w-full cursor-pointer  flex flex-col items-center border ${
                     activeFor === index
                       ? 'border-1 border-opacity-10'
                       : 'border-transparent'
