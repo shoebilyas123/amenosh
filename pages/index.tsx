@@ -69,12 +69,12 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
       >
         <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-50">
           <FadeSlide slideDirection="down">
-            <h1 className="text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
+            <h1 className=" text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
               Welcome To Amenosh
             </h1>
           </FadeSlide>
           <Fade triggerOnce={true}>
-            <p className="w-100 mb-4 mx-12 text-center lg:mx-0 lg:text-left">
+            <p className=" w-100 mb-4 mx-12 text-center lg:mx-0 lg:text-left">
               {config.contentControls.welcomeContent}
             </p>
           </Fade>
@@ -102,7 +102,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
         <div
           className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
           style={{
-            background: `linear-gradient(60deg, ${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
+            background: `linear-gradient(60deg, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
           }}
         ></div>
       </div>
