@@ -1,7 +1,9 @@
 import React, { FC, useState } from 'react';
 import { GrFormNextLink, GrFormPreviousLink } from 'react-icons/gr';
 import { GlassMagnifier } from 'react-image-magnifiers';
+import Button from '~/components/atoms/button';
 import { useConfig } from '~/store';
+import FullScreenImageViewer from '../FullScreenImageViewer';
 
 interface IProps {
   images: Array<string>;
@@ -28,56 +30,20 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
       {isFullScreen && (
         <div
           style={{ zIndex: 999999 }}
-          className="fixed -top-2 -left-2 w-screen h-screen flex items-center justify-center"
+          className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center"
         >
           <div
             className="fixed w-full h-full bg-black opacity-30"
             onClick={onExitFullScreen}
           ></div>
-          <div className="w-screen flex flex-col items-center justify-center">
+          <div className="w-screen h-screen flex flex-col items-center justify-center">
             <div
-              className="w-full px-12 text-2xl font-bold flex items-end justify-end text-white z-50 cursor-pointer"
+              className="w-full px-12 mt-8 text-2xl font-bold flex items-end justify-end text-white z-50 cursor-pointer"
               onClick={onExitFullScreen}
             >
               X
             </div>
-            <div className="w-[80vw] lg:w-[40vw]">
-              <div
-                className="flex items-center content-center m-auto border no-tailwind"
-                onClick={onImageClick}
-              >
-                <span className="w-fit bg-white">
-                  <GrFormPreviousLink />
-                </span>
-                <GlassMagnifier
-                  imageSrc={currentFullScreenImage}
-                  magnifierSize="50%"
-                  allowOverflow={false}
-                  imageAlt="Product Image"
-                  largeImageSrc={currentFullScreenImage}
-                />
-                <span className="w-fit bg-white">
-                  <GrFormNextLink className="bg-white" />
-                </span>
-              </div>
-              <div className="flex flex-wrap">
-                {images.map((img) => {
-                  return (
-                    <img
-                      className={`w-16 h-16 object-cover border border-transparent hover:border-neutral-400  cursor-pointer transition-all`}
-                      src={img}
-                      style={{
-                        zIndex: 99999,
-                        ...(currentFullScreenImage === img
-                          ? { border: `2px solid ${colors.secondary}` }
-                          : {}),
-                      }}
-                      onClick={() => setCurrentFullScreenImage(img)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
+            <FullScreenImageViewer images={images} />
           </div>
         </div>
       )}
