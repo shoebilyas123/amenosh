@@ -26,6 +26,7 @@ const Contact: FC<ICommonProps> = ({}) => {
 
   const onSubmit = async (data: IEmailPayload) => {
     try {
+      if (!data.message) setErrorMessage('Please Enter Your Message.');
       startloading();
       const res = await sendEmail(data);
       reset();
@@ -64,18 +65,19 @@ const Contact: FC<ICommonProps> = ({}) => {
             onSubmit={handleSubmit(onSubmit)}
             className="sm:w-full flex flex-col items-start justify-center space-y-4 w-full px-4 md:px-24 py-8 "
           >
-            <div className="flex flex-col md:flex-row space-y-4 md:space-x-4 md:space-y-0">
+            <div className="flex flex-col w-full md:flex-row space-y-4 md:space-x-4 md:space-y-0">
               <div className="flex flex-col items-left">
-                <label>First Name</label>
+                <label>First Name *</label>
                 <input
                   placeholder="Enter First Name..."
+                  required={true}
                   {...register('firstName')}
                   className="border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
                 />
               </div>
 
               <div className="flex flex-col items-left">
-                <label>Last Name</label>
+                <label>Last Name </label>
                 <input
                   placeholder="Enter Last Name..."
                   {...register('lastName')}
@@ -85,7 +87,46 @@ const Contact: FC<ICommonProps> = ({}) => {
             </div>
 
             <div className="w-full">
-              <label>Email</label>
+              <label>Phone Number </label>
+              <input
+                placeholder="Enter Phone Number..."
+                type="tel"
+                {...register('phoneNumber')}
+                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+              />
+            </div>
+
+            <div className="w-full">
+              <label>Address *</label>
+              <input
+                required={true}
+                placeholder="Enter Your Address..."
+                {...register('address')}
+                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+              />
+            </div>
+
+            <div className="w-full">
+              <label>City </label>
+              <input
+                placeholder="Enter City..."
+                {...register('city')}
+                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+              />
+            </div>
+
+            <div className="w-full">
+              <label>Postal Code *</label>
+              <input
+                required={true}
+                placeholder="Enter Your Postal Code..."
+                {...register('postalCode')}
+                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+              />
+            </div>
+
+            <div className="w-full">
+              <label>Email *</label>
               <input
                 required={true}
                 placeholder="Enter Your Email..."
@@ -119,7 +160,7 @@ const Contact: FC<ICommonProps> = ({}) => {
               {loading && <AiOutlineLoading />}Send Message
             </Button>
 
-            <Card
+            {/* <Card
               style={{
                 border: `4px solid ${config.appSettings.colors.bannerColor}`,
               }}
@@ -140,7 +181,7 @@ const Contact: FC<ICommonProps> = ({}) => {
                   ))}
                 </p>
               </div>
-            </Card>
+            </Card> */}
           </form>
         </Card>
       </div>

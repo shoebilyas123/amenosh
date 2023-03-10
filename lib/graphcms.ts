@@ -36,8 +36,6 @@ export const getProductList = async ({
   `;
   const { products } = await client.request(query);
 
-  console.log(products);
-
   const transformedProduct = products.map(
     ({ name, id, images, brand, description }: any) => ({
       title: name,

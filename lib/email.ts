@@ -5,7 +5,7 @@ import { send, sendForm } from '@emailjs/browser';
 export const sendEmail = async (params: IEmailPayload) => {
   const templateParams = {
     ...params,
-    recipientName: 'Amenosh Test',
+    recipientName: 'Amenosh',
   };
 
   return await send(

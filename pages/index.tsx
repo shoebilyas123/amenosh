@@ -15,6 +15,7 @@ import FadeSlide from '~/components/animations/FadeSlide';
 import Contact from '~/components/section/contact';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
+import { SectionContact } from '~/components/section';
 
 interface IProps extends ICommonProps {
   products: IProductList[];
@@ -118,7 +119,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
         </Link>
       </div>
 
-      <Contact />
+      <SectionContact />
       <Footer />
     </div>
   );

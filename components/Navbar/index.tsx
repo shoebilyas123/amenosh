@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import { IoCallSharp, IoHomeOutline } from 'react-icons/io5';
 import { BsFillInfoCircleFill, BsFillCartFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { HiMenu } from 'react-icons/hi';
 
 import useToggler from '~/hooks/useToggler';
 import { ICommonProps } from '~/interfaces/common';
@@ -153,10 +154,11 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
               // >
               //   <GiHamburgerMenu className={'text-4xl text-white'} />
               // </div>
-
-              <Hamburger
-                onClick={() => (isOpen ? close() : open())}
-                isOpen={isOpen}
+              <HiMenu
+                size={48}
+                color="white"
+                onClick={isOpen ? close : open}
+                className="cursor-pointer"
               />
             )}
           </div>

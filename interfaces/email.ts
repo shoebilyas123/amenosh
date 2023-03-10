@@ -3,6 +3,10 @@ export interface IEmailPayload {
   lastName: string;
   message: string;
   email: string;
+  phoneNumber: string;
+  city: string;
+  address: string;
+  postalCode: string;
 }
 
 export interface ISendEmailParam {

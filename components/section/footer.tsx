@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { AiFillMail, AiFillPhone } from 'react-icons/ai';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+
 import { footerPageLinks, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
@@ -8,6 +10,9 @@ import { H1 } from '../atoms/headings';
 
 const Footer: FC<ICommonProps> = ({}) => {
   const { config } = useConfig();
+  const {
+    contentControls: { email, address, phone },
+  } = config;
   return (
     <>
       <div
@@ -40,9 +45,6 @@ const Footer: FC<ICommonProps> = ({}) => {
                 </a>
               </p>
             ))}
-            <p className="flex items-center">
-              <AiFillMail /> {config.contentControls.email}
-            </p>
           </div>
 
           <div className="flex flex-col items-left space-x-1">
@@ -67,11 +69,31 @@ const Footer: FC<ICommonProps> = ({}) => {
             </Link>
           </div>
 
-          <div className="flex flex-col items-left space-x-1">
-            <h1 className="text-3xl">Working Hours</h1>
+          <div className="flex flex-col items-left space-x-1 space-y-4">
+            <h1 className="text-3xl">Contact Details</h1>
+
+            <div className="flex flex-col items-start space-y-2">
+              <p className="flex items-center space-x-2">
+                <AiFillMail /> <span>{email}</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <BsFillTelephoneFill /> <span>{phone}</span>
+              </p>
+            </div>
             <div>
-              <p>{config.contentControls.workingHoursDays}</p>
-              <p>{config.contentControls.workingHoursTimings}</p>
+              <H1 className="text-lg font-medium">Working Hours</H1>
+              <div>
+                <p>{config.contentControls.workingHoursDays}</p>
+                <p>{config.contentControls.workingHoursTimings}</p>
+              </div>
+            </div>
+            <div>
+              <H1 className="text-lg font-medium"> Address</H1>
+              <p>
+                {address.split('\n').map((str: string) => (
+                  <p>{str}</p>
+                ))}
+              </p>
             </div>
           </div>
         </div>
