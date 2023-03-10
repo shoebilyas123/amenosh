@@ -47,14 +47,6 @@ const Footer: FC<ICommonProps> = ({}) => {
                 </p>
               ))}
             </div>
-            <div className="flex flex-col items-start space-y-2">
-              <p className="flex items-center space-x-2">
-                <AiFillMail /> <span>{email}</span>
-              </p>
-              <p className="flex items-center space-x-2">
-                <BsFillTelephoneFill /> <span>{phone}</span>
-              </p>
-            </div>
           </div>
 
           <div className="flex flex-col items-left space-y-4">
@@ -81,16 +73,15 @@ const Footer: FC<ICommonProps> = ({}) => {
           </div>
 
           <div className="flex flex-col items-left space-x-1 space-y-4">
-            {/* <h1 className="text-3xl">Contact Details</h1> */}
             <div>
-              <H1 className="text-lg font-medium">Working Hours</H1>
+              <H1 className="text-2xl font-medium">Working Hours</H1>
               <div>
                 <p>{config.contentControls.workingHoursDays}</p>
                 <p>{config.contentControls.workingHoursTimings}</p>
               </div>
             </div>
             <div>
-              <H1 className="text-lg font-medium"> Address</H1>
+              <H1 className="text-2xl font-medium"> Address</H1>
               <p>
                 {address.split('\n').map((str: string) => (
                   <p>{str}</p>
@@ -98,7 +89,17 @@ const Footer: FC<ICommonProps> = ({}) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-left space-x-1 space-y-3"></div>
+          <div className="flex flex-col items-left space-x-1 space-y-4">
+            <h1 className="text-3xl">Contact Details</h1>
+            <div className="flex flex-col items-start space-y-2">
+              <p className="flex items-center space-x-2">
+                <AiFillMail /> <span>{email}</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <BsFillTelephoneFill /> <span>{phone}</span>
+              </p>
+            </div>
+          </div>
         </div>
         <div className="text-lg w-full flex items-center justify-center">
           &copy;{`2023 Amenosh. All Rights Reserved.`}
