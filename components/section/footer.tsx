@@ -31,47 +31,22 @@ const Footer: FC<ICommonProps> = ({}) => {
         }}
       >
         <div className="w-full grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
-          <div className="flex flex-col items-left space-y-1">
-            <h1 className="text-3xl">Follow Us</h1>
-            {socials.map(({ link, title, Icon }) => (
-              <p className="flex items-center">
-                <Icon />
-                <a
-                  href={link}
-                  target="_blank"
-                  className={` hover:text-neutral-900 transition-all`}
-                >
-                  {title}
-                </a>
-              </p>
-            ))}
-          </div>
-
-          <div className="flex flex-col items-left space-x-1">
-            <h1 className="text-3xl">Pages</h1>
-            {footerPageLinks.map(({ path, title }) => (
-              <Link href={path} className="">
-                <p
-                  className={`flex items-center hover:text-neutral-900 hover:translate-x-1  transition-all cursor-pointer `}
-                >
-                  {title}
+          <div className="flex flex-col items-left space-y-4">
+            <div>
+              <h1 className="text-3xl">Follow Us</h1>
+              {socials.map(({ link, title, Icon }) => (
+                <p className="flex items-center">
+                  <Icon />
+                  <a
+                    href={link}
+                    target="_blank"
+                    className={` hover:text-neutral-900 transition-all`}
+                  >
+                    {title}
+                  </a>
                 </p>
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex flex-col items-left space-x-1">
-            <h1 className="text-3xl">Products</h1>
-            <Link href="/products" className="flex items-center">
-              <p className="flex items-center hover:text-neutral-900 cursor-pointer">
-                Clumsy Candy
-              </p>
-            </Link>
-          </div>
-
-          <div className="flex flex-col items-left space-x-1 space-y-4">
-            <h1 className="text-3xl">Contact Details</h1>
-
+              ))}
+            </div>
             <div className="flex flex-col items-start space-y-2">
               <p className="flex items-center space-x-2">
                 <AiFillMail /> <span>{email}</span>
@@ -80,6 +55,33 @@ const Footer: FC<ICommonProps> = ({}) => {
                 <BsFillTelephoneFill /> <span>{phone}</span>
               </p>
             </div>
+          </div>
+
+          <div className="flex flex-col items-left space-y-4">
+            <div>
+              <h1 className="text-3xl">Pages</h1>
+              {footerPageLinks.map(({ path, title }) => (
+                <Link href={path} className="">
+                  <p
+                    className={`flex items-center hover:text-neutral-900 hover:translate-x-1  transition-all cursor-pointer `}
+                  >
+                    {title}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <div>
+              <h1 className="text-3xl">Products</h1>
+              <Link href="/products" className="flex items-center">
+                <p className="flex items-center hover:text-neutral-900 cursor-pointer">
+                  Clumsy Candy
+                </p>
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-left space-x-1 space-y-4">
+            {/* <h1 className="text-3xl">Contact Details</h1> */}
             <div>
               <H1 className="text-lg font-medium">Working Hours</H1>
               <div>
@@ -96,6 +98,7 @@ const Footer: FC<ICommonProps> = ({}) => {
               </p>
             </div>
           </div>
+          <div className="flex flex-col items-left space-x-1 space-y-3"></div>
         </div>
         <div className="text-lg w-full flex items-center justify-center">
           &copy;{`2023 Amenosh. All Rights Reserved.`}
