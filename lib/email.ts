@@ -1,8 +1,9 @@
-import nodemailer from 'nodemailer';
 import { IEmailPayload } from '~/interfaces/email';
-import { send, sendForm } from '@emailjs/browser';
+import { send } from '@emailjs/browser';
 
 export const sendEmail = async (params: IEmailPayload) => {
+  console.log({ ENVS: process.env });
+
   const templateParams = {
     ...params,
     recipientName: 'Amenosh',
