@@ -7,6 +7,7 @@ export interface IEmailPayload {
   city: string;
   address: string;
   postalCode: string;
+  usertype: string;
 }
 
 export interface ISendEmailParam {

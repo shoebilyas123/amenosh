@@ -56,6 +56,25 @@ const Contact: FC<ICommonProps> = ({}) => {
     };
   }, [successMessage]);
 
+  const Select = React.forwardRef(
+    ({ onChange, onBlur, name, label, className, options }: any, ref: any) => (
+      <>
+        <label>{label}</label>
+        <select
+          name={name}
+          ref={ref}
+          onChange={onChange}
+          onBlur={onBlur}
+          className={className}
+        >
+          {options.map((opt: string) => (
+            <option value={opt}>{opt}</option>
+          ))}
+        </select>
+      </>
+    )
+  );
+
   return (
     <div className="flex w-screen flex-col items-center justify-center">
       <div className="z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
@@ -87,7 +106,22 @@ const Contact: FC<ICommonProps> = ({}) => {
             </div>
 
             <div className="w-full">
-              <label>Phone Number </label>
+              <Select
+                {...register('usertype')}
+                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                options={[
+                  'Wholesaler',
+                  'Distributer',
+                  'Retailer',
+                  'Customer',
+                  'Other',
+                ]}
+                label={'You Are A? *'}
+              />
+            </div>
+
+            <div className="w-full">
+              <label>Phone Number *</label>
               <input
                 placeholder="Enter Phone Number..."
                 type="tel"
@@ -107,7 +141,7 @@ const Contact: FC<ICommonProps> = ({}) => {
             </div>
 
             <div className="w-full">
-              <label>City </label>
+              <label>City *</label>
               <input
                 placeholder="Enter City..."
                 {...register('city')}
