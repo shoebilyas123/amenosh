@@ -180,7 +180,7 @@ const Contact: FC<ICommonProps> = ({}) => {
               />
             </div>
             {successMessage && (
-              <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
+              <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
                 {successMessage}
               </div>
             )}

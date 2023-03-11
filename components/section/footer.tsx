@@ -72,7 +72,7 @@ const Footer: FC<ICommonProps> = ({}) => {
             </div>
           </div>
 
-          <div className="flex flex-col items-left space-x-1 space-y-4">
+          <div className="flex flex-col items-left space-y-4">
             <div>
               <H1 className="text-2xl font-medium">Working Hours</H1>
               <div>
