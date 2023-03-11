@@ -23,18 +23,80 @@ const Contact: FC<ICommonProps> = ({}) => {
   const { loading, startloading, stoploading } = useLoading();
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<number | null>();
+  const [postalCode, setPinCode] = useState<number | null>();
   let timeout: any = null;
+
+  const checkIfNumber = (candidateValue: string) =>
+    Number(candidateValue) >= 0 && Number(candidateValue) <= 9;
+
+  const onPhoneNumberChangeHandler = (value: string) => {
+    if (!checkIfNumber(value.charAt(value.length - 1)) || value.length > 10) {
+      return;
+    } else if (!value) {
+      setPhoneNumber(null);
+      return;
+    } else {
+      setPhoneNumber(Number(value));
+    }
+  };
+
+  const onPinCodeChangeHandler = (value: string) => {
+    if (!checkIfNumber(value.charAt(value.length - 1)) || value.length > 6) {
+      return;
+    } else if (!value) {
+      setPinCode(null);
+      return;
+    } else {
+      setPinCode(Number(value));
+    }
+  };
+
+  const validateForm = (data: IEmailPayload) => {
+    let requiredField = '';
+
+    if (!data.email) {
+      requiredField = 'Email';
+    } else if (!data.firstName) {
+      requiredField = 'First name';
+    } else if (!phoneNumber) {
+      requiredField = 'Phone number';
+    } else if (!data.message) {
+      requiredField = 'Message';
+    } else if (!data.city) {
+      requiredField = 'City';
+    } else if (!postalCode) {
+      requiredField = 'Pin code';
+    }
+    if (data.usertype == '-- select an option --') {
+      requiredField = 'Please select an option for "I am a"';
+      return requiredField;
+    }
+
+    if (!requiredField) {
+      return '';
+    }
+
+    requiredField += ' is required!';
+
+    return requiredField;
+  };
 
   const onSubmit = async (data: IEmailPayload) => {
     try {
-      if (!data.message) setErrorMessage('Please Enter Your Message.');
+      const formValidationError = validateForm(data);
+      if (formValidationError) {
+        setErrorMessage(formValidationError);
+        return;
+      }
+      console.log({ data });
       startloading();
-      let payload = { ...data };
+      let payload = { ...data, phoneNumber, postalCode };
       if (payload.usertype === 'Other')
         payload.usertype = payload.usertypecustom;
 
       const res = await sendEmail(data);
-      reset();
+      // reset();
       setSuccessMessage('Your message has been sent. Thank You!');
       stoploading();
     } catch (error) {
@@ -72,6 +134,10 @@ const Contact: FC<ICommonProps> = ({}) => {
           onBlur={onBlur}
           className={className}
         >
+          <option disabled selected>
+            {' '}
+            -- select an option --{' '}
+          </option>
           {options.map((opt: string) => (
             <option value={opt}>{opt}</option>
           ))}
@@ -136,9 +202,14 @@ const Contact: FC<ICommonProps> = ({}) => {
             <div className="w-full">
               <label>Phone Number</label>
               <input
+                required={true}
                 placeholder="Enter Phone Number..."
-                type="number"
-                {...register('phoneNumber')}
+                type="default"
+                // @ts-ignore
+                value={phoneNumber}
+                onChange={({ target: { value } }) =>
+                  onPhoneNumberChangeHandler(value)
+                }
                 className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
             </div>
@@ -157,6 +228,7 @@ const Contact: FC<ICommonProps> = ({}) => {
               <label>City</label>
               <input
                 placeholder="Enter City..."
+                required={true}
                 {...register('city')}
                 className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
@@ -166,9 +238,13 @@ const Contact: FC<ICommonProps> = ({}) => {
               <label>Pin Code *</label>
               <input
                 required={true}
-                type="number"
+                type="default"
                 placeholder="Enter Your Postal Code..."
-                {...register('postalCode')}
+                // @ts-ignore
+                value={postalCode}
+                onChange={({ target: { value } }) =>
+                  onPinCodeChangeHandler(value)
+                }
                 className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
             </div>
@@ -193,12 +269,12 @@ const Contact: FC<ICommonProps> = ({}) => {
                 className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
             </div>
-            {successMessage && (
+            {!errorMessage && successMessage && (
               <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
                 {successMessage}
               </div>
             )}
-            {errorMessage && (
+            {!successMessage && errorMessage && (
               <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
                 {errorMessage}
               </div>
