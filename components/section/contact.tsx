@@ -17,6 +17,7 @@ const Contact: FC<ICommonProps> = ({}) => {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<IEmailPayload>();
   const { config } = useConfig();
   const { loading, startloading, stoploading } = useLoading();
@@ -28,6 +29,10 @@ const Contact: FC<ICommonProps> = ({}) => {
     try {
       if (!data.message) setErrorMessage('Please Enter Your Message.');
       startloading();
+      let payload = { ...data };
+      if (payload.usertype === 'Other')
+        payload.usertype = payload.usertypecustom;
+
       const res = await sendEmail(data);
       reset();
       setSuccessMessage('Your message has been sent. Thank You!');
@@ -116,17 +121,25 @@ const Contact: FC<ICommonProps> = ({}) => {
                   'Customer',
                   'Other',
                 ]}
-                label={'You Are A? *'}
+                label={'I am a *'}
               />
+              {watch().usertype === 'Other' && (
+                <input
+                  placeholder="Please mention..."
+                  type="default"
+                  {...register('usertypecustom')}
+                  className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                />
+              )}
             </div>
 
             <div className="w-full">
-              <label>Phone Number *</label>
+              <label>Phone Number</label>
               <input
                 placeholder="Enter Phone Number..."
-                type="tel"
+                type="number"
                 {...register('phoneNumber')}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
             </div>
 
@@ -141,7 +154,7 @@ const Contact: FC<ICommonProps> = ({}) => {
             </div>
 
             <div className="w-full">
-              <label>City *</label>
+              <label>City</label>
               <input
                 placeholder="Enter City..."
                 {...register('city')}
@@ -150,12 +163,13 @@ const Contact: FC<ICommonProps> = ({}) => {
             </div>
 
             <div className="w-full">
-              <label>Postal Code *</label>
+              <label>Pin Code *</label>
               <input
                 required={true}
+                type="number"
                 placeholder="Enter Your Postal Code..."
                 {...register('postalCode')}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
             </div>
 
@@ -193,29 +207,6 @@ const Contact: FC<ICommonProps> = ({}) => {
             <Button type="submit" className="flex items-center justify-center">
               {loading && <AiOutlineLoading />}Send Message
             </Button>
-
-            {/* <Card
-              style={{
-                border: `4px solid ${config.appSettings.colors.bannerColor}`,
-              }}
-              className="w-[100%] bg-slate-50 text-neutral-800 shadow-lg mb-8 p-4 mt-8 space-y-2"
-            >
-              <H1 className="text-lg font-bold">Contact Details</H1>
-              <div className="flex flex-col items-start space-y-2">
-                <p className="flex items-center space-x-2">
-                  <AiFillMail /> <span>{email}</span>
-                </p>
-                <p className="flex items-center space-x-2">
-                  <BsFillTelephoneFill /> <span>{phone}</span>
-                </p>
-                <H1 className="text-lg font-medium"> Address</H1>
-                <p>
-                  {address.split('\n').map((str: string) => (
-                    <p>{str}</p>
-                  ))}
-                </p>
-              </div>
-            </Card> */}
           </form>
         </Card>
       </div>

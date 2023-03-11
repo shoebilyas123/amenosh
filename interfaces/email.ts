@@ -8,6 +8,7 @@ export interface IEmailPayload {
   address: string;
   postalCode: string;
   usertype: string;
+  usertypecustom: string;
 }
 
 export interface ISendEmailParam {
