@@ -13,10 +13,13 @@ import { Zoom, Navigation, Pagination, Thumbs, FreeMode } from 'swiper';
 
 interface IProps {
   images: Array<string>;
-  enableZoom: boolean;
+  enableZoom?: boolean;
 }
 
-export default function FullScreenImageViewer({ images, enableZoom }: IProps) {
+export default function FullScreenImageViewer({
+  images,
+  enableZoom = true,
+}: IProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
