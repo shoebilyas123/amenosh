@@ -16,5 +16,6 @@ export interface IConfig {
     workingHoursDays: string;
     workingHoursTimings: string;
     welcomeTitle: string;
+    aboutTitle: string;
   };
 }
