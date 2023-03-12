@@ -88,13 +88,12 @@ const Contact: FC<ICommonProps> = ({}) => {
     if (`${postalCode}`.length === 0) {
       return `Pin code must be valid`;
     }
+    if (data.address.length < 5) {
+      return `Address must be more than 4 characters`;
+    }
     if (city.length < 3) {
-      return `Please enter a valid city`;
+      return `City name must be more than 2 characters`;
     }
-    if (address.length < 5) {
-      return `Please enter a valid address`;
-    }
-
     if (!requiredField) {
       return '';
     }
@@ -111,6 +110,7 @@ const Contact: FC<ICommonProps> = ({}) => {
         setErrorMessage(formValidationError);
         return;
       }
+
       startloading();
       let payload = {
         ...data,
@@ -122,7 +122,10 @@ const Contact: FC<ICommonProps> = ({}) => {
         payload.usertype = payload.usertypecustom;
 
       const res = await sendEmail(payload);
-      // reset();
+      reset();
+      setPinCode(null);
+      setPhoneNumber(null);
+      setCity('');
       setSuccessMessage('Your message has been sent. Thank You!');
       stoploading();
     } catch (error) {
@@ -138,6 +141,7 @@ const Contact: FC<ICommonProps> = ({}) => {
   useEffect(() => {
     if (!successMessage && !errorMessage) return;
     else {
+      clearTimeout(timeout);
       timeout = setTimeout(() => {
         setErrorMessage('');
         setSuccessMessage('');

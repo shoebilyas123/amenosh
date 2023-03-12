@@ -9,3 +9,8 @@ html,
 body {
   font-family: 'Quicksand', sans-serif;
 }
+
+#swiper-color .swiper-button-prev,
+#swiper-color .swiper-button-next {
+  color: black;
+}

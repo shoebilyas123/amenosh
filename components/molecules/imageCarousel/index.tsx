@@ -30,7 +30,7 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
       {isFullScreen && (
         <div
           style={{ zIndex: 999999 }}
-          className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center"
+          className="fixed -top-2 -left-2 w-screen h-screen flex items-center justify-center"
         >
           <div
             className="fixed w-full h-full bg-black opacity-30"
@@ -47,6 +47,12 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
           </div>
         </div>
       )}
+      <FullScreenImageViewer
+        images={images}
+        enableZoom={false}
+        zIndex={99999}
+        onImageClick={() => setIsFullScreen(true)}
+      />
     </div>
   );
 };

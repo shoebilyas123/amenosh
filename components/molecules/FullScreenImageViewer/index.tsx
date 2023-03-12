@@ -15,18 +15,21 @@ interface IProps {
   images: Array<string>;
   enableZoom?: boolean;
   zIndex?: number;
+  onImageClick?: () => void;
 }
 
 export default function FullScreenImageViewer({
   images,
   enableZoom = true,
   zIndex = 9999999999999999,
+  onImageClick,
 }: IProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
     <>
       <Swiper
+        id="swiper-color"
         style={{
           // @ts-ignore
           '--swiper-navigation-color': '#fff',
@@ -53,6 +56,7 @@ export default function FullScreenImageViewer({
           Thumbs,
         ]}
         className="mySwiper2 w-[100%] h-[90%]"
+        onClick={onImageClick && onImageClick}
       >
         {images.map((imgUrl) => (
           <SwiperSlide>
