@@ -118,7 +118,7 @@ const Contact: FC<ICommonProps> = ({}) => {
         postalCode: `${postalCode}`,
         city,
       };
-      if (payload.usertype === 'Other')
+      if (payload.usertype === 'Other' && payload.usertypecustom.length > 0)
         payload.usertype = payload.usertypecustom;
 
       const res = await sendEmail(payload);
