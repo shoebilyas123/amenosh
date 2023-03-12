@@ -85,6 +85,15 @@ const Contact: FC<ICommonProps> = ({}) => {
     if (`${phoneNumber}`.length < 10) {
       return `Phone number is invalid.`;
     }
+    if (`${postalCode}`.length === 0) {
+      return `Pin code must be valid`;
+    }
+    if (city.length < 3) {
+      return `Please enter a valid city`;
+    }
+    if (address.length < 5) {
+      return `Please enter a valid address`;
+    }
 
     if (!requiredField) {
       return '';
