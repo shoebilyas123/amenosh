@@ -68,7 +68,14 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
           </p>
           <div>
             <H1 className="text-lg font-medium">Description</H1>
-            <p>{description || ''}</p>
+            <p>
+              {(description || '').split('\n').map((str: string) => (
+                <>
+                  <span>{str}</span>
+                  <br />
+                </>
+              ))}
+            </p>
           </div>
 
           <div className="w-[100%]">

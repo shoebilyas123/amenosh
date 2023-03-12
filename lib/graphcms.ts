@@ -92,12 +92,13 @@ export const getContentControls = async () => {
       email
       workingHoursTimings
       workingHoursDays
+      welcomeTitle
     }
   }
   `;
 
   const { contentControls } = await client.request(query);
-
+  console.log(contentControls);
   const transformContentControl = contentControls.map(
     ({
       id,
@@ -109,6 +110,7 @@ export const getContentControls = async () => {
       address,
       workingHoursTimings,
       workingHoursDays,
+      welcomeTitle,
     }: any) => ({
       id,
       welcomeContent,
@@ -119,6 +121,7 @@ export const getContentControls = async () => {
       address,
       workingHoursTimings,
       workingHoursDays,
+      welcomeTitle,
     })
   )[0];
 

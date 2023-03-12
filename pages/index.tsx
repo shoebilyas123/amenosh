@@ -16,6 +16,7 @@ import Contact from '~/components/section/contact';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import { SectionContact } from '~/components/section';
+import { BsHeartFill } from 'react-icons/bs';
 
 interface IProps extends ICommonProps {
   products: IProductList[];
@@ -70,13 +71,29 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
       >
         <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-50">
           <FadeSlide slideDirection="down">
-            <h1 className=" text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
-              Welcome To Amenosh
+            <h1 className="font-bold text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4">
+              {config.contentControls.welcomeTitle}
             </h1>
           </FadeSlide>
           <Fade triggerOnce={true}>
-            <p className=" w-100 mb-4 mx-12 text-center lg:mx-0 lg:text-left">
-              {config.contentControls.welcomeContent}
+            <p
+              className="flex flex-wrap flex-row w-100 mb-4 mx-12 text-2xl text-center lg:mx-0 lg:text-left"
+              style={{
+                fontFamily: "'Courgette', cursive",
+              }}
+            >
+              {config.contentControls.welcomeContent
+                .replace('<3', '')
+                .split('\n')
+                .map((str: string) => (
+                  <>
+                    <span>{str}</span>
+                    <br />
+                  </>
+                ))}
+              {config.contentControls.welcomeContent.includes('<3') ? (
+                <BsHeartFill color="red" />
+              ) : null}
             </p>
           </Fade>
           <FadeSlide slideDirection="up">
