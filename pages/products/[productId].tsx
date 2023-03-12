@@ -61,7 +61,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
       <div className="flex flex-col md:flex-row md:items-start md:space-x-4 justify-center w-screen my-8">
         {/* <ImageCarousel images={productImages} /> */}
         <div className="w-100 mx-6 mb-6 md:w-[35vw]">
-          <FullScreenImageViewer images={productImages} />
+          <FullScreenImageViewer images={productImages} enableZoom={false} />
         </div>
 
         <div className="w-100 mx-6 md:w-[40vw] space-y-4">
