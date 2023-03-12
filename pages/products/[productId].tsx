@@ -118,6 +118,11 @@ export const getServerSideProps: GetServerSideProps = async ({
   const product: any = await getProductList({
     name: (query.productId as string) || '',
   });
+
+  if (!product || !product[0]) {
+    return { notFound: true };
+  }
+
   const images = product.map((prod: IProductList) => prod.images).flat();
   res.setHeader(
     'Cache-Control',
