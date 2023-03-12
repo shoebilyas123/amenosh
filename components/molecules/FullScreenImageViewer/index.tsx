@@ -13,9 +13,10 @@ import { Zoom, Navigation, Pagination, Thumbs, FreeMode } from 'swiper';
 
 interface IProps {
   images: Array<string>;
+  enableZoom: boolean;
 }
 
-export default function FullScreenImageViewer({ images }: IProps) {
+export default function FullScreenImageViewer({ images, enableZoom }: IProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -40,7 +41,12 @@ export default function FullScreenImageViewer({ images }: IProps) {
               : null,
         }}
         // allowTouchMove={false}
-        modules={[Zoom, Navigation, Pagination, Thumbs]}
+        modules={[
+          ...(enableZoom ? [Zoom] : []),
+          Navigation,
+          Pagination,
+          Thumbs,
+        ]}
         className="mySwiper2 w-[100%] h-[90%]"
       >
         {images.map((imgUrl) => (
