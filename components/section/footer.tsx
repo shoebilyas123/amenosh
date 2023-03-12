@@ -47,6 +47,14 @@ const Footer: FC<ICommonProps> = ({}) => {
                 </p>
               ))}
             </div>
+            <div className="flex flex-col items-start space-y-2">
+              <p className="flex items-center space-x-2">
+                <AiFillMail /> <span>{email}</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <BsFillTelephoneFill /> <span>{phone}</span>
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col items-left space-y-4">
@@ -74,31 +82,23 @@ const Footer: FC<ICommonProps> = ({}) => {
 
           <div className="flex flex-col items-left space-y-4">
             <div>
-              <H1 className="text-2xl font-medium">Working Hours</H1>
-              <div>
-                <p>{config.contentControls.workingHoursDays}</p>
-                <p>{config.contentControls.workingHoursTimings}</p>
-              </div>
-            </div>
-            <div>
-              <H1 className="text-2xl font-medium"> Address</H1>
+              <H1 className="text-3xl "> Address</H1>
               <p>
                 {address.split('\n').map((str: string) => (
                   <p>{str}</p>
                 ))}
               </p>
             </div>
+            <div>
+              <H1 className="text-3xl ">Working Hours</H1>
+              <div>
+                <p>{config.contentControls.workingHoursDays}</p>
+                <p>{config.contentControls.workingHoursTimings}</p>
+              </div>
+            </div>
           </div>
           <div className="flex flex-col items-left space-x-1 space-y-4">
-            <h1 className="text-3xl">Contact Details</h1>
-            <div className="flex flex-col items-start space-y-2">
-              <p className="flex items-center space-x-2">
-                <AiFillMail /> <span>{email}</span>
-              </p>
-              <p className="flex items-center space-x-2">
-                <BsFillTelephoneFill /> <span>{phone}</span>
-              </p>
-            </div>
+            {/* <h1 className="text-3xl">Contact Details</h1> */}
           </div>
         </div>
         <div className="text-lg w-full flex items-center justify-center">

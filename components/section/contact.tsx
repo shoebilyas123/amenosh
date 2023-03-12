@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiFillMail, AiOutlineLoading, AiFillPhone } from 'react-icons/ai';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 import useLoading from '~/hooks/useLoading';
 import { IEmailPayload } from '~/interfaces/email';
 import { sendEmail } from '~/lib/email';
@@ -30,8 +32,14 @@ const Contact: FC<ICommonProps> = ({}) => {
   const checkIfNumber = (candidateValue: string) =>
     Number(candidateValue) >= 0 && Number(candidateValue) <= 9;
 
+  const checkIfStrinNumber = (str: string) => {
+    return str
+      .split('')
+      .every((num: string) => Number(num) >= 0 && Number(num) <= 9);
+  };
+
   const onPhoneNumberChangeHandler = (value: string) => {
-    if (!checkIfNumber(value.charAt(value.length - 1)) || value.length > 10) {
+    if (checkIfStrinNumber(value) || value.length > 10) {
       return;
     } else if (!value) {
       setPhoneNumber(null);
@@ -42,7 +50,7 @@ const Contact: FC<ICommonProps> = ({}) => {
   };
 
   const onPinCodeChangeHandler = (value: string) => {
-    if (!checkIfNumber(value.charAt(value.length - 1)) || value.length > 6) {
+    if (!checkIfStrinNumber(value) || value.length > 6) {
       return;
     } else if (!value) {
       setPinCode(null);
@@ -96,7 +104,7 @@ const Contact: FC<ICommonProps> = ({}) => {
         payload.usertype = payload.usertypecustom;
 
       const res = await sendEmail(data);
-      // reset();
+      reset();
       setSuccessMessage('Your message has been sent. Thank You!');
       stoploading();
     } catch (error) {
@@ -123,6 +131,9 @@ const Contact: FC<ICommonProps> = ({}) => {
     };
   }, [successMessage]);
 
+  const onReCaptchaChangeHandler = (data: any) => {
+    console.log(data);
+  };
   const Select = React.forwardRef(
     ({ onChange, onBlur, name, label, className, options }: any, ref: any) => (
       <>
@@ -283,6 +294,11 @@ const Contact: FC<ICommonProps> = ({}) => {
             <Button type="submit" className="flex items-center justify-center">
               {loading && <AiOutlineLoading />}Send Message
             </Button>
+            <ReCAPTCHA
+              // @ts-ignore
+              sitekey={process.env.NEXT_RECAPTCHA_KEY}
+              onChange={onReCaptchaChangeHandler}
+            />
           </form>
         </Card>
       </div>
