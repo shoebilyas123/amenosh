@@ -26,7 +26,7 @@ export default function FullScreenImageViewer({ images, enableZoom }: IProps) {
           // @ts-ignore
           '--swiper-navigation-color': '#fff',
           '--swiper-pagination-color': '#fff',
-          zIndex: 9999999999,
+          zIndex: 99999,
         }}
         zoom={true}
         navigation={true}
