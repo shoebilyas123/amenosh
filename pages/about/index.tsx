@@ -23,7 +23,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
   const {
     config: {
       appSettings: { colors },
-      contentControls: { aboutContent },
+      contentControls: { aboutContent, aboutTitle },
     },
   } = useConfig();
 
@@ -41,7 +41,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
           <div className="flex flex-col items-start w-[100%] md:w-[45%]">
             <Fade triggerOnce={true}>
               <Slide direction="left" triggerOnce={true}>
-                <h1 className="text-6xl text-zinc-900 mb-4">Amenosh</h1>
+                <h1 className="text-6xl text-zinc-900 mb-4">{aboutTitle}</h1>
               </Slide>
             </Fade>
             <Fade triggerOnce={true}>
