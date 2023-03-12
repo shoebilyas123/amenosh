@@ -98,7 +98,7 @@ const Footer: FC<ICommonProps> = ({}) => {
             </div>
           </div>
           <div className="flex flex-col items-left space-x-1 space-y-4">
-            <h1 className="text-3xl">Marketplace</h1>
+            <h1 className="text-3xl">Buy Now On</h1>
             {/* <h1></h1> */}
           </div>
         </div>
