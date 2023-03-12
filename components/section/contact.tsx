@@ -72,7 +72,7 @@ const Contact: FC<ICommonProps> = ({}) => {
       requiredField = 'Phone number';
     } else if (!data.message) {
       requiredField = 'Message';
-    } else if (!data.city) {
+    } else if (!city) {
       requiredField = 'City';
     } else if (!postalCode) {
       requiredField = 'Pin code';
