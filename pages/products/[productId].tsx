@@ -50,7 +50,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
       appSettings: { colors },
     },
   } = useConfig();
-  const { price, details, description } = product.description;
+  const { price, details } = product.description;
   let detailsKeys = Object.keys(details || {});
 
   return (
@@ -69,7 +69,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
           <div>
             <H1 className="text-lg font-medium">Description</H1>
             <p>
-              {(description || '').split('\n').map((str: string) => (
+              {(product.aboutProduct || '').split('\n').map((str: string) => (
                 <>
                   <span>{str}</span>
                   <br />

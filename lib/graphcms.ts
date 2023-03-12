@@ -31,18 +31,20 @@ export const getProductList = async ({
         }
         brand
         description
+        aboutProduct
       }
   }
   `;
   const { products } = await client.request(query);
 
   const transformedProduct = products.map(
-    ({ name, id, images, brand, description }: any) => ({
+    ({ name, id, images, brand, description, aboutProduct }: any) => ({
       title: name,
       images: images.map((img: any) => img.url),
       id,
       brand,
       description: description || {},
+      aboutProduct,
     })
   );
 

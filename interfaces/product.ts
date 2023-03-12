@@ -4,4 +4,5 @@ export interface IProductList {
   images: string[];
   brand: string;
   description: any;
+  aboutProduct: string;
 }
