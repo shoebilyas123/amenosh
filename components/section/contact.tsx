@@ -24,6 +24,7 @@ const Contact: FC<ICommonProps> = ({}) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<number | null>();
   const [postalCode, setPinCode] = useState<number | null>();
+  const [city, setCity] = useState<string>('');
   let timeout: any = null;
 
   const checkIfNumber = (candidateValue: string) =>
@@ -53,6 +54,11 @@ const Contact: FC<ICommonProps> = ({}) => {
     } else {
       setPinCode(Number(value));
     }
+  };
+
+  const onCityChange = (value: string) => {
+    if (value !== '' && checkIfStrinNumber(value)) return;
+    else setCity(value);
   };
 
   const validateForm = (data: IEmailPayload) => {
@@ -104,6 +110,8 @@ const Contact: FC<ICommonProps> = ({}) => {
       };
       if (payload.usertype === 'Other')
         payload.usertype = payload.usertypecustom;
+
+      console.log({ payload });
 
       const res = await sendEmail(data);
       // reset();
@@ -239,7 +247,8 @@ const Contact: FC<ICommonProps> = ({}) => {
               <input
                 placeholder="Enter City..."
                 required={true}
-                {...register('city')}
+                value={city}
+                onChange={({ target: { value } }) => onCityChange(value)}
                 className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
               />
             </div>
