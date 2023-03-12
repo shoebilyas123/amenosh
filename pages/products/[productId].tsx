@@ -16,7 +16,6 @@ import { GlassMagnifier } from 'react-image-magnifiers';
 import ImageCarousel from '~/components/molecules/imageCarousel';
 import Card from '~/components/card';
 import { AiFillMail, AiFillPhone } from 'react-icons/ai';
-import FullScreenImageViewer from '~/components/molecules/FullScreenImageViewer';
 
 interface IProps extends ICommonProps {
   productImages: Array<string>;
@@ -59,10 +58,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
       <Navbar isFixed={false} />
       {/* <AboutBanner /> */}
       <div className="flex flex-col md:flex-row md:items-start md:space-x-4 justify-center w-screen my-8">
-        {/* <ImageCarousel images={productImages} /> */}
-        <div className="w-100 mx-6 mb-6 md:w-[35vw]">
-          <FullScreenImageViewer images={productImages} enableZoom={false} />
-        </div>
+        <ImageCarousel images={productImages} />
 
         <div className="w-100 mx-6 md:w-[40vw] space-y-4">
           <H1 className="font-bold text-2xl mb-4">{product.title}</H1>

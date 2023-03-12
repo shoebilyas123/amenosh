@@ -107,13 +107,12 @@ const Contact: FC<ICommonProps> = ({}) => {
         ...data,
         phoneNumber: `${phoneNumber}`,
         postalCode: `${postalCode}`,
+        city,
       };
       if (payload.usertype === 'Other')
         payload.usertype = payload.usertypecustom;
 
-      console.log({ payload });
-
-      const res = await sendEmail(data);
+      const res = await sendEmail(payload);
       // reset();
       setSuccessMessage('Your message has been sent. Thank You!');
       stoploading();
@@ -272,6 +271,7 @@ const Contact: FC<ICommonProps> = ({}) => {
               <label>Email *</label>
               <input
                 required={true}
+                type="email"
                 placeholder="Enter Your Email..."
                 {...register('email')}
                 className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"

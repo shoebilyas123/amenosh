@@ -14,11 +14,13 @@ import { Zoom, Navigation, Pagination, Thumbs, FreeMode } from 'swiper';
 interface IProps {
   images: Array<string>;
   enableZoom?: boolean;
+  zIndex?: number;
 }
 
 export default function FullScreenImageViewer({
   images,
   enableZoom = true,
+  zIndex = 9999999999999999,
 }: IProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -29,7 +31,7 @@ export default function FullScreenImageViewer({
           // @ts-ignore
           '--swiper-navigation-color': '#fff',
           '--swiper-pagination-color': '#fff',
-          zIndex: 99999,
+          zIndex: zIndex,
         }}
         zoom={true}
         navigation={true}

@@ -47,34 +47,6 @@ const ImageCarousel: FC<IProps> = ({ onImageClick, images }) => {
           </div>
         </div>
       )}
-      <div
-        className="flex items-center content-center m-auto border no-tailwind"
-        onClick={() => setIsFullScreen(true)}
-      >
-        <GlassMagnifier
-          imageSrc={currentImage}
-          magnifierSize="50%"
-          allowOverflow={false}
-          imageAlt="Product Image"
-          largeImageSrc={currentImage}
-        />
-      </div>
-      <div className="flex flex-wrap ">
-        {images.map((img) => {
-          return (
-            <img
-              className={`w-16 h-16 object-cover border border-transparent hover:border-neutral-400  cursor-pointer hover:opacity-50 transition-all`}
-              src={img}
-              style={{
-                ...(currentImage === img
-                  ? { border: `2px solid ${colors.secondary}` }
-                  : {}),
-              }}
-              onClick={() => setCurrentImage(img)}
-            />
-          );
-        })}
-      </div>
     </div>
   );
 };
