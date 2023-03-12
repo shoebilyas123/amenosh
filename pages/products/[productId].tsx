@@ -53,6 +53,11 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
   const { price, details } = product.description;
   let detailsKeys = Object.keys(details || {});
 
+  console.log(
+    `${product.aboutProduct || ''}`,
+    product.aboutProduct?.split('\n')
+  );
+
   return (
     <div className="w-screen overflow-hidden">
       <Navbar isFixed={false} />
@@ -69,12 +74,14 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
           <div>
             <H1 className="text-lg font-medium">Description</H1>
             <p>
-              {(product.aboutProduct || '').split('\n').map((str: string) => (
-                <>
-                  <span>{str}</span>
-                  <br />
-                </>
-              ))}
+              {(product.aboutProduct || '').split('\n').map((str: string) => {
+                return (
+                  <>
+                    <span>{str}</span>
+                    <br />
+                  </>
+                );
+              })}
             </p>
           </div>
 

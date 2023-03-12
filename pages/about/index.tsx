@@ -37,8 +37,8 @@ const About: NextPage<IProps> = ({ productImages }) => {
           <p className="text-sky-800">About</p>
         </div>
 
-        <div className="flex flex-col-reverse sm:flex-row items-start justify-around mt-8 w-full  ">
-          <div className="flex flex-col items-start w-[100%] sm:w-[45%]">
+        <div className="flex flex-col-reverse md:flex-row items-start justify-around mt-8 mb-16 w-full  ">
+          <div className="flex flex-col items-start w-[100%] md:w-[45%]">
             <Fade triggerOnce={true}>
               <Slide direction="left" triggerOnce={true}>
                 <h1 className="text-6xl text-zinc-900 mb-4">Amenosh</h1>
@@ -46,7 +46,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
             </Fade>
             <Fade triggerOnce={true}>
               <Slide direction="right" triggerOnce={true}>
-                <p className="text-zinc-700 space-y-4 text-justify">
+                <p className="text-zinc-700 space-y-4 text-left text-xl">
                   {aboutContent.split('\n').map((str: string) => (
                     <>
                       <p>{str}</p>
@@ -58,7 +58,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
           </div>
           <DisplayCarousel
             imgHeight={550}
-            className={`m-0 w-[90vw] sm:w-[55%] md:w-[55%] sm:h-[550px] h-[250px]`}
+            className={`m-0 w-[90vw] sm:w-[55%] md:w-[100%] sm:h-[550px] h-[250px]`}
             overlay={{
               isButton: true,
               text: 'Our Products',
@@ -67,28 +67,6 @@ const About: NextPage<IProps> = ({ productImages }) => {
             images={productImages}
           />
         </div>
-        {/* <div
-          id="about-display-cards"
-          className="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 items-center space-x-2 my-24"
-        >
-          {aboutCards.map(({ title, content }, index: number) => (
-            <Card
-              shadowSize="lg"
-              style={{
-                background: '#b4c7d9',
-              }}
-              className="w-100 text-zinc-600 px-2 py-8 flex-col items-center justify-center"
-            >
-              <Fade cascade damping={0.2}>
-                <h1 className="text-6xl font-bold text-zinc-900">{title}</h1>
-
-                <Slide direction={index % 2 === 0 ? 'down' : 'up'}>
-                  <p className="p-10">{content}</p>
-                </Slide>
-              </Fade>
-            </Card>
-          ))}
-        </div> */}
       </div>
       <SectionContact showWave={true} waveColor={colors.secondary} />
       <Footer />
