@@ -83,4 +83,8 @@ export const marketplace = [
     name: 'IndiaMart',
     url: '',
   },
+  {
+    name: 'TradeIndia',
+    url: '',
+  },
 ];
