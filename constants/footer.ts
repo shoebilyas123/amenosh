@@ -1,4 +1,5 @@
 import {
+  AiFillFacebook,
   AiFillInstagram,
   AiFillLinkedin,
   AiFillTwitterSquare,
@@ -26,7 +27,7 @@ export const socials = [
   {
     link: 'https://www.facebook.com/profile.php?id=100090047241883',
     title: 'Facebook',
-    Icon: AiFillInstagram,
+    Icon: AiFillFacebook,
   },
   {
     link: 'https://in.pinterest.com/amenoshfoods/',
