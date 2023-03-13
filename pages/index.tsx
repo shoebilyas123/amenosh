@@ -74,7 +74,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             <h1
               className="font-bold text-4xl md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4"
               style={{
-                fontFamily: "'Montserrat', sans-serif",
+                fontFamily: "'Garamound', serif",
               }}
             >
               {config.contentControls.welcomeTitle}
@@ -84,7 +84,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             <p
               className="flex flex-wrap flex-row w-100 mb-4 mx-12 text-2xl text-center lg:mx-0 lg:text-left"
               style={{
-                fontFamily: "'Montserrat', cursive",
+                fontFamily: "'Garamound', serif",
               }}
             >
               {config.contentControls.welcomeContent

@@ -18,4 +18,8 @@ export interface IConfig {
     welcomeTitle: string;
     aboutTitle: string;
   };
+  // amazon: '';
+  // flipkart:"";
+  // shopsy:"";
+  //  meesho:""; indiaMart:""; tradeIndia:"", Udaan, Blinkit
 }

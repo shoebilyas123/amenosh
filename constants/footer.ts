@@ -4,6 +4,7 @@ import {
   AiFillTwitterSquare,
   AiFillYoutube,
 } from 'react-icons/ai';
+import { SiFlipkart } from 'react-icons/si';
 import { FaPinterestSquare } from 'react-icons/fa';
 
 export const socials = [
@@ -55,5 +56,30 @@ export const footerPageLinks = [
   {
     path: '/contact',
     title: 'Contact Us',
+  },
+];
+
+export const marketplace = [
+  {
+    name: 'Amazon',
+    url: '',
+  },
+  {
+    name: 'Flipkart',
+    url: '',
+  },
+
+  {
+    name: 'Shopsy',
+    url: '',
+  },
+
+  {
+    name: 'Meesho',
+    url: '',
+  },
+  {
+    name: 'IndiaMart',
+    url: '',
   },
 ];

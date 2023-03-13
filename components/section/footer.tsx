@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { AiFillMail, AiFillPhone } from 'react-icons/ai';
+import { AiFillMail, AiFillPhone, AiOutlineAmazon } from 'react-icons/ai';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 
-import { footerPageLinks, socials } from '~/constants/footer';
+import { footerPageLinks, marketplace, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import { H1 } from '../atoms/headings';
@@ -100,6 +100,15 @@ const Footer: FC<ICommonProps> = ({}) => {
           <div className="flex flex-col items-left space-x-1 space-y-4">
             <h1 className="text-3xl">Buy Now On</h1>
             {/* <h1></h1> */}
+            <div>
+              {marketplace.map(({ name, url }) => (
+                <p className="flex items-center">
+                  <a {...(url ? { href: url } : {})} target="_blank">
+                    {name}
+                  </a>
+                </p>
+              ))}
+            </div>
           </div>
         </div>
         <div className="text-lg w-full flex items-center justify-center">

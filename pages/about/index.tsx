@@ -41,12 +41,24 @@ const About: NextPage<IProps> = ({ productImages }) => {
           <div className="flex flex-col items-start w-[100%] md:w-[45%]">
             <Fade triggerOnce={true}>
               <Slide direction="left" triggerOnce={true}>
-                <h1 className="text-6xl text-zinc-900 mb-4">{aboutTitle}</h1>
+                <h1
+                  className="text-6xl text-zinc-900 mb-4"
+                  style={{
+                    fontFamily: "'Garamound', serif",
+                  }}
+                >
+                  {aboutTitle}
+                </h1>
               </Slide>
             </Fade>
             <Fade triggerOnce={true}>
               <Slide direction="right" triggerOnce={true}>
-                <p className="text-zinc-700 space-y-4 text-left text-xl">
+                <p
+                  className="text-zinc-700 space-y-4 text-left text-xl"
+                  style={{
+                    fontFamily: "'Garamound', serif",
+                  }}
+                >
                   {aboutContent.split('\n').map((str: string) => (
                     <>
                       <p>{str}</p>
