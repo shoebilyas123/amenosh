@@ -41,13 +41,13 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
         <div className="w-[90vw] mx-6 lg:w-[40vw] space-y-4">
           <div className="w-[100%]">
             <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
-            <p className="text-xl font-bold">
+            <p className="text-xl font-bold mb-4">
               Price -{' '}
               <span className="text-green-900"> &#x20B9;{price || ''}</span>
             </p>
             <div>
               <H1
-                className="text-lg font-medium mb-4"
+                className="text-xl font-medium mb-4"
                 style={{
                   fontFamily: "'Garamound', serif",
                 }}
