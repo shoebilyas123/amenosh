@@ -21,6 +21,7 @@ const ConfigContext = createContext<ReturnType<typeof useConfigController>>({
       welcomeTitle: '',
       aboutTitle: '',
     },
+    marketplaces: [],
   },
 });
 

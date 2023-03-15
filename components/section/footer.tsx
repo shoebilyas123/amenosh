@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { AiFillMail, AiFillPhone, AiOutlineAmazon } from 'react-icons/ai';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 
-import { footerPageLinks, marketplace, socials } from '~/constants/footer';
+import { footerPageLinks, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import { H1 } from '../atoms/headings';
@@ -12,6 +12,7 @@ const Footer: FC<ICommonProps> = ({}) => {
   const { config } = useConfig();
   const {
     contentControls: { email, address, phone },
+    marketplaces,
   } = config;
   return (
     <>
@@ -101,8 +102,8 @@ const Footer: FC<ICommonProps> = ({}) => {
             <h1 className="text-3xl">Buy Now On</h1>
             {/* <h1></h1> */}
             <div>
-              {marketplace.map(({ name, url }) => (
-                <p className="flex items-center">
+              {marketplaces.map(({ name, url }) => (
+                <p className="flex items-center hover:text-zinc-900 transition-all">
                   <a {...(url ? { href: url } : {})} target="_blank">
                     {name}
                   </a>

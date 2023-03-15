@@ -18,6 +18,7 @@ export interface IConfig {
     welcomeTitle: string;
     aboutTitle: string;
   };
+  marketplaces: Array<{ name: string; url: string; id: string }>;
   // amazon: '';
   // flipkart:"";
   // shopsy:"";

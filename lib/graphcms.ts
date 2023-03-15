@@ -133,3 +133,19 @@ export const getContentControls = async () => {
 };
 
 export default client;
+
+export const getMarketplaces = async () => {
+  const query = `
+  {
+    marketplaces {
+      id
+      url
+      name
+    }
+  }
+  `;
+
+  const { marketplaces } = await client.request(query);
+
+  return marketplaces;
+};
