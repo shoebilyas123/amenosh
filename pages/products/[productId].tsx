@@ -51,7 +51,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
                 style={{
                   fontFamily: "'Garamound', serif",
                 }}
-                className="italic"
+                // className="italic"
               >
                 {(product.aboutProduct || '').split('\n').map((str: string) => {
                   return (
