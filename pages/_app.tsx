@@ -9,11 +9,24 @@ import {
 } from '~/lib/graphcms';
 import { ConfigProvider } from '~/store';
 import '~/styles/globals.css';
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
   return (
     <>
       <ConfigProvider config={pageProps.config}>
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-76CQVZDDBX`}
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+         
+           gtag('config', 'G-76CQVZDDBX');`}
+        </Script>
         <Component {...pageProps} />
       </ConfigProvider>
     </>
