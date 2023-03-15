@@ -22,28 +22,6 @@ interface IProps extends ICommonProps {
   product: IProductList;
 }
 
-const DUMMYDATA = {
-  price: '240',
-  name: 'Clumsy Imli Candy',
-  description: `Clumsy candy is a quality product of Amenosh.
-
-    Clumsy Imli candy is made with premium ingredients. Quality fruit powders and active ingredients added to the candy impart it the flavor of high quality Indian tamarind. 
-    
-    The candies have been flavor tested and have been perfected to appeal to the masses. 
-    
-    Go ahead and place your order!`,
-  details: {
-    Brand: 'Clumsy',
-
-    Flavour: 'Imli',
-    Type: 'Hard Candy',
-    Shape: 'Oval',
-
-    Packaging: 'Type',
-    Plastic: 'Jar',
-  },
-};
-
 const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
   const {
     config: {
@@ -69,7 +47,12 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
             </p>
             <div>
               <H1 className="text-lg font-medium">Description</H1>
-              <p>
+              <p
+                style={{
+                  fontFamily: "'Garamound', serif",
+                }}
+                className="italic"
+              >
                 {(product.aboutProduct || '').split('\n').map((str: string) => {
                   return (
                     <>
