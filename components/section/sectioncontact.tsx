@@ -24,7 +24,7 @@ const SectionContact: FC<IProps> = ({
   } = useConfig();
   return (
     <div
-      className={`overflow-hidden w-full relative flex flex-col items-center justify-center p-12 ${
+      className={`overflow-hidden w-full relative flex mt-8 flex-col items-center justify-center p-12 ${
         className || ''
       }`}
       style={{

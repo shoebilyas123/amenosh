@@ -37,8 +37,8 @@ const About: NextPage<IProps> = ({ productImages }) => {
           <p className="text-sky-800">About</p>
         </div>
 
-        <div className="flex flex-col-reverse md:flex-row items-start justify-around mt-8 mb-16 w-full  ">
-          <div className="flex flex-col items-start w-[100%] md:w-[45%]">
+        <div className="flex italic flex-col-reverse lg:flex-row items-start justify-around mt-8 mb-16 w-full  ">
+          <div className="flex flex-col items-start w-[100%] lg:w-[55%]">
             <Fade triggerOnce={true}>
               <Slide direction="left" triggerOnce={true}>
                 <h1
@@ -70,7 +70,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
           </div>
           <DisplayCarousel
             imgHeight={550}
-            className={`m-0 w-[90vw] sm:w-[55%] md:w-[100%] sm:h-[550px] h-[250px]`}
+            className={`m-0 w-[90vw] md:w-[80vw] lg:w-[45%]  sm:h-[550px] h-[350px]`}
             overlay={{
               isButton: true,
               text: 'Our Products',

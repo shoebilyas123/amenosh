@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { createRef, FC, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineLoading } from 'react-icons/ai';
 
@@ -9,6 +9,8 @@ import Button from '~/components/atoms/button';
 import Card from '~/components/card';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
+import ReCAPTCHA from 'react-google-recaptcha';
+import axios from 'axios';
 
 const Contact: FC<ICommonProps> = ({}) => {
   const {
@@ -17,7 +19,10 @@ const Contact: FC<ICommonProps> = ({}) => {
     formState: { errors },
     reset,
     watch,
+    getValues,
   } = useForm<IEmailPayload>();
+  const recaptchaRef = createRef<any>();
+
   const { config } = useConfig();
   const { loading, startloading, stoploading } = useLoading();
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -103,6 +108,13 @@ const Contact: FC<ICommonProps> = ({}) => {
     return requiredField;
   };
 
+  const resetFields = () => {
+    reset();
+    setPinCode(null);
+    setPhoneNumber(null);
+    setCity('');
+  };
+
   const onSubmit = async (data: IEmailPayload) => {
     try {
       const formValidationError = validateForm(data);
@@ -121,11 +133,11 @@ const Contact: FC<ICommonProps> = ({}) => {
       if (payload.usertype === 'Other' && payload.usertypecustom.length > 0)
         payload.usertype = payload.usertypecustom;
 
+      recaptchaRef.current.execute();
+
       const res = await sendEmail(payload);
-      reset();
-      setPinCode(null);
-      setPhoneNumber(null);
-      setCity('');
+
+      // resetFields();
       setSuccessMessage('Your message has been sent. Thank You!');
       stoploading();
     } catch (error) {
@@ -175,6 +187,27 @@ const Contact: FC<ICommonProps> = ({}) => {
       </>
     )
   );
+  const onReCAPTCHAChange = async (captchaCode: any) => {
+    if (!captchaCode) {
+      return;
+    }
+    try {
+      const response = await axios.post('/api/captcha/verify', {
+        email: getValues().email,
+        captcha: captchaCode,
+      });
+      if (response.status === 200) {
+        setSuccessMessage('Captcha verified successfully');
+      } else {
+        const { error } = response.data;
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      setErrorMessage((error as any).message || 'Something went wrong');
+    } finally {
+      recaptchaRef?.current?.reset();
+    }
+  };
 
   return (
     <div className="flex w-screen flex-col items-center justify-center">
@@ -312,6 +345,12 @@ const Contact: FC<ICommonProps> = ({}) => {
               </div>
             )}
 
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              size="invisible"
+              sitekey={`${process.env.NEXT_RECAPTCHA_KEY}`}
+              onChange={onReCAPTCHAChange}
+            />
             <Button type="submit" className="flex items-center justify-center">
               {loading && <AiOutlineLoading />}Send Message
             </Button>

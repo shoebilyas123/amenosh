@@ -30,7 +30,7 @@ const Footer: FC<ICommonProps> = ({}) => {
           background: config.appSettings?.colors.footerColor,
         }}
       >
-        <div className="w-full grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
+        <div className="w-full grid md:grid-cols-2 md:gap-y-12 gap-y-auto lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
           <div className="flex flex-col items-left space-y-4">
             <div>
               <h1 className="text-3xl">Follow Us</h1>

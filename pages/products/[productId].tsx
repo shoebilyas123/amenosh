@@ -53,36 +53,33 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
   const { price, details } = product.description;
   let detailsKeys = Object.keys(details || {});
 
-  console.log(
-    `${product.aboutProduct || ''}`,
-    product.aboutProduct?.split('\n')
-  );
-
   return (
-    <div className="w-screen overflow-hidden">
+    <div className="w-screen relative overflow-hidden">
       <Navbar isFixed={false} />
       {/* <AboutBanner /> */}
-      <div className="flex flex-col md:flex-row md:items-start md:space-x-4 justify-center w-screen my-8">
+      <div className="flex flex-col lg:flex-row md:items-start md:space-x-4 justify-center w-[100%]  my-8">
         <ImageCarousel images={productImages} />
 
-        <div className="w-100 mx-6 md:w-[40vw] space-y-4">
-          <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
-          <p className="text-xl font-bold">
-            Price -{' '}
-            <span className="text-green-900"> &#x20B9;{price || ''}</span>
-          </p>
-          <div>
-            <H1 className="text-lg font-medium">Description</H1>
-            <p>
-              {(product.aboutProduct || '').split('\n').map((str: string) => {
-                return (
-                  <>
-                    <span>{str}</span>
-                    <br />
-                  </>
-                );
-              })}
+        <div className="w-[90vw] mx-6 lg:w-[40vw] space-y-4">
+          <div className="w-[100%]">
+            <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
+            <p className="text-xl font-bold">
+              Price -{' '}
+              <span className="text-green-900"> &#x20B9;{price || ''}</span>
             </p>
+            <div>
+              <H1 className="text-lg font-medium">Description</H1>
+              <p>
+                {(product.aboutProduct || '').split('\n').map((str: string) => {
+                  return (
+                    <>
+                      <span>{str}</span>
+                      <br />
+                    </>
+                  );
+                })}
+              </p>
+            </div>
           </div>
 
           <div className="w-[100%]">
