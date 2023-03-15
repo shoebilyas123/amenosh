@@ -46,7 +46,14 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
               <span className="text-green-900"> &#x20B9;{price || ''}</span>
             </p>
             <div>
-              <H1 className="text-lg font-medium">Description</H1>
+              <H1
+                className="text-lg font-medium mb-4"
+                style={{
+                  fontFamily: "'Garamound', serif",
+                }}
+              >
+                Description
+              </H1>
               <p
                 style={{
                   fontFamily: "'Garamound', serif",
