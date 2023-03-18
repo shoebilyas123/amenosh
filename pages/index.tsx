@@ -125,7 +125,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
         <div
           className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
           style={{
-            background: `linear-gradient(60deg, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
+            background: `linear-gradient(${config.appSettings.colors.bannerGradientDirection}, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
           }}
         ></div>
       </div>
