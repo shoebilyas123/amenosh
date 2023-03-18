@@ -16,7 +16,10 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
     <>
       <ConfigProvider config={pageProps.config}>
         <Head>
-          <meta name="google-site-verification" content="VERIFICATION_ID" />
+          <meta
+            name="google-site-verification"
+            content="v7AvEbWI_Co9Ir7GL1JmSju94D1ECUUlytKDasNiRkc"
+          />
         </Head>
         <Script
           strategy="afterInteractive"
