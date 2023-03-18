@@ -9,11 +9,15 @@ import {
 import { ConfigProvider } from '~/store';
 import '~/styles/globals.css';
 import Script from 'next/script';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
   return (
     <>
       <ConfigProvider config={pageProps.config}>
+        <Head>
+          <meta name="google-site-verification" content="VERIFICATION_ID" />
+        </Head>
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-C43K6BEB3M`}

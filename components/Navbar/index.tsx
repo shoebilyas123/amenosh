@@ -95,7 +95,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                   <FadeSlide slideDirection="right" triggerOnce={false}>
                     <Link href={item.path}>
                       <p
-                        className={`text-white text-lg px-1 hover:${
+                        className={`text-white text-2xl px-1 hover:${
                           ['#fff', '#ffffff'].some(
                             (clr) =>
                               clr ===
@@ -129,7 +129,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                   <FadeSlide slideDirection="left" triggerOnce={false}>
                     <Link href={item.path}>
                       <p
-                        className={`text-white text-lg px-1  hover:${
+                        className={`text-white text-2xl px-1  hover:${
                           ['#fff', '#ffffff'].some(
                             (clr) =>
                               clr ===
