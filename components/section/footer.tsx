@@ -17,7 +17,7 @@ const Footer: FC<ICommonProps> = ({}) => {
   return (
     <>
       <div
-        className={`w-[100vw] relative overflow-hidden pb-12
+        className={`w-screen relative overflow-hidden pb-12
         ${
           ['#fff', '#ffffff'].some(
             (clr) =>

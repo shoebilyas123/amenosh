@@ -1,5 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
-import type { AppProps, AppContext } from 'next/app';
+import type { AppProps } from 'next/app';
 
 import 'swiper/css';
 import {
@@ -17,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
       <ConfigProvider config={pageProps.config}>
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-76CQVZDDBX`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-C43K6BEB3M`}
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -25,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
          
-           gtag('config', 'G-76CQVZDDBX');`}
+           gtag('config', 'G-C43K6BEB3M');`}
         </Script>
         <Component {...pageProps} />
       </ConfigProvider>
