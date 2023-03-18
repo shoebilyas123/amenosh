@@ -88,7 +88,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             isFixed ? 'fixed' : ''
           } z-50 flex w-screen h-24 lg:border-0 justify-center items-stretch md:pr-12 sm:pr-2`}
         >
-          <div className="flex gap-1 sm:gap-4 items-center sm:mr-12 mr-4 ">
+          <div className="flex justify-center gap-2 sm:gap-24 items-center sm:mr-12 mr-4 ">
             {windowDimensions.width > 640 &&
               navItems.slice(0, 2).map((item) => (
                 <div className="flex items-center">
