@@ -151,6 +151,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const products = await getProductList({});
   const candyWrappers = await getCandyWrappers();
 
+  console.log();
+
   res.setHeader(
     'Cache-Control',
     'public, s-maxage=10, stale-while-revalidate=59'
