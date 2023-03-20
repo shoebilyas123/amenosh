@@ -18,7 +18,7 @@ const Products: NextPage<IProps> = ({ products }) => {
   const productsByBrand = groupBy(products, 'brand');
 
   return (
-    <div className="w-screen">
+    <div className="w-[100%]">
       <Navbar isFixed={false} />
 
       <div className="w-full flex justify-center sm:px-2 md:px-24 lg:px-36 mt-8">

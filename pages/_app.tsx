@@ -13,7 +13,7 @@ import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
   return (
-    <>
+    <div className="w-[100%] overflow-hidden">
       <ConfigProvider config={pageProps.config}>
         <Head>
           <meta
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
         </Script>
         <Component {...pageProps} />
       </ConfigProvider>
-    </>
+    </div>
   );
 }
 

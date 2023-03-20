@@ -78,7 +78,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
       <div
         className={`${
           isFixed ? 'fixed' : ''
-        } z-50 w-screen overflow-hidden flex  justify-between items-stretch h-24 `}
+        } z-50 w-[100%] overflow-hidden flex  justify-between items-stretch h-24 `}
         style={{
           background: config.appSettings?.colors.navbarColor,
         }}
@@ -86,7 +86,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
         <div
           className={`${
             isFixed ? 'fixed' : ''
-          } z-50 flex w-[100%] overflow-hidden h-24 lg:border-0 justify-center items-stretch md:pr-12 sm:pr-2`}
+          } z-50 flex w-[100%] overflow-hidden h-24 lg:border-0 justify-center items-stretch `}
         >
           <div className="flex justify-center gap-2 sm:gap-6 md:gap-12 lg:gap-24 items-center">
             {windowDimensions.width > 640 &&

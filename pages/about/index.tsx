@@ -37,7 +37,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
           <p className="text-sky-800">About</p>
         </div>
 
-        <div className="flex italic flex-col-reverse lg:flex-row items-start justify-around mt-8 mb-16 w-full  ">
+        <div className="flex flex-col-reverse lg:flex-row items-start justify-around mt-8 mb-16 w-full  ">
           <div className="flex flex-col items-start w-[100%] lg:w-[55%]">
             <Fade triggerOnce={true}>
               <Slide direction="left" triggerOnce={true}>
