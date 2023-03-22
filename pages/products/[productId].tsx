@@ -16,6 +16,7 @@ import { GlassMagnifier } from 'react-image-magnifiers';
 import ImageCarousel from '~/components/molecules/imageCarousel';
 import Card from '~/components/card';
 import { AiFillMail, AiFillPhone } from 'react-icons/ai';
+import DynamicHead from '~/components/Document/DynamicHead';
 
 interface IProps extends ICommonProps {
   productImages: Array<string>;
@@ -32,83 +33,88 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
   let detailsKeys = Object.keys(details || {});
 
   return (
-    <div className="w-screen relative overflow-hidden">
-      <Navbar isFixed={false} />
-      {/* <AboutBanner /> */}
-      <div className="flex flex-col lg:flex-row md:items-start md:space-x-4 justify-center w-[100%]  my-8">
-        <ImageCarousel images={productImages} />
+    <>
+      <DynamicHead title={product.title} description={product.description} />
+      <div className="w-screen relative overflow-hidden">
+        <Navbar isFixed={false} />
+        {/* <AboutBanner /> */}
+        <div className="flex flex-col lg:flex-row md:items-start md:space-x-4 justify-center w-[100%]  my-8">
+          <ImageCarousel images={productImages} />
 
-        <div className="w-[90vw] mx-6 lg:w-[40vw] space-y-4">
-          <div className="w-[100%]">
-            <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
-            <p className="text-xl font-bold mb-4">
-              Price -{' '}
-              <span className="text-green-900"> &#x20B9;{price || ''}</span>
-            </p>
-            <div>
-              <H1
-                className="text-xl font-medium mb-4"
-                style={{
-                  fontFamily: "'Garamound', serif",
-                }}
-              >
-                Description
-              </H1>
-              <p
-                style={{
-                  fontFamily: "'Garamound', serif",
-                }}
-                // className="italic"
-              >
-                {(product.aboutProduct || '').split('\n').map((str: string) => {
-                  return (
-                    <>
-                      <span>{str}</span>
-                      <br />
-                    </>
-                  );
-                })}
+          <div className="w-[90vw] mx-6 lg:w-[40vw] space-y-4">
+            <div className="w-[100%]">
+              <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
+              <p className="text-xl font-bold mb-4">
+                Price -{' '}
+                <span className="text-green-900"> &#x20B9;{price || ''}</span>
               </p>
+              <div>
+                <H1
+                  className="text-xl font-medium mb-4"
+                  style={{
+                    fontFamily: "'Garamound', serif",
+                  }}
+                >
+                  Description
+                </H1>
+                <p
+                  style={{
+                    fontFamily: "'Garamound', serif",
+                  }}
+                  // className="italic"
+                >
+                  {(product.aboutProduct || '')
+                    .split('\n')
+                    .map((str: string) => {
+                      return (
+                        <>
+                          <span>{str}</span>
+                          <br />
+                        </>
+                      );
+                    })}
+                </p>
+              </div>
+            </div>
+
+            <div className="w-[100%]">
+              <H1
+                className="text-lg font-medium w-full text-center"
+                style={{
+                  background: colors.secondary,
+                  color: 'white',
+                }}
+              >
+                Details
+              </H1>
+              {detailsKeys && (
+                <table className="table-auto border w-[100%]">
+                  <tbody className="space-y-2">
+                    {detailsKeys?.map((Dkey: string, index: number) => (
+                      <tr
+                        className={`${
+                          index % 2 === 0 ? 'bg-slate-100' : 'bg-white'
+                        }`}
+                      >
+                        <td className="px-4 py-2">{Dkey}</td>
+                        <td>
+                          {
+                            // @ts-ignore
+                            details[Dkey]
+                          }
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
-
-          <div className="w-[100%]">
-            <H1
-              className="text-lg font-medium w-full text-center"
-              style={{
-                background: colors.secondary,
-                color: 'white',
-              }}
-            >
-              Details
-            </H1>
-            {detailsKeys && (
-              <table className="table-auto border w-[100%]">
-                <tbody className="space-y-2">
-                  {detailsKeys?.map((Dkey: string, index: number) => (
-                    <tr
-                      className={`${
-                        index % 2 === 0 ? 'bg-slate-100' : 'bg-white'
-                      }`}
-                    >
-                      <td className="px-4 py-2">{Dkey}</td>
-                      <td>
-                        {
-                          // @ts-ignore
-                          details[Dkey]
-                        }
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-          </div>
         </div>
+        <SectionContact showWave={true} waveColor={colors.secondary} />
+        <Footer />
       </div>
-      <SectionContact showWave={true} waveColor={colors.secondary} />
-      <Footer />
-    </div>
+    </>
   );
 };
 
