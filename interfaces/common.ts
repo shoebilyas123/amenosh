@@ -19,6 +19,13 @@ export interface IConfig {
     aboutTitle: string;
   };
   marketplaces: Array<{ name: string; url: string; id: string }>;
+  fontControls: {
+    aboutTitleItalics: boolean;
+    aboutContentItalics: boolean;
+    navbarLinksItalics: boolean;
+    welcomeContentItalics: boolean;
+    welcomeTitleItalics: boolean;
+  };
   // amazon: '';
   // flipkart:"";
   // shopsy:"";

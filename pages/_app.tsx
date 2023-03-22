@@ -4,6 +4,7 @@ import 'swiper/css';
 import {
   getAppConfig,
   getContentControls,
+  getFontControls,
   getMarketplaces,
 } from '~/lib/graphcms';
 import { ConfigProvider } from '~/store';
@@ -43,7 +44,8 @@ MyApp.getInitialProps = async () => {
   const { appSettings } = await getAppConfig();
   const contentControls = await getContentControls();
   const marketplaces = await getMarketplaces();
-  const config = { contentControls, appSettings, marketplaces };
+  const fontControls = await getFontControls();
+  const config = { contentControls, appSettings, marketplaces, fontControls };
 
   return {
     pageProps: { config },

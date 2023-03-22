@@ -149,3 +149,21 @@ export const getMarketplaces = async () => {
 
   return marketplaces;
 };
+
+export const getFontControls = async () => {
+  const query = `
+  {
+    fontControls {
+      id
+      aboutTitleItalics
+      aboutContentItalics
+      navbarLinksItalics
+      welcomeContentItalics
+      welcomeTitleItalics
+    }
+  }`;
+
+  const { fontControls } = await client.request(query);
+
+  return fontControls[0] || {};
+};

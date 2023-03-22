@@ -25,6 +25,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
     config: {
       appSettings: { colors },
       contentControls: { aboutContent, aboutTitle },
+      fontControls,
     },
   } = useConfig();
 
@@ -48,7 +49,9 @@ const About: NextPage<IProps> = ({ productImages }) => {
               <Fade triggerOnce={true}>
                 <Slide direction="left" triggerOnce={true}>
                   <h1
-                    className="text-6xl text-zinc-900 mb-4"
+                    className={`text-6xl ${
+                      fontControls.aboutTitleItalics ? 'italic' : ''
+                    } text-zinc-900 mb-4`}
                     style={{
                       fontFamily: "'Garamound', serif",
                     }}
@@ -60,7 +63,9 @@ const About: NextPage<IProps> = ({ productImages }) => {
               <Fade triggerOnce={true}>
                 <Slide direction="right" triggerOnce={true}>
                   <p
-                    className="text-zinc-700 space-y-4 text-left text-xl"
+                    className={`${
+                      fontControls.aboutContentItalics ? 'italic' : ''
+                    } text-zinc-700 space-y-4 text-left text-xl`}
                     style={{
                       fontFamily: "'Garamound', serif",
                     }}

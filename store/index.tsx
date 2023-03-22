@@ -22,6 +22,13 @@ const ConfigContext = createContext<ReturnType<typeof useConfigController>>({
       aboutTitle: '',
     },
     marketplaces: [],
+    fontControls: {
+      aboutTitleItalics: false,
+      aboutContentItalics: false,
+      navbarLinksItalics: false,
+      welcomeContentItalics: false,
+      welcomeTitleItalics: false,
+    },
   },
 });
 

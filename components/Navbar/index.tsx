@@ -91,7 +91,11 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
           <div className="flex justify-center gap-2 sm:gap-6 md:gap-12 lg:gap-24 items-center">
             {windowDimensions.width > 640 &&
               navItems.slice(0, 2).map((item) => (
-                <div className="flex items-center">
+                <div
+                  className={`flex items-center ${
+                    config.fontControls.navbarLinksItalics ? 'italic' : ''
+                  }`}
+                >
                   <FadeSlide slideDirection="right" triggerOnce={false}>
                     <Link href={item.path}>
                       <p
@@ -125,7 +129,12 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             </div>
             {windowDimensions.width > 640 &&
               navItems.slice(2, 4).map((item) => (
-                <div className="flex items-center" key={item.name}>
+                <div
+                  className={`flex items-center ${
+                    config.fontControls.navbarLinksItalics ? 'italic' : ''
+                  }`}
+                  key={item.name}
+                >
                   <FadeSlide slideDirection="left" triggerOnce={false}>
                     <Link href={item.path}>
                       <p
