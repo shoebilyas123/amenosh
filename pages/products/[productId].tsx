@@ -34,7 +34,10 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
 
   return (
     <>
-      <DynamicHead title={product.title} description={product.description} />
+      <DynamicHead
+        title={product.title}
+        description={product.aboutProduct.substring(0, 100)}
+      />
       <div className="w-screen relative overflow-hidden">
         <Navbar isFixed={false} />
         {/* <AboutBanner /> */}
