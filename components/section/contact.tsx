@@ -19,6 +19,7 @@ import { useConfig } from '~/store';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import { checkIfStrinNumber } from '~/utils/string';
+import FadeSlide from '../animations/FadeSlide';
 
 const Contact: FC<ICommonProps> = ({}) => {
   const {
@@ -265,7 +266,7 @@ const Contact: FC<ICommonProps> = ({}) => {
 
   const styles = {
     inputClass:
-      'w-full border rounded-lg px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500',
+      'shadow-sm w-full border rounded-lg px-4 py-2 outline-none border-red-200 focus:border-sky-800 placeholder:text-zinc-500',
   };
 
   return (
@@ -278,24 +279,27 @@ const Contact: FC<ICommonProps> = ({}) => {
             className="sm:w-full flex flex-col items-start justify-center space-y-4 w-full px-4 md:px-24 py-8 "
           >
             <div className="flex flex-col w-full md:flex-row space-y-4 md:space-x-4 md:space-y-0">
-              <div className="flex flex-col items-left">
-                <label>First Name *</label>
-                <input
-                  placeholder="Enter First Name..."
-                  required={true}
-                  {...register('firstName')}
-                  className="border px-4 rounded-lg py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-                />
-              </div>
-
-              <div className="flex flex-col items-left">
-                <label>Last Name </label>
-                <input
-                  placeholder="Enter Last Name..."
-                  {...register('lastName')}
-                  className="border px-4 rounded-lg py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-                />
-              </div>
+              <FadeSlide triggerOnce={false}>
+                <div className="flex flex-col items-left shadow-sm">
+                  <label>First Name *</label>
+                  <input
+                    placeholder="Enter First Name..."
+                    required={true}
+                    {...register('firstName')}
+                    className={styles.inputClass}
+                  />
+                </div>
+              </FadeSlide>
+              <FadeSlide triggerOnce={false}>
+                <div className="flex flex-col items-left shadow-sm">
+                  <label>Last Name </label>
+                  <input
+                    placeholder="Enter Last Name..."
+                    {...register('lastName')}
+                    className={styles.inputClass}
+                  />
+                </div>
+              </FadeSlide>
             </div>
 
             <div className="w-full">
@@ -322,39 +326,43 @@ const Contact: FC<ICommonProps> = ({}) => {
             </div>
 
             {inputFields.map(
-              ({
-                onChange,
-                registerKey,
-                label,
-                value,
-                useFormHook,
-                ...rest
-              }) => (
+              (
+                { onChange, registerKey, label, value, useFormHook, ...rest },
+                index
+              ) => (
                 <div className="w-full">
-                  <label>{label}</label>
-                  <input
-                    className={styles.inputClass}
-                    {...rest}
-                    {...(useFormHook
-                      ? { ...register(registerKey as keyof IEmailPayload) }
-                      : {
-                          onChange,
-                          value,
-                        })}
-                  />
+                  <FadeSlide
+                    slideDirection="up"
+                    triggerOnce={false}
+                    delay={index * 500}
+                  >
+                    <label>{label}</label>
+                    <input
+                      className={styles.inputClass}
+                      {...rest}
+                      {...(useFormHook
+                        ? { ...register(registerKey as keyof IEmailPayload) }
+                        : {
+                            onChange,
+                            value,
+                          })}
+                    />
+                  </FadeSlide>
                 </div>
               )
             )}
 
-            <div className="w-full">
-              <textarea
-                rows={12}
-                required={true}
-                style={{ resize: 'none' }}
-                placeholder="Enter Your Message..."
-                {...register('message')}
-                className={styles.inputClass}
-              />
+            <div className="w-full shadow-sm">
+              <FadeSlide triggerOnce={false}>
+                <textarea
+                  rows={12}
+                  required={true}
+                  style={{ resize: 'none' }}
+                  placeholder="Enter Your Message..."
+                  {...register('message')}
+                  className={styles.inputClass}
+                />
+              </FadeSlide>
             </div>
             {!errorMessage && successMessage && (
               <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">

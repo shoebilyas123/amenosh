@@ -4,12 +4,14 @@ import { Fade, Slide } from 'react-awesome-reveal';
 interface IProps {
   triggerOnce?: boolean;
   slideDirection?: 'down' | 'up' | 'right' | 'left';
+  delay?: number;
 }
 
 const FadeSlide: FC<PropsWithChildren<IProps>> = ({
   children,
   triggerOnce = true,
   slideDirection = 'up',
+  delay = 0,
 }) => {
   return (
     <Fade triggerOnce={triggerOnce}>
