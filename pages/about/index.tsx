@@ -4,17 +4,16 @@ import { Fade, Slide } from 'react-awesome-reveal';
 import { FaHeart } from 'react-icons/fa';
 
 // local Imports
-import Card from '~/components/card';
 import DisplayCarousel from '~/components/molecules/displayCarousel';
 import Navbar from '~/components/Navbar';
-import { AboutBanner, Footer, SectionContact } from '~/components/section';
-import { aboutCards } from 'constants/about';
+import { Footer, SectionContact } from '~/components/section';
 import { GetServerSideProps, NextPage } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import DynamicHead from '~/components/Document/DynamicHead';
+import { headingFont, titleFont } from '~/constants/fonts';
 
 interface IProps extends ICommonProps {
   productImages: Array<string>;
@@ -52,9 +51,9 @@ const About: NextPage<IProps> = ({ productImages }) => {
                     className={`text-6xl ${
                       fontControls.aboutTitleItalics ? 'italic' : ''
                     } text-zinc-900 mb-4`}
-                    style={{
-                      fontFamily: "'Garamound', serif",
-                    }}
+                    // style={{
+                    //   ...headingFont,
+                    // }}
                   >
                     {aboutTitle}
                   </h1>
@@ -66,9 +65,6 @@ const About: NextPage<IProps> = ({ productImages }) => {
                     className={`${
                       fontControls.aboutContentItalics ? 'italic' : ''
                     } text-zinc-700 space-y-4 text-left text-xl`}
-                    style={{
-                      fontFamily: "'Garamound', serif",
-                    }}
                   >
                     {aboutContent.split('\n').map((str: string) => (
                       <>

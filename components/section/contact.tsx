@@ -1,4 +1,11 @@
-import React, { createRef, FC, useEffect, useRef, useState } from 'react';
+import React, {
+  createRef,
+  FC,
+  ReactEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineLoading } from 'react-icons/ai';
 
@@ -11,6 +18,7 @@ import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
+import { checkIfStrinNumber } from '~/utils/string';
 
 const Contact: FC<ICommonProps> = ({}) => {
   const {
@@ -31,13 +39,6 @@ const Contact: FC<ICommonProps> = ({}) => {
   const [postalCode, setPinCode] = useState<number | null>();
   const [city, setCity] = useState<string>('');
   let timeout: any = null;
-
-  const checkIfNumber = (candidateValue: string) =>
-    Number(candidateValue) >= 0 && Number(candidateValue) <= 9;
-
-  const checkIfStrinNumber = (str: string) => {
-    return str.split('').every((num: string) => checkIfNumber(num));
-  };
 
   const onPhoneNumberChangeHandler = (value: string) => {
     if (!checkIfStrinNumber(value) || value.length > 10) {
@@ -137,10 +138,11 @@ const Contact: FC<ICommonProps> = ({}) => {
 
       const res = await sendEmail(payload);
 
-      // resetFields();
+      resetFields();
       setSuccessMessage('Your message has been sent. Thank You!');
       stoploading();
     } catch (error) {
+      console.log({ error });
       setErrorMessage('Please try again later!');
       stoploading();
     }
@@ -209,6 +211,63 @@ const Contact: FC<ICommonProps> = ({}) => {
     }
   };
 
+  const inputFields: {
+    registerKey?: string;
+    label: string;
+    onChange?: (params?: any) => void;
+    placeholder: string;
+    required: boolean;
+    value?: any;
+    type?: string;
+    useFormHook?: boolean;
+  }[] = [
+    {
+      label: 'Phone Number *',
+      placeholder: 'Enter Phone Number...',
+      required: true,
+      type: 'default',
+      useFormHook: false,
+      value: phoneNumber,
+      onChange: ({ target: { value } }: any) =>
+        onPhoneNumberChangeHandler(value),
+    },
+    {
+      required: true,
+      placeholder: 'Enter Your Address...',
+      registerKey: 'address',
+      label: 'Address *',
+      useFormHook: true,
+    },
+    {
+      placeholder: 'Enter City...',
+      label: 'City',
+      required: true,
+      value: city,
+      onChange: ({ target: { value } }: any) => onCityChange(value),
+    },
+    {
+      required: true,
+      label: 'Pin Code *',
+      type: 'default',
+      placeholder: 'Enter Your Postal Code...',
+      // @ts-ignore
+      value: postalCode,
+      onChange: ({ target: { value } }: any) => onPinCodeChangeHandler(value),
+    },
+    {
+      required: true,
+      label: 'Email *',
+      type: 'email',
+      placeholder: 'Enter Your Email...',
+      registerKey: 'email',
+    },
+  ];
+
+  const styles = {
+    inputClass:
+      'w-full border rounded-lg px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500',
+  };
+
   return (
     <div className="flex w-screen flex-col items-center justify-center">
       <div className="z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
@@ -225,7 +284,7 @@ const Contact: FC<ICommonProps> = ({}) => {
                   placeholder="Enter First Name..."
                   required={true}
                   {...register('firstName')}
-                  className="border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                  className="border px-4 rounded-lg py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
                 />
               </div>
 
@@ -234,7 +293,7 @@ const Contact: FC<ICommonProps> = ({}) => {
                 <input
                   placeholder="Enter Last Name..."
                   {...register('lastName')}
-                  className="border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                  className="border px-4 rounded-lg py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
                 />
               </div>
             </div>
@@ -242,7 +301,7 @@ const Contact: FC<ICommonProps> = ({}) => {
             <div className="w-full">
               <Select
                 {...register('usertype')}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                className={styles.inputClass}
                 options={[
                   'Wholesaler',
                   'Distributer',
@@ -257,72 +316,35 @@ const Contact: FC<ICommonProps> = ({}) => {
                   placeholder="Please mention..."
                   type="default"
                   {...register('usertypecustom')}
-                  className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                  className={styles.inputClass}
                 />
               )}
             </div>
 
-            <div className="w-full">
-              <label>Phone Number *</label>
-              <input
-                required={true}
-                placeholder="Enter Phone Number..."
-                type="default"
-                // @ts-ignore
-                value={phoneNumber}
-                onChange={({ target: { value } }) =>
-                  onPhoneNumberChangeHandler(value)
-                }
-                className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-              />
-            </div>
-
-            <div className="w-full">
-              <label>Address *</label>
-              <input
-                required={true}
-                placeholder="Enter Your Address..."
-                {...register('address')}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-              />
-            </div>
-
-            <div className="w-full">
-              <label>City</label>
-              <input
-                placeholder="Enter City..."
-                required={true}
-                value={city}
-                onChange={({ target: { value } }) => onCityChange(value)}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-              />
-            </div>
-
-            <div className="w-full">
-              <label>Pin Code *</label>
-              <input
-                required={true}
-                type="default"
-                placeholder="Enter Your Postal Code..."
-                // @ts-ignore
-                value={postalCode}
-                onChange={({ target: { value } }) =>
-                  onPinCodeChangeHandler(value)
-                }
-                className="w-full border rounded-none px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-              />
-            </div>
-
-            <div className="w-full">
-              <label>Email *</label>
-              <input
-                required={true}
-                type="email"
-                placeholder="Enter Your Email..."
-                {...register('email')}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
-              />
-            </div>
+            {inputFields.map(
+              ({
+                onChange,
+                registerKey,
+                label,
+                value,
+                useFormHook,
+                ...rest
+              }) => (
+                <div className="w-full">
+                  <label>{label}</label>
+                  <input
+                    className={styles.inputClass}
+                    {...rest}
+                    {...(useFormHook
+                      ? { ...register(registerKey as keyof IEmailPayload) }
+                      : {
+                          onChange,
+                          value,
+                        })}
+                  />
+                </div>
+              )
+            )}
 
             <div className="w-full">
               <textarea
@@ -331,7 +353,7 @@ const Contact: FC<ICommonProps> = ({}) => {
                 style={{ resize: 'none' }}
                 placeholder="Enter Your Message..."
                 {...register('message')}
-                className="w-full border px-4 py-2 outline-none focus:border-sky-800 placeholder:text-zinc-500"
+                className={styles.inputClass}
               />
             </div>
             {!errorMessage && successMessage && (
@@ -351,7 +373,7 @@ const Contact: FC<ICommonProps> = ({}) => {
               sitekey={`${process.env.NEXT_RECAPTCHA_KEY}`}
               onChange={onReCAPTCHAChange}
             />
-            <Button type="submit" className="flex items-center justify-center">
+            <Button type="submit" className=" flex items-center justify-center">
               {loading && <AiOutlineLoading />}Send Message
             </Button>
           </form>

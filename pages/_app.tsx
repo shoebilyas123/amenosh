@@ -45,7 +45,16 @@ MyApp.getInitialProps = async () => {
   const contentControls = await getContentControls();
   const marketplaces = await getMarketplaces();
   const fontControls = await getFontControls();
-  const config = { contentControls, appSettings, marketplaces, fontControls };
+  const config = {
+    contentControls,
+    appSettings: {
+      colors: {
+        ...appSettings.colors,
+      },
+    },
+    marketplaces,
+    fontControls,
+  };
 
   return {
     pageProps: { config },

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { AiFillMail, AiFillPhone, AiOutlineAmazon } from 'react-icons/ai';
 import { BsFillTelephoneFill } from 'react-icons/bs';
+import { contentFont1 } from '~/constants/fonts';
 
 import { footerPageLinks, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
@@ -28,7 +29,8 @@ const Footer: FC<ICommonProps> = ({}) => {
         }
         `}
         style={{
-          background: config.appSettings?.colors.footerColor,
+          // background: config.appSettings?.colors.footerColor,
+          background: '#100152',
         }}
       >
         <div className="w-full grid md:grid-cols-2 md:gap-y-12 gap-y-auto lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
@@ -41,7 +43,7 @@ const Footer: FC<ICommonProps> = ({}) => {
                   <a
                     href={link}
                     target="_blank"
-                    className={` hover:text-neutral-900 transition-all`}
+                    className={` hover:text-blue-300 transition-all`}
                   >
                     {title}
                   </a>
@@ -64,7 +66,7 @@ const Footer: FC<ICommonProps> = ({}) => {
               {footerPageLinks.map(({ path, title }) => (
                 <Link href={path} className="">
                   <p
-                    className={`flex items-center hover:text-neutral-900 hover:translate-x-1  transition-all cursor-pointer `}
+                    className={`flex items-center hover:text-blue-300 hover:translate-x-1  transition-all cursor-pointer `}
                   >
                     {title}
                   </p>
@@ -74,7 +76,7 @@ const Footer: FC<ICommonProps> = ({}) => {
             <div>
               <h1 className="text-3xl">Products</h1>
               <Link href="/products" className="flex items-center">
-                <p className="flex items-center hover:text-neutral-900 cursor-pointer">
+                <p className="flex items-center hover:text-blue-300 cursor-pointer">
                   Clumsy Candy
                 </p>
               </Link>
@@ -103,7 +105,7 @@ const Footer: FC<ICommonProps> = ({}) => {
             {/* <h1></h1> */}
             <div>
               {marketplaces.map(({ name, url }) => (
-                <p className="flex items-center hover:text-zinc-900 transition-all">
+                <p className="flex items-center hover:text-blue-300 transition-all">
                   <a {...(url ? { href: url } : {})} target="_blank">
                     {name}
                   </a>

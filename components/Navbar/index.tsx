@@ -88,8 +88,13 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
             isFixed ? 'fixed' : ''
           } z-50 flex w-[100%] overflow-hidden h-24 lg:border-0 justify-center items-stretch `}
         >
-          <div className="flex justify-center gap-2 sm:gap-6 md:gap-12 lg:gap-24 items-center">
-            {windowDimensions.width > 640 &&
+          <div
+            className="flex justify-center gap-2 sm:gap-6 md:gap-12 lg:gap-24 items-center"
+            style={{
+              fontFamily: "'Lobster', cursive",
+            }}
+          >
+            {Number(windowDimensions.width) > 640 &&
               navItems.slice(0, 2).map((item) => (
                 <div
                   className={`flex items-center ${
@@ -108,9 +113,9 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                             ? 'text-white'
                             : 'text-neutral-900'
                         } hover:scale-125  transition-all cursor-pointer`}
-                        style={{
-                          fontFamily: "'Lobster', cursive",
-                        }}
+                        // style={{
+                        //   ...titleFontCursive,
+                        // }}
                       >
                         {item.name}
                       </p>
@@ -127,7 +132,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                 />
               </Link>
             </div>
-            {windowDimensions.width > 640 &&
+            {Number(windowDimensions.width) > 640 &&
               navItems.slice(2, 4).map((item) => (
                 <div
                   className={`flex items-center ${
@@ -147,7 +152,6 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                             ? 'text-white'
                             : 'text-neutral-900'
                         }  hover:scale-125  transition-all cursor-pointer`}
-                        style={{ fontFamily: " 'Lobster', cursive" }}
                       >
                         {item.name}
                       </p>
@@ -156,7 +160,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                 </div>
               ))}
 
-            {windowDimensions.width < 640 && (
+            {Number(windowDimensions.width) < 640 && (
               // <div
               //   className={`flex items-center justify-end cursor-pointer`}
               //   onClick={isOpen ? close : open}
@@ -173,7 +177,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
           </div>
         </div>
       </div>
-      {windowDimensions.width < 640 && isOpen && (
+      {Number(windowDimensions.width) < 640 && isOpen && (
         <FullScreenMenu onClick={close} />
       )}
     </>

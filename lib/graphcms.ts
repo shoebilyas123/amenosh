@@ -6,20 +6,29 @@ client.setHeader(
   `Bearer ${process.env.HYGRAPH_PERMANENTAUTH_TOKEN}`
 );
 
-export const getProductList = async ({
-  name,
-  brand,
-  productId,
-}: {
-  name?: string;
-  brand?: string;
-  productId?: string;
-}) => {
-  const query = `
+const RETURN_TYPE_CONSTANTS = {
+  ARRAY: 'ARRAY',
+  OBJECT: 'OBJECT',
+};
+
+const cmsExceptionHandler = (
+  func: Function,
+  returnType: 'ARRAY' | 'OBJECT' | undefined
+) =>
+  func()
+    .then((res: any) => res)
+    .catch(() =>
+      returnType === 'ARRAY' ? [] : returnType === 'OBJECT' ? {} : null
+    );
+
+export const getProductList = ({ ...params }: any) =>
+  cmsExceptionHandler(async () => {
+    const { name, brand, productId } = params;
+    const query = `
   {
       products(where:{name_contains: "${name || ''}" ${
-    brand ? `, brand: "${brand || ''}"` : ''
-  } ${productId ? `, id: "${productId}"` : ''} }) {
+      brand ? `, brand: "${brand || ''}"` : ''
+    } ${productId ? `, id: "${productId}"` : ''} }) {
         createdAt
         displayOnPage
         id
@@ -35,21 +44,21 @@ export const getProductList = async ({
       }
   }
   `;
-  const { products } = await client.request(query);
+    const { products } = await client.request(query);
 
-  const transformedProduct = products.map(
-    ({ name, id, images, brand, description, aboutProduct }: any) => ({
-      title: name,
-      images: images.map((img: any) => img.url),
-      id,
-      brand,
-      description: description || {},
-      aboutProduct,
-    })
-  );
+    const transformedProduct = products.map(
+      ({ name, id, images, brand, description, aboutProduct }: any) => ({
+        title: name,
+        images: images.map((img: any) => img.url),
+        id,
+        brand,
+        description: description || {},
+        aboutProduct,
+      })
+    );
 
-  return transformedProduct;
-};
+    return transformedProduct;
+  }, 'ARRAY');
 
 export const getCandyWrappers = async () => {
   const query = `
@@ -65,21 +74,23 @@ export const getCandyWrappers = async () => {
   return assets;
 };
 
-export const getAppConfig = async () => {
-  const query = `
+export const getAppConfig = () =>
+  cmsExceptionHandler(async () => {
+    const query = `
   {
     configs {
       appSettings
     }
   }
   `;
-  const { configs } = await client.request(query);
+    const { configs } = await client.request(query);
 
-  return configs[0];
-};
+    return configs[0];
+  }, 'OBJECT');
 
-export const getContentControls = async () => {
-  const query = `
+export const getContentControls = () =>
+  cmsExceptionHandler(async () => {
+    const query = `
   {
     contentControls {
       id
@@ -100,42 +111,41 @@ export const getContentControls = async () => {
   }
   `;
 
-  const { contentControls } = await client.request(query);
-  const transformContentControl = contentControls.map(
-    ({
-      id,
-      welcomeContent,
-      aboutContent,
-      bannerImage,
-      phone,
-      email,
-      address,
-      workingHoursTimings,
-      workingHoursDays,
-      welcomeTitle,
-      aboutTitle,
-    }: any) => ({
-      id,
-      welcomeContent,
-      aboutContent,
-      bannerImage: bannerImage.url,
-      phone,
-      email,
-      address,
-      workingHoursTimings,
-      workingHoursDays,
-      welcomeTitle,
-      aboutTitle,
-    })
-  )[0];
+    const { contentControls } = await client.request(query);
+    const transformContentControl = contentControls.map(
+      ({
+        id,
+        welcomeContent,
+        aboutContent,
+        bannerImage,
+        phone,
+        email,
+        address,
+        workingHoursTimings,
+        workingHoursDays,
+        welcomeTitle,
+        aboutTitle,
+      }: any) => ({
+        id,
+        welcomeContent,
+        aboutContent,
+        bannerImage: bannerImage.url,
+        phone,
+        email,
+        address,
+        workingHoursTimings,
+        workingHoursDays,
+        welcomeTitle,
+        aboutTitle,
+      })
+    )[0];
 
-  return transformContentControl;
-};
+    return transformContentControl;
+  }, 'OBJECT');
 
-export default client;
-
-export const getMarketplaces = async () => {
-  const query = `
+export const getMarketplaces = () =>
+  cmsExceptionHandler(async () => {
+    const query = `
   {
     marketplaces {
       id
@@ -145,13 +155,14 @@ export const getMarketplaces = async () => {
   }
   `;
 
-  const { marketplaces } = await client.request(query);
+    const { marketplaces } = await client.request(query);
 
-  return marketplaces;
-};
+    return marketplaces;
+  }, 'ARRAY');
 
-export const getFontControls = async () => {
-  const query = `
+export const getFontControls = () =>
+  cmsExceptionHandler(async () => {
+    const query = `
   {
     fontControls {
       id
@@ -163,7 +174,9 @@ export const getFontControls = async () => {
     }
   }`;
 
-  const { fontControls } = await client.request(query);
+    const { fontControls } = await client.request(query);
 
-  return fontControls[0] || {};
-};
+    return fontControls[0] || {};
+  }, 'OBJECT');
+
+export default client;

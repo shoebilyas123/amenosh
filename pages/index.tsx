@@ -67,7 +67,6 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             background: `url(
             ${config.contentControls.bannerImage}
             )`,
-            backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             position: 'relative',
             color: '#FFF',
@@ -82,7 +81,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
                   config.fontControls.welcomeTitleItalics ? 'italic' : ''
                 } md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4`}
                 style={{
-                  fontFamily: "'Garamound', serif",
+                  fontFamily: "'Lobster',serif",
                 }}
               >
                 {config.contentControls.welcomeTitle}
@@ -93,9 +92,6 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
                 className={`flex flex-wrap ${
                   config.fontControls.welcomeContentItalics ? 'italic' : ''
                 } flex-row w-100 mb-4 mx-12 text-2xl text-center lg:mx-0 lg:text-left`}
-                style={{
-                  fontFamily: "'Garamound', serif",
-                }}
               >
                 {config.contentControls.welcomeContent
                   .replace('<3', '')

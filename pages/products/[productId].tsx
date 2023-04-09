@@ -3,19 +3,14 @@ import React, { useState } from 'react';
 
 // local Imports
 import Navbar from '~/components/Navbar';
-import { AboutBanner, Footer, SectionContact } from '~/components/section';
+import { Footer, SectionContact } from '~/components/section';
 import { GetServerSideProps, NextPage } from 'next';
 import { getProductList } from '~/lib/graphcms';
 import { IProductList } from '~/interfaces/product';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import { H1 } from '~/components/atoms/headings';
-import { SwiperSlide, Swiper } from 'swiper/react';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
-import { GlassMagnifier } from 'react-image-magnifiers';
 import ImageCarousel from '~/components/molecules/imageCarousel';
-import Card from '~/components/card';
-import { AiFillMail, AiFillPhone } from 'react-icons/ai';
 import DynamicHead from '~/components/Document/DynamicHead';
 
 interface IProps extends ICommonProps {
@@ -53,20 +48,8 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
               </p>
               <div>
                 <hr className="mt-4 mb-2" />
-                <H1
-                  className="text-xl font-bold mb-4"
-                  style={{
-                    fontFamily: "'Garamound', serif",
-                  }}
-                >
-                  Description
-                </H1>
-                <p
-                  style={{
-                    fontFamily: "'Garamound', serif",
-                  }}
-                  // className="italic"
-                >
+
+                <p>
                   {(product.aboutProduct || '')
                     .split('\n')
                     .map((str: string) => {
@@ -84,7 +67,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
 
             <div className="w-[100%]">
               <H1
-                className="text-lg font-medium w-full text-center"
+                className="text-lg bg-slate-500 py-2 font-medium w-full text-center"
                 style={{
                   background: colors.secondary,
                   color: 'white',

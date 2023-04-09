@@ -7,25 +7,25 @@ import { useConfig } from '~/store';
 const Button: NextPage<HTMLMotionProps<'button'> & ICommonProps> = ({
   children,
   className,
-
   ...props
 }) => {
   const { config } = useConfig();
 
   return (
-    // @ts-ignore-next-line
     <motion.button
       className={`rounded-full ${
         ['#fff', '#ffffff'].some(
-          (clr) => clr === config.appSettings?.colors.primary.toLowerCase()
+          (clr) => clr === config.appSettings?.colors.buttonColor.toLowerCase()
         )
           ? 'text-neutral-900'
           : 'text-white'
-      } w-fit px-4 py-2 bg-rose-800 hover:shadow-lg ${className || ''}`}
+      } w-fit px-4 py-2 hover:shadow-lg ${className || ''}`}
       whileHover={{
         scale: 1.1,
       }}
-      style={{ background: config.appSettings?.colors.primary }}
+      style={{
+        background: config.appSettings?.colors.buttonColor,
+      }}
       {...props}
     >
       {children}
