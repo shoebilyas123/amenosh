@@ -13,7 +13,6 @@ import { IProductList } from '~/interfaces/product';
 import { ICommonProps } from '~/interfaces/common';
 import { useConfig } from '~/store';
 import DynamicHead from '~/components/Document/DynamicHead';
-import { headingFont, titleFont } from '~/constants/fonts';
 
 interface IProps extends ICommonProps {
   productImages: Array<string>;

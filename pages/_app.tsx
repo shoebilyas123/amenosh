@@ -45,13 +45,10 @@ MyApp.getInitialProps = async () => {
   const contentControls = await getContentControls();
   const marketplaces = await getMarketplaces();
   const fontControls = await getFontControls();
+
   const config = {
     contentControls,
-    appSettings: {
-      colors: {
-        ...appSettings.colors,
-      },
-    },
+    appSettings,
     marketplaces,
     fontControls,
   };

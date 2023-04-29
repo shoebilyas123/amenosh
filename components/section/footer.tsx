@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { AiFillMail, AiFillPhone, AiOutlineAmazon } from 'react-icons/ai';
 import { BsFillTelephoneFill } from 'react-icons/bs';
-import { contentFont1 } from '~/constants/fonts';
 
 import { footerPageLinks, socials } from '~/constants/footer';
 import { ICommonProps } from '~/interfaces/common';
@@ -87,7 +86,7 @@ const Footer: FC<ICommonProps> = ({}) => {
             <div>
               <H1 className="text-3xl "> Address</H1>
               <p>
-                {address.split('\n').map((str: string) => (
+                {(address || '').split('\n').map((str: string) => (
                   <p>{str}</p>
                 ))}
               </p>

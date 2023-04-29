@@ -270,16 +270,29 @@ const Contact: FC<ICommonProps> = ({}) => {
   };
 
   return (
-    <div className="flex w-screen flex-col items-center justify-center">
+    <div
+      className="flex w-screen flex-col items-center justify-center"
+      style={{
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
         <h1 className="text-4xl text-center">We'd Love To Hear From You!</h1>
         <Card className="border-none shadow-lg">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="sm:w-full flex flex-col items-start justify-center space-y-4 w-full px-4 md:px-24 py-8 "
+            className="sm:w-full flex flex-col items-start justify-center space-y-4 w-screen px-4 md:px-24 py-8 "
           >
             <div className="flex flex-col w-full md:flex-row space-y-4 md:space-x-4 md:space-y-0">
-              <FadeSlide triggerOnce={false}>
+              <FadeSlide
+                slideOptions={{
+                  triggerOnce: true,
+                }}
+                fadeOptions={{
+                  triggerOnce: false,
+                }}
+              >
                 <div className="flex flex-col items-left shadow-sm">
                   <label>First Name *</label>
                   <input
@@ -290,7 +303,14 @@ const Contact: FC<ICommonProps> = ({}) => {
                   />
                 </div>
               </FadeSlide>
-              <FadeSlide triggerOnce={false}>
+              <FadeSlide
+                slideOptions={{
+                  triggerOnce: true,
+                }}
+                fadeOptions={{
+                  triggerOnce: false,
+                }}
+              >
                 <div className="flex flex-col items-left shadow-sm">
                   <label>Last Name </label>
                   <input
@@ -333,8 +353,12 @@ const Contact: FC<ICommonProps> = ({}) => {
                 <div className="w-full">
                   <FadeSlide
                     slideDirection="up"
-                    triggerOnce={false}
-                    delay={index * 500}
+                    slideOptions={{
+                      triggerOnce: true,
+                    }}
+                    fadeOptions={{
+                      triggerOnce: false,
+                    }}
                   >
                     <label>{label}</label>
                     <input
@@ -353,7 +377,14 @@ const Contact: FC<ICommonProps> = ({}) => {
             )}
 
             <div className="w-full shadow-sm">
-              <FadeSlide triggerOnce={false}>
+              <FadeSlide
+                slideOptions={{
+                  triggerOnce: true,
+                }}
+                fadeOptions={{
+                  triggerOnce: false,
+                }}
+              >
                 <textarea
                   rows={12}
                   required={true}

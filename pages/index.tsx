@@ -61,9 +61,8 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
 
         {/* // fallbackColor="#163c61" */}
         <div
-          className="relative flex w-screen py-12 md:py-0 lg:h-screen overflow-hidden flex-col lg:flex-row items-center px-0 sm:px-24 text-white"
+          className="relative flex w-screen py-12 md:py-0 lg:h-screen flex-col lg:flex-row items-center px-0 sm:px-24 text-white"
           style={{
-            // background: colors.bannerColor,
             background: `url(
             ${config.contentControls.bannerImage}
             )`,

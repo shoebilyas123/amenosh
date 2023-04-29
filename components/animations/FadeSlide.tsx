@@ -5,17 +5,20 @@ interface IProps {
   triggerOnce?: boolean;
   slideDirection?: 'down' | 'up' | 'right' | 'left';
   delay?: number;
+  slideOptions?: Record<any, any>;
+  fadeOptions?: Record<any, any>;
 }
 
 const FadeSlide: FC<PropsWithChildren<IProps>> = ({
   children,
-  triggerOnce = true,
   slideDirection = 'up',
   delay = 0,
+  slideOptions = {},
+  fadeOptions = {},
 }) => {
   return (
-    <Fade triggerOnce={triggerOnce}>
-      <Slide direction={slideDirection} triggerOnce={triggerOnce}>
+    <Fade {...fadeOptions}>
+      <Slide direction={slideDirection} {...slideOptions}>
         {children}
       </Slide>
     </Fade>
