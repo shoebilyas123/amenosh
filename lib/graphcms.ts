@@ -107,6 +107,10 @@ export const getContentControls = () =>
       workingHoursDays
       welcomeTitle
       aboutTitle
+      favicon {
+        url
+        id
+      }
     }
   }
   `;
@@ -125,6 +129,7 @@ export const getContentControls = () =>
         workingHoursDays,
         welcomeTitle,
         aboutTitle,
+        favicon,
       }: any) => ({
         id,
         welcomeContent,
@@ -137,6 +142,7 @@ export const getContentControls = () =>
         workingHoursDays,
         welcomeTitle,
         aboutTitle,
+        favicon: favicon.url,
       })
     )[0];
 

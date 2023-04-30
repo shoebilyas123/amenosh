@@ -13,6 +13,7 @@ import Script from 'next/script';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
+  console.log({ p: pageProps.config.contentControls.favicon });
   return (
     <div className="w-[100%] overflow-hidden">
       <ConfigProvider config={pageProps.config}>
@@ -21,6 +22,11 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
             name="google-site-verification"
             content="v7AvEbWI_Co9Ir7GL1JmSju94D1ECUUlytKDasNiRkc"
           />
+          <link
+            rel="icon"
+            href={pageProps.config.contentControls.favicon}
+            type="image/x-icon"
+          ></link>
         </Head>
         <Script
           strategy="afterInteractive"
