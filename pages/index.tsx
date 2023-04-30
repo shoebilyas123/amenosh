@@ -101,7 +101,9 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
                       <br />
                     </>
                   ))}
-                {config.contentControls.welcomeContent.includes('<3') ? (
+                {(config?.contentControls?.welcomeContent || '').includes(
+                  '<3'
+                ) ? (
                   <BsHeartFill color="red" />
                 ) : null}
               </p>
