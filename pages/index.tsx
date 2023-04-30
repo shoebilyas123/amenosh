@@ -92,7 +92,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
                   config.fontControls.welcomeContentItalics ? 'italic' : ''
                 } flex-row w-100 mb-4 mx-12 text-2xl text-center lg:mx-0 lg:text-left`}
               >
-                {config.contentControls.welcomeContent
+                {(config.contentControls.welcomeContent || '')
                   .replace('<3', '')
                   .split('\n')
                   .map((str: string) => (
