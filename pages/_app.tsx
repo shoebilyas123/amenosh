@@ -21,6 +21,11 @@ function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
             name="google-site-verification"
             content="v7AvEbWI_Co9Ir7GL1JmSju94D1ECUUlytKDasNiRkc"
           />
+          <link
+            rel="icon"
+            href={'/images/favicon.png'}
+            type="image/x-icon"
+          ></link>
         </Head>
         <Script
           strategy="afterInteractive"
