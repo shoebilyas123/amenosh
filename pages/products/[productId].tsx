@@ -27,6 +27,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
   const {
     config: {
       appSettings: { colors },
+      contentControls: { favicon },
     },
   } = useConfig();
   const { price, details } = product.description;
@@ -37,6 +38,7 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
       <DynamicHead
         title={product.title}
         description={product.aboutProduct.substring(0, 100)}
+        {...{ favicon }}
       />
       <div className="w-screen relative overflow-hidden">
         <Navbar isFixed={false} />

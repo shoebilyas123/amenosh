@@ -20,6 +20,7 @@ const ConfigContext = createContext<ReturnType<typeof useConfigController>>({
       workingHoursTimings: '',
       welcomeTitle: '',
       aboutTitle: '',
+      favicon: '',
     },
     marketplaces: [],
     fontControls: {

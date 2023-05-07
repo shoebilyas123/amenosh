@@ -10,6 +10,7 @@ import { getProductList } from '~/lib/graphcms';
 import { groupBy } from 'lodash';
 import { ICommonProps } from '~/interfaces/common';
 import DynamicHead from '~/components/Document/DynamicHead';
+import { useConfig } from '~/store';
 
 interface IProps extends ICommonProps {
   products: IProductList[];
@@ -17,6 +18,12 @@ interface IProps extends ICommonProps {
 
 const Products: NextPage<IProps> = ({ products }) => {
   const productsByBrand = groupBy(products, 'brand');
+  const {
+    config: {
+      contentControls: { favicon },
+    },
+  } = useConfig();
+  console.log({ favicon });
 
   return (
     <>
@@ -25,6 +32,7 @@ const Products: NextPage<IProps> = ({ products }) => {
         description={
           'Clumsy candy is an in-house brand of AMENOSH with sugar-boiled candies in six unique highly exciting and delicious flavors. Clumsy candies are made with the choicest ingredients to WOW our customers. We use fruit powders and active ingredients in most of our candies.s'
         }
+        {...{ favicon }}
       />
 
       <div className="w-[100%]">

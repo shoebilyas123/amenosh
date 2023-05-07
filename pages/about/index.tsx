@@ -24,7 +24,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
   const {
     config: {
       appSettings: { colors },
-      contentControls: { aboutContent, aboutTitle },
+      contentControls: { aboutContent, aboutTitle, favicon },
       fontControls,
     },
   } = useConfig();
@@ -34,6 +34,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
       <DynamicHead
         title={'About Amenosh'}
         description={aboutContent.substring(0, 100)}
+        {...{ favicon }}
       />
       <div className="w-screen overflow-hidden">
         <Navbar isFixed={false} />

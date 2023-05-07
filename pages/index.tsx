@@ -54,6 +54,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
       <DynamicHead
         title={'Amenosh | Home'}
         description={config.contentControls.welcomeContent}
+        {...{ favicon: config.contentControls.favicon }}
       />
       <div className="overflow-hidden w-screen">
         <Navbar isFixed={false} />

@@ -96,6 +96,9 @@ export const getContentControls = async () => {
       workingHoursDays
       welcomeTitle
       aboutTitle
+      favicon {
+        url
+      }
     }
   }
   `;
@@ -114,6 +117,7 @@ export const getContentControls = async () => {
       workingHoursDays,
       welcomeTitle,
       aboutTitle,
+      favicon,
     }: any) => ({
       id,
       welcomeContent,
@@ -126,6 +130,7 @@ export const getContentControls = async () => {
       workingHoursDays,
       welcomeTitle,
       aboutTitle,
+      favicon: favicon.url,
     })
   )[0];
 
