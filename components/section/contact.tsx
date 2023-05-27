@@ -95,7 +95,7 @@ const Contact: FC<ICommonProps> = ({}) => {
     if (`${postalCode}`.length === 0) {
       return `Pin code must be valid`;
     }
-    if (data.address.length < 5) {
+    if (data.address?.length < 5) {
       return `Address must be more than 4 characters`;
     }
     if (city.length < 3) {
@@ -119,6 +119,7 @@ const Contact: FC<ICommonProps> = ({}) => {
 
   const onSubmit = async (data: IEmailPayload) => {
     try {
+      console.log({ data, phoneNumber, postalCode, city });
       const formValidationError = validateForm(data);
       if (formValidationError) {
         setErrorMessage(formValidationError);
@@ -266,157 +267,166 @@ const Contact: FC<ICommonProps> = ({}) => {
 
   const styles = {
     inputClass:
-      'shadow-sm w-full border rounded-lg px-4 py-2 outline-none border-red-200 focus:border-sky-800 placeholder:text-zinc-500',
+      'focus:shadow-sm w-full border border-2 rounded-lg px-4 py-2 outline-none border-red-200 focus:border-red-500 placeholder:text-zinc-500',
   };
 
   return (
     <div
-      className="flex w-screen flex-col items-center justify-center"
+      className="flex w-screen flex-col  items-center justify-center"
       style={{
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative sm:border-2 sm:rounded-lg sm:border-red-300 sm:my-8 z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
+        <div
+          className="absolute top-0 left-0 w-full h-full sm:rounded-lg"
+          style={{
+            background: 'rgba(252, 165, 165, 0.2)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(5px)',
+            WebkitBackdropFilter: 'blur(5px)',
+            zIndex: -1,
+          }}
+        ></div>
         <h1 className="text-4xl text-center">We'd Love To Hear From You!</h1>
-        <Card className="border-none shadow-lg">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="sm:w-full flex flex-col items-start justify-center space-y-4 w-screen px-4 md:px-24 py-8 "
-          >
-            <div className="flex flex-col w-full md:flex-row space-y-4 md:space-x-4 md:space-y-0">
-              <FadeSlide
-                slideOptions={{
-                  triggerOnce: true,
-                }}
-                fadeOptions={{
-                  triggerOnce: false,
-                }}
-              >
-                <div className="flex flex-col items-left shadow-sm">
-                  <label>First Name *</label>
-                  <input
-                    placeholder="Enter First Name..."
-                    required={true}
-                    {...register('firstName')}
-                    className={styles.inputClass}
-                  />
-                </div>
-              </FadeSlide>
-              <FadeSlide
-                slideOptions={{
-                  triggerOnce: true,
-                }}
-                fadeOptions={{
-                  triggerOnce: false,
-                }}
-              >
-                <div className="flex flex-col items-left shadow-sm">
-                  <label>Last Name </label>
-                  <input
-                    placeholder="Enter Last Name..."
-                    {...register('lastName')}
-                    className={styles.inputClass}
-                  />
-                </div>
-              </FadeSlide>
-            </div>
-
-            <div className="w-full">
-              <Select
-                {...register('usertype')}
-                className={styles.inputClass}
-                options={[
-                  'Wholesaler',
-                  'Distributer',
-                  'Retailer',
-                  'Customer',
-                  'Other',
-                ]}
-                label={'I am a *'}
-              />
-              {watch().usertype === 'Other' && (
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="relative sm:w-fit flex flex-col items-start justify-center space-y-4 w-screen px-4 md:px-12 py-8"
+        >
+          <div className="flex flex-col w-full md:flex-row space-y-4 md:space-x-4 md:space-y-0">
+            <FadeSlide
+              slideOptions={{
+                triggerOnce: true,
+              }}
+              fadeOptions={{
+                triggerOnce: true,
+              }}
+            >
+              <div className="flex flex-col items-left shadow-sm">
+                <label>First Name *</label>
                 <input
-                  placeholder="Please mention..."
-                  type="default"
-                  {...register('usertypecustom')}
-                  className={styles.inputClass}
-                />
-              )}
-            </div>
-
-            {inputFields.map(
-              (
-                { onChange, registerKey, label, value, useFormHook, ...rest },
-                index
-              ) => (
-                <div className="w-full">
-                  <FadeSlide
-                    slideDirection="up"
-                    slideOptions={{
-                      triggerOnce: true,
-                    }}
-                    fadeOptions={{
-                      triggerOnce: false,
-                    }}
-                  >
-                    <label>{label}</label>
-                    <input
-                      className={styles.inputClass}
-                      {...rest}
-                      {...(useFormHook
-                        ? { ...register(registerKey as keyof IEmailPayload) }
-                        : {
-                            onChange,
-                            value,
-                          })}
-                    />
-                  </FadeSlide>
-                </div>
-              )
-            )}
-
-            <div className="w-full shadow-sm">
-              <FadeSlide
-                slideOptions={{
-                  triggerOnce: true,
-                }}
-                fadeOptions={{
-                  triggerOnce: false,
-                }}
-              >
-                <textarea
-                  rows={12}
+                  placeholder="Enter First Name..."
                   required={true}
-                  style={{ resize: 'none' }}
-                  placeholder="Enter Your Message..."
-                  {...register('message')}
+                  {...register('firstName')}
                   className={styles.inputClass}
                 />
-              </FadeSlide>
-            </div>
-            {!errorMessage && successMessage && (
-              <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
-                {successMessage}
               </div>
-            )}
-            {!successMessage && errorMessage && (
-              <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
-                {errorMessage}
+            </FadeSlide>
+            <FadeSlide
+              slideOptions={{
+                triggerOnce: true,
+              }}
+              fadeOptions={{
+                triggerOnce: true,
+              }}
+            >
+              <div className="flex flex-col items-left shadow-sm">
+                <label>Last Name </label>
+                <input
+                  placeholder="Enter Last Name..."
+                  {...register('lastName')}
+                  className={styles.inputClass}
+                />
               </div>
-            )}
+            </FadeSlide>
+          </div>
 
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              size="invisible"
-              sitekey={`${process.env.NEXT_RECAPTCHA_KEY}`}
-              onChange={onReCAPTCHAChange}
+          <div className="w-full">
+            <Select
+              {...register('usertype')}
+              className={`${styles.inputClass} mb-2`}
+              options={[
+                'Wholesaler',
+                'Distributer',
+                'Retailer',
+                'Customer',
+                'Other',
+              ]}
+              label={'I am a *'}
             />
-            <Button type="submit" className=" flex items-center justify-center">
-              {loading && <AiOutlineLoading />}Send Message
-            </Button>
-          </form>
-        </Card>
+            {watch().usertype === 'Other' && (
+              <input
+                placeholder="Please mention..."
+                type="default"
+                {...register('usertypecustom')}
+                className={styles.inputClass}
+              />
+            )}
+          </div>
+
+          {inputFields.map(
+            (
+              { onChange, registerKey, label, value, useFormHook, ...rest },
+              index
+            ) => (
+              <div className="w-full">
+                <FadeSlide
+                  slideDirection="up"
+                  slideOptions={{
+                    triggerOnce: true,
+                  }}
+                  fadeOptions={{
+                    triggerOnce: true,
+                  }}
+                >
+                  <label>{label}</label>
+                  <input
+                    className={styles.inputClass}
+                    {...rest}
+                    {...(useFormHook
+                      ? { ...register(registerKey as keyof IEmailPayload) }
+                      : {
+                          onChange,
+                          value,
+                        })}
+                  />
+                </FadeSlide>
+              </div>
+            )
+          )}
+
+          <div className="w-full shadow-sm">
+            <FadeSlide
+              slideOptions={{
+                triggerOnce: true,
+              }}
+              fadeOptions={{
+                triggerOnce: true,
+              }}
+            >
+              <textarea
+                rows={12}
+                required={true}
+                style={{ resize: 'none' }}
+                placeholder="Enter Your Message..."
+                {...register('message')}
+                aria-errormessage='{"required": "Please enter your message"}'
+                className={styles.inputClass}
+              />
+            </FadeSlide>
+          </div>
+          {!errorMessage && successMessage && (
+            <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
+              {successMessage}
+            </div>
+          )}
+          {!successMessage && errorMessage && (
+            <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
+              {errorMessage}
+            </div>
+          )}
+
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            size="invisible"
+            sitekey={`${process.env.NEXT_RECAPTCHA_KEY}`}
+            onChange={onReCAPTCHAChange}
+          />
+          <Button type="submit" className=" flex items-center justify-center">
+            {loading && <AiOutlineLoading />}Send Message
+          </Button>
+        </form>
       </div>
     </div>
   );

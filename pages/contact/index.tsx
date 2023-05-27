@@ -16,12 +16,16 @@ const ContactUs: NextPage<ICommonProps> = ({}) => {
           'We always welcome your enquiries, feedback, and suggestions.'
         }
       />
-      <div style={{}}>
-        <div className="w-screen overflow-hidden">
-          <Navbar textColor="LIGHT" isFixed={false} />
-          <Contact />
-          <Footer />
-        </div>
+      <div
+        className="w-screen overflow-hidden"
+        style={{
+          background:
+            "url('/images/bg_doodles.png') no-repeat center center fixed",
+        }}
+      >
+        <Navbar textColor="LIGHT" isFixed={false} />
+        <Contact />
+        <Footer />
       </div>
     </>
   );
