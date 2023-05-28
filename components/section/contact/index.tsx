@@ -40,13 +40,17 @@ const Contact = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="sm:mx-auto sm:w-fit sm:my-4 shadow-md rounded-md border p-4 bg-white"
+      className="sm:mx-auto sm:w-fit sm:my-4 shadow-md rounded-md border p-4"
+      style={{
+        background: '#BDB5B5',
+      }}
     >
       <FadeSlide
         slideOptions={{ triggerOnce: true }}
         fadeOptions={{ triggerOnce: true }}
       >
         <div className="flex items-center justify-center w-full mb-8">
+          <Input placeholder="Enter phone number..." />
           <Button className="">Book a Callback</Button>
         </div>
       </FadeSlide>
