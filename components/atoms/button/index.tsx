@@ -19,7 +19,7 @@ const Button: NextPage<HTMLMotionProps<'button'> & ICommonProps> = ({
         )
           ? 'text-neutral-900'
           : 'text-white'
-      } w-fit px-4 py-2 hover:shadow-lg ${className || ''}`}
+      } w-fit px-4 py-2 hover:shadow-lg ${className || ''} active:opacity-90 `}
       whileHover={{
         scale: 1.1,
       }}

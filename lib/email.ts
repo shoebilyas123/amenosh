@@ -1,7 +1,7 @@
 import { IEmailPayload } from '~/interfaces/email';
 import { send } from '@emailjs/browser';
 
-export const sendEmail = async (params: IEmailPayload) => {
+export const sendEmail = async (params: any) => {
   const templateParams = {
     ...params,
     recipientName: 'Amenosh',
