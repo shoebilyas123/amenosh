@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import useData from './useData';
-import Button from '~/components/atoms/button';
-import Select from '~/components/molecules/select';
-import _ from 'lodash';
-import { styles } from '~/constants/contact';
-import Input from '~/components/atoms/input';
-import FadeSlide from '~/components/animations/FadeSlide';
-import ReCAPTCHA from 'react-google-recaptcha';
+import React, { useEffect } from "react";
+import useData from "./useData";
+import Button from "~/components/atoms/button";
+import Select from "~/components/molecules/select";
+import _ from "lodash";
+import { styles } from "~/constants/contact";
+import Input from "~/components/atoms/input";
+import FadeSlide from "~/components/animations/FadeSlide";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
   const {
@@ -27,8 +27,8 @@ const Contact = () => {
     else {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        setErrorMessage('');
-        setSuccessMessage('');
+        setErrorMessage("");
+        setSuccessMessage("");
       }, 3000);
     }
 
@@ -42,7 +42,8 @@ const Contact = () => {
       onSubmit={handleSubmit}
       className="sm:mx-auto sm:w-fit sm:my-4 shadow-md rounded-md border p-4"
       style={{
-        background: '#BDB5B5',
+        //use a bit nice red color
+        background: "#F8CACA",
       }}
     >
       <FadeSlide
@@ -69,11 +70,11 @@ const Contact = () => {
           <Select
             className={`${styles.inputClass} mb-2`}
             options={[
-              'Wholesaler',
-              'Distributer',
-              'Retailer',
-              'Customer',
-              'Other',
+              "Wholesaler",
+              "Distributer",
+              "Retailer",
+              "Customer",
+              "Other",
             ]}
             value={contactData.userType.default}
             onChange={({ target: { value } }: any) =>
@@ -82,9 +83,9 @@ const Contact = () => {
                 userType: { default: value, custom: prev.userType.custom },
               }))
             }
-            label={'I am a *'}
+            label={"I am a *"}
           />
-          {contactData.userType.default === 'Other' && (
+          {contactData.userType.default === "Other" && (
             <Input
               placeholder="Please mention..."
               type="default"

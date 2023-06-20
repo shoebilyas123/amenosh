@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import React, { FC } from 'react';
-import { AiFillMail, AiFillPhone, AiOutlineAmazon } from 'react-icons/ai';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-
-import { footerPageLinks, socials } from '~/constants/footer';
-import { ICommonProps } from '~/interfaces/common';
-import { useConfig } from '~/store';
-import { H1 } from '../atoms/headings';
+import Link from "next/link";
+import React, { FC } from "react";
+import { AiFillMail, AiFillPhone, AiOutlineAmazon } from "react-icons/ai";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import Wave from "react-wavify";
+import { footerPageLinks, socials } from "~/constants/footer";
+import { ICommonProps } from "~/interfaces/common";
+import { useConfig } from "~/store";
+import { H1 } from "../atoms/headings";
 
 const Footer: FC<ICommonProps> = ({}) => {
   const { config } = useConfig();
@@ -16,20 +16,30 @@ const Footer: FC<ICommonProps> = ({}) => {
   } = config;
   return (
     <>
+      <Wave
+        fill={config.appSettings?.colors.footerColor}
+        options={{
+          height: 50,
+          amplitude: 40,
+          speed: 0.4,
+          points: 6,
+        }}
+        className="w-full -mb-4"
+      />
       <div
         className={`w-screen relative overflow-hidden pb-12
         ${
-          ['#fff', '#ffffff'].some(
+          ["#fff", "#ffffff"].some(
             (clr) =>
               clr === config.appSettings?.colors.footerColor.toLowerCase()
           )
-            ? 'text-neutral-900'
-            : 'text-white'
+            ? "text-neutral-900"
+            : "text-white"
         }
         `}
         style={{
-          // background: config.appSettings?.colors.footerColor,
-          background: '#100152',
+          background: config.appSettings?.colors.footerColor,
+          // background: '#100152',
         }}
       >
         <div className="w-full grid md:grid-cols-2 md:gap-y-12 gap-y-auto lg:grid-cols-4 sm:grid-cols-1 md:place-content-start md:place-items-start gap-4 px-24 py-12">
@@ -86,7 +96,7 @@ const Footer: FC<ICommonProps> = ({}) => {
             <div>
               <H1 className="text-3xl "> Address</H1>
               <p>
-                {(address || '').split('\n').map((str: string) => (
+                {(address || "").split("\n").map((str: string) => (
                   <p>{str}</p>
                 ))}
               </p>

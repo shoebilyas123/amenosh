@@ -5,23 +5,23 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from 'react';
-import { useForm } from 'react-hook-form';
-import { AiOutlineLoading } from 'react-icons/ai';
+} from "react";
+import { useForm } from "react-hook-form";
+import { AiOutlineLoading } from "react-icons/ai";
 
-import useLoading from '~/hooks/useLoading';
-import { IEmailPayload } from '~/interfaces/email';
-import { sendEmail } from '~/lib/email';
-import Button from '~/components/atoms/button';
-import Card from '~/components/card';
-import { ICommonProps } from '~/interfaces/common';
-import { useConfig } from '~/store';
-import ReCAPTCHA from 'react-google-recaptcha';
-import axios from 'axios';
-import { checkIfStrinNumber } from '~/utils/string';
-import FadeSlide from '../animations/FadeSlide';
-import useContactData from './useContactData';
-import Select from '../molecules/select';
+import useLoading from "~/hooks/useLoading";
+import { IEmailPayload } from "~/interfaces/email";
+import { sendEmail } from "~/lib/email";
+import Button from "~/components/atoms/button";
+import Card from "~/components/card";
+import { ICommonProps } from "~/interfaces/common";
+import { useConfig } from "~/store";
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
+import { checkIfStrinNumber } from "~/utils/string";
+import FadeSlide from "../animations/FadeSlide";
+import useContactData from "./useContactData";
+import Select from "../molecules/select";
 
 const Contact: FC<ICommonProps> = ({}) => {
   const { config } = useConfig();
@@ -51,8 +51,8 @@ const Contact: FC<ICommonProps> = ({}) => {
     else {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        setErrorMessage('');
-        setSuccessMessage('');
+        setErrorMessage("");
+        setSuccessMessage("");
       }, 3000);
     }
 
@@ -63,15 +63,15 @@ const Contact: FC<ICommonProps> = ({}) => {
 
   const styles = {
     inputClass:
-      'focus:shadow-sm w-full border border-4 rounded-lg px-4 py-2 outline-none border-red-200 focus:border-red-500 placeholder:text-zinc-500 placeholder:rounded-lg',
+      "focus:shadow-sm w-full border border-4 rounded-lg px-4 py-2 outline-none border-red-200 focus:border-red-500 placeholder:text-zinc-500 placeholder:rounded-lg",
   };
 
   return (
     <div
       className="flex w-screen flex-col  items-center justify-center"
       style={{
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="relative sm:border-2 sm:rounded-lg sm:border-red-300 sm:my-8 z-50 pt-8 flex flex-col items-center justify-center overflow-hidden">
@@ -79,9 +79,9 @@ const Contact: FC<ICommonProps> = ({}) => {
           className="absolute top-0 left-0 w-full h-full bg-white sm:rounded-lg"
           style={{
             // background: 'rgba(252, 165, 165, 0.2)',
-            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-            backdropFilter: 'blur(5px)',
-            WebkitBackdropFilter: 'blur(5px)',
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(5px)",
+            WebkitBackdropFilter: "blur(5px)",
             zIndex: -1,
           }}
         ></div>
@@ -104,7 +104,7 @@ const Contact: FC<ICommonProps> = ({}) => {
                 <input
                   placeholder="Enter First Name..."
                   required={true}
-                  {...register('firstName')}
+                  {...register("firstName")}
                   className={styles.inputClass}
                 />
               </div>
@@ -121,7 +121,7 @@ const Contact: FC<ICommonProps> = ({}) => {
                 <label>Last Name </label>
                 <input
                   placeholder="Enter Last Name..."
-                  {...register('lastName')}
+                  {...register("lastName")}
                   className={styles.inputClass}
                 />
               </div>
@@ -130,22 +130,22 @@ const Contact: FC<ICommonProps> = ({}) => {
 
           <div className="w-full">
             <Select
-              {...register('usertype')}
+              {...register("usertype")}
               className={`${styles.inputClass} mb-2`}
               options={[
-                'Wholesaler',
-                'Distributer',
-                'Retailer',
-                'Customer',
-                'Other',
+                "Wholesaler",
+                "Distributer",
+                "Retailer",
+                "Customer",
+                "Other",
               ]}
-              label={'I am a *'}
+              label={"I am a *"}
             />
-            {watch().usertype === 'Other' && (
+            {watch().usertype === "Other" && (
               <input
                 placeholder="Please mention..."
                 type="default"
-                {...register('usertypecustom')}
+                {...register("usertypecustom")}
                 className={styles.inputClass}
               />
             )}
@@ -195,9 +195,9 @@ const Contact: FC<ICommonProps> = ({}) => {
               <textarea
                 rows={12}
                 required={true}
-                style={{ resize: 'none' }}
+                style={{ resize: "none" }}
                 placeholder="Enter Your Message..."
-                {...register('message')}
+                {...register("message")}
                 aria-errormessage='{"required": "Please enter your message"}'
                 className={styles.inputClass}
               />
