@@ -148,7 +148,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
           </Link>
         </div>
 
-        <SectionContact />
+        {/* <SectionContact /> */}
         <Footer />
       </div>
     </>

@@ -40,7 +40,7 @@ const Products: NextPage<IProps> = ({ products }) => {
             />
           ))}
         </div>
-        <SectionContact showWave={false} className="mt-12" />
+        {/* <SectionContact showWave={false} className="mt-12" /> */}
         <Footer />
       </div>
     </>

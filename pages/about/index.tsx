@@ -86,7 +86,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
             />
           </div>
         </div>
-        <SectionContact showWave={true} waveColor={colors.secondary} />
+        {/* <SectionContact showWave={true} waveColor={colors.secondary} /> */}
         <Footer />
       </div>
     </>

@@ -50,9 +50,9 @@ const Contact = () => {
         slideOptions={{ triggerOnce: true }}
         fadeOptions={{ triggerOnce: true }}
       >
-        <div className="flex items-center justify-center w-full mb-8">
+        <div className="flex items-center justify-center w-full mb-8 gap-4 ">
           <Input placeholder="Enter phone number..." />
-          <Button className="">Book a Callback</Button>
+          <Button className="align-middle">Book a Callback</Button>
         </div>
       </FadeSlide>
       <h1 className="text-3xl mx-auto my-2 mb-4 text-center font-medium">

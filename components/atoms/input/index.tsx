@@ -11,7 +11,7 @@ const Input: FC<IProps> = ({ label, className, type, ...props }) => {
       <label>{label}</label>
       <div
         className="rounded-lg border border-red-400"
-        style={{ borderWidth: 3, padding: '.1rem' }}
+        style={{ borderWidth: 6, padding: '2px' }}
       >
         {type === 'textarea' ? (
           <textarea {...props} className={styles.inputClass} rows={10} />
