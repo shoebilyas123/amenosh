@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { AiFillMail, AiFillPhone, AiOutlineAmazon } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import Wave from "react-wavify";
@@ -14,15 +14,18 @@ const Footer: FC<ICommonProps> = ({}) => {
     contentControls: { email, address, phone },
     marketplaces,
   } = config;
+
+ 
+
   return (
     <>
       <Wave
         fill={config.appSettings?.colors.footerColor}
         options={{
-          height: 50,
-          amplitude: 40,
+          height: 30,
+          amplitude: 30,
           speed: 0.4,
-          points: 6,
+          points: 3,
         }}
         className="w-full -mb-4"
       />

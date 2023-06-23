@@ -42,7 +42,6 @@ const Contact = () => {
       onSubmit={handleSubmit}
       className="sm:mx-auto sm:w-fit sm:my-4 shadow-md rounded-md border p-4"
       style={{
-        //use a bit nice red color
         background: "#F8CACA",
       }}
     >
