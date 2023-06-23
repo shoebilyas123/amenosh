@@ -9,6 +9,7 @@ import FadeSlide from "~/components/animations/FadeSlide";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
+  const [callbackContact, setCallbackContact] = React.useState("");
   const {
     data: { inputFields, recaptchaRef },
     handlers: {
@@ -16,6 +17,7 @@ const Contact = () => {
       onReCAPTCHAChange,
       setErrorMessage,
       setSuccessMessage,
+      handleCallbackRequest,
     },
     setters: { setContactData },
     state: { contactData, errorMessage, successMessage },
@@ -45,13 +47,36 @@ const Contact = () => {
         background: "#F8CACA",
       }}
     >
+      {!errorMessage && successMessage && (
+        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
+          {successMessage}
+        </div>
+      )}
+      {!successMessage && errorMessage && (
+        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
+          {errorMessage}
+        </div>
+      )}
       <FadeSlide
         slideOptions={{ triggerOnce: true }}
         fadeOptions={{ triggerOnce: true }}
       >
         <div className="flex items-center justify-center w-full mb-8 gap-4 ">
-          <Input placeholder="Enter phone number..." />
-          <Button className="align-middle">Book a Callback</Button>
+          <Input
+            onChange={(e: any) => {
+              setCallbackContact(e.target.value);
+            }}
+            value={callbackContact}
+            placeholder="Enter phone number..."
+          />
+          <Button
+            onClick={(e: any) => {
+              handleCallbackRequest(e, callbackContact);
+            }}
+            className="align-middle"
+          >
+            Book a Callback
+          </Button>
         </div>
       </FadeSlide>
       <h1 className="text-3xl mx-auto my-2 mb-4 text-center font-medium">
@@ -129,16 +154,6 @@ const Contact = () => {
             <Input {...rest} />
           </FadeSlide>
         ))}
-      {!errorMessage && successMessage && (
-        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
-          {successMessage}
-        </div>
-      )}
-      {!successMessage && errorMessage && (
-        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
-          {errorMessage}
-        </div>
-      )}
 
       <ReCAPTCHA
         ref={recaptchaRef}
