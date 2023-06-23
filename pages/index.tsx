@@ -1,30 +1,30 @@
-import React, { useEffect, useRef } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { GetServerSideProps, NextPage } from 'next';
-import Link from 'next/link';
-import { Fade } from 'react-awesome-reveal';
+import React, { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
+import { Fade } from "react-awesome-reveal";
 
-import Navbar from '~/components/Navbar';
-import Button from '~/components/atoms/button';
-import Footer from '~/components/section/footer';
-import ProductList from '~/components/molecules/productlist/index';
-import { getCandyWrappers, getProductList } from '~/lib/graphcms';
-import { IProductList } from '~/interfaces/product';
-import FadeSlide from '~/components/animations/FadeSlide';
+import Navbar from "~/components/Navbar";
+import Button from "~/components/atoms/button";
+import Footer from "~/components/section/footer";
+import ProductList from "~/components/molecules/productlist/index";
+import { getCandyWrappers, getProductList } from "~/lib/graphcms";
+import { IProductList } from "~/interfaces/product";
+import FadeSlide from "~/components/animations/FadeSlide";
 
-import Contact from '~/components/section/contact';
-import { ICommonProps } from '~/interfaces/common';
-import { useConfig } from '~/store';
-import { SectionContact } from '~/components/section';
-import { BsHeartFill } from 'react-icons/bs';
-import DynamicHead from '~/components/Document/DynamicHead';
+import Contact from "~/components/section/contact";
+import { ICommonProps } from "~/interfaces/common";
+import { useConfig } from "~/store";
+import { SectionContact } from "~/components/section";
+import { BsHeartFill } from "react-icons/bs";
+import DynamicHead from "~/components/Document/DynamicHead";
 
 interface IProps extends ICommonProps {
   products: IProductList[];
   candyWrappers: Array<{ url: string; id: string }>;
 }
 
-let isServer = typeof window === 'undefined';
+let isServer = typeof window === "undefined";
 
 const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
   const { config } = useConfig();
@@ -40,19 +40,19 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
 
   useEffect(() => {
     if (waveRef && !isServer) {
-      waveRef.current.style.transition = 'all .2 ease-in-out 0';
-      document.body?.addEventListener('mousemove', mouseMoveWave);
+      waveRef.current.style.transition = "all .2 ease-in-out 0";
+      document.body?.addEventListener("mousemove", mouseMoveWave);
     }
 
     return () => {
-      document?.body.removeEventListener('mousemove', mouseMoveWave);
+      document?.body.removeEventListener("mousemove", mouseMoveWave);
     };
   }, [waveRef]);
 
   return (
     <>
       <DynamicHead
-        title={'Amenosh | Home'}
+        title={"Amenosh | Home"}
         description={config.contentControls.welcomeContent}
       />
       <div className="overflow-hidden w-screen">
@@ -66,21 +66,21 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             background: `url(
             ${config.contentControls.bannerImage}
             )`,
-            backgroundSize: 'cover',
-            position: 'relative',
-            color: '#FFF',
-            textAlign: 'center',
-            overflow: 'hidden',
+            backgroundSize: "cover",
+            position: "relative",
+            color: "#FFF",
+            textAlign: "center",
+            overflow: "hidden",
           }}
         >
           <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-50">
             <FadeSlide slideDirection="down">
               <h1
                 className={`font-bold text-4xl ${
-                  config.fontControls.welcomeTitleItalics ? 'italic' : ''
+                  config.fontControls.welcomeTitleItalics ? "italic" : ""
                 } md:text-6xl mx-8 lg:mx-0 text-center lg:text-left lg:mb-4`}
                 style={{
-                  fontFamily: "'Lobster',serif",
+                  fontFamily: "'Garamound', serif",
                 }}
               >
                 {config.contentControls.welcomeTitle}
@@ -89,20 +89,23 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             <Fade triggerOnce={true}>
               <p
                 className={`flex flex-wrap ${
-                  config.fontControls.welcomeContentItalics ? 'italic' : ''
+                  config.fontControls.welcomeContentItalics ? "italic" : ""
                 } flex-row w-100 mb-4 mx-12 text-2xl text-center lg:mx-0 lg:text-left`}
+                style={{
+                  fontFamily: "'Garamound', serif",
+                }}
               >
-                {(config.contentControls.welcomeContent || '')
-                  .replace('<3', '')
-                  .split('\n')
+                {(config.contentControls.welcomeContent || "")
+                  .replace("<3", "")
+                  .split("\n")
                   .map((str: string) => (
                     <>
                       <span>{str}</span>
                       <br />
                     </>
                   ))}
-                {(config?.contentControls?.welcomeContent || '').includes(
-                  '<3'
+                {(config?.contentControls?.welcomeContent || "").includes(
+                  "<3"
                 ) ? (
                   <BsHeartFill color="red" />
                 ) : null}
@@ -143,7 +146,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
           </FadeSlide>
 
           <ProductList list={products.slice(0, 4)} />
-          <Link href={'/products'} className="mt-12">
+          <Link href={"/products"} className="mt-12">
             <Button>View More</Button>
           </Link>
         </div>
@@ -160,8 +163,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const candyWrappers = await getCandyWrappers();
 
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
   );
 
   return {
