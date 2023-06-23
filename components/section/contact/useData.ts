@@ -5,6 +5,7 @@ import { checkIfStrinNumber } from "~/utils/string";
 import useLoading from "~/hooks/useLoading";
 import axios from "axios";
 import { sendEmail } from "~/lib/email";
+import { toast } from "react-hot-toast";
 
 const useData = () => {
   const [contactData, setContactData] = useState<IContactPayload>({
@@ -227,11 +228,13 @@ const useData = () => {
       recaptchaRef.current.execute();
 
       const res = await sendEmail(payload);
-      
+      toast.success("Your message has been sent. Thank You!");
+
       setSuccessMessage("Your message has been sent. Thank You!");
       stoploading();
     } catch (error) {
       console.log({ error });
+      toast.error("Please try again later!");
       setErrorMessage("Please try again later!");
       stoploading();
     }
@@ -275,11 +278,12 @@ const useData = () => {
       recaptchaRef.current.execute();
 
       const res = await sendEmail(payload);
-
+      toast.success("Your message has been sent. Thank You!");
       setSuccessMessage("Your message has been sent. Thank You!");
       stoploading();
     } catch (error) {
       console.log({ error });
+      toast.error("Please try again later!");
       setErrorMessage("Please try again later!");
       stoploading();
     }

@@ -1,21 +1,24 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import 'swiper/css';
+import "swiper/css";
 import {
   getAppConfig,
   getContentControls,
   getFontControls,
   getMarketplaces,
-} from '~/lib/graphcms';
-import { ConfigProvider } from '~/store';
-import '~/styles/globals.css';
-import Script from 'next/script';
-import Head from 'next/head';
-
+} from "~/lib/graphcms";
+import { ConfigProvider } from "~/store";
+import "~/styles/globals.css";
+import Script from "next/script";
+import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 function MyApp({ Component, pageProps }: AppProps<{ config: any }>) {
   console.log({ p: pageProps.config.contentControls.favicon });
   return (
     <div className="w-[100%] overflow-hidden">
+      <div>
+        <Toaster />
+      </div>
       <ConfigProvider config={pageProps.config}>
         <Head>
           <meta

@@ -47,16 +47,6 @@ const Contact = () => {
         background: "#F8CACA",
       }}
     >
-      {!errorMessage && successMessage && (
-        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
-          {successMessage}
-        </div>
-      )}
-      {!successMessage && errorMessage && (
-        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
-          {errorMessage}
-        </div>
-      )}
       <FadeSlide
         slideOptions={{ triggerOnce: true }}
         fadeOptions={{ triggerOnce: true }}
@@ -154,7 +144,16 @@ const Contact = () => {
             <Input {...rest} />
           </FadeSlide>
         ))}
-
+      {!errorMessage && successMessage && (
+        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-green-200 border-green-500">
+          {successMessage}
+        </div>
+      )}
+      {!successMessage && errorMessage && (
+        <div className="w-fit p-8 m-4 items-center justify-center flex border-2 bg-red-200 border-red-500">
+          {errorMessage}
+        </div>
+      )}
       <ReCAPTCHA
         ref={recaptchaRef}
         size="invisible"
