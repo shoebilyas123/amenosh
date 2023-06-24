@@ -66,6 +66,8 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             background: `url(
             ${config.contentControls.bannerImage}
             )`,
+            // add a animated candy background from google images
+
             backgroundSize: "cover",
             position: "relative",
             color: "#FFF",
@@ -135,7 +137,12 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
           <div
             className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
             style={{
-              background: `linear-gradient(${config.appSettings.colors.bannerGradientDirection}, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
+              // background: `linear-gradient(${config.appSettings.colors.bannerGradientDirection}, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
+              background: `url(
+             https://cdn.dribbble.com/users/156849/screenshots/6993098/32.gif
+              )`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
             }}
           ></div>
         </div>

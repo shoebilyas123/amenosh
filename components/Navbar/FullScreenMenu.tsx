@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import React, { FC, useState } from 'react';
-import { Fade } from 'react-awesome-reveal';
-import { useConfig } from '~/store';
-import { navItems } from '.';
+import Link from "next/link";
+import React, { FC, useState } from "react";
+import { Fade } from "react-awesome-reveal";
+import { useConfig } from "~/store";
+import { navItems } from ".";
 
 interface IProps {
   onClick: () => void;
@@ -17,10 +17,10 @@ const FullScreenMenu: FC<IProps> = ({ onClick }) => {
 
   return (
     <div
-      className="fixed  h-screen flex flex-col w-screen  items-center justify-start pt-12 left-0"
+      className="fixed  h-screen flex flex-col w-screen  items-center justify-start pt-12 left-0 "
       style={{
-        background: '#fff' || config.appSettings?.colors.navbarColor,
-        zIndex: '999999',
+        background: "#fff" || config.appSettings?.colors.navbarColor,
+        zIndex: "999999",
       }}
     >
       {navItems.map((item, index) => (
@@ -42,7 +42,7 @@ const FullScreenMenu: FC<IProps> = ({ onClick }) => {
             </div>
           </Link>
         </Fade>
-      ))}{' '}
+      ))}{" "}
     </div>
   );
 };

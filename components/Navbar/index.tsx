@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useViewportScroll } from 'framer-motion';
-import { NextPage } from 'next';
-import { IoCallSharp, IoHomeOutline } from 'react-icons/io5';
-import { BsFillInfoCircleFill, BsFillCartFill } from 'react-icons/bs';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { HiMenu } from 'react-icons/hi';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useViewportScroll } from "framer-motion";
+import { NextPage } from "next";
+import { IoCallSharp, IoHomeOutline } from "react-icons/io5";
+import { BsFillInfoCircleFill, BsFillCartFill } from "react-icons/bs";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { HiMenu } from "react-icons/hi";
 
-import useToggler from '~/hooks/useToggler';
-import { ICommonProps } from '~/interfaces/common';
-import FadeSlide from '../animations/FadeSlide';
-import { useConfig } from '~/store';
-import { Fade } from 'react-awesome-reveal';
-import FullScreenMenu from './FullScreenMenu';
-import Hamburger from '../animations/Hamburger';
+import useToggler from "~/hooks/useToggler";
+import { ICommonProps } from "~/interfaces/common";
+import FadeSlide from "../animations/FadeSlide";
+import { useConfig } from "~/store";
+import { Fade } from "react-awesome-reveal";
+import FullScreenMenu from "./FullScreenMenu";
+import Hamburger from "../animations/Hamburger";
 
 export const navItems = [
   {
-    name: 'Products',
-    path: '/products',
+    name: "Products",
+    path: "/products",
     icon: BsFillCartFill,
   },
   {
-    name: 'Home',
-    path: '/',
+    name: "Home",
+    path: "/",
     icon: IoHomeOutline,
   },
   {
-    name: 'About',
-    path: '/about',
+    name: "About",
+    path: "/about",
     icon: BsFillInfoCircleFill,
   },
   {
-    name: 'Contact',
-    path: '/contact',
+    name: "Contact",
+    path: "/contact",
     icon: IoCallSharp,
   },
 ];
 
 interface IProps extends ICommonProps {
-  textColor?: 'DARK' | 'LIGHT';
+  textColor?: "DARK" | "LIGHT";
   isFixed?: boolean;
 }
 
-let server = typeof window === 'undefined';
+let server = typeof window === "undefined";
 
-const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
+const Navbar: NextPage<IProps> = ({ textColor = "DARK", isFixed = true }) => {
   const { scrollYProgress } = useViewportScroll();
   const { config } = useConfig();
   const [opacityState, setOpacityState] = React.useState(0);
@@ -70,22 +70,22 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', getWindowDimensions);
+    window.addEventListener("resize", getWindowDimensions);
   }, []);
 
   return (
     <>
       <div
         className={`${
-          isFixed ? 'fixed' : ''
-        } z-50 w-[100%] overflow-hidden flex  justify-between items-stretch h-24 `}
+          isFixed ? "fixed" : ""
+        } z-50 w-[100%] overflow-hidden flex justify-between items-stretch h-24 border-2 `}
         style={{
-          background: config.appSettings?.colors.navbarColor,
+          backgroundColor: config.appSettings?.colors.navbarColor,
         }}
       >
         <div
           className={`${
-            isFixed ? 'fixed' : ''
+            isFixed ? "fixed" : ""
           } z-50 flex w-[100%] overflow-hidden h-24 lg:border-0 justify-center items-stretch `}
         >
           <div
@@ -98,20 +98,20 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
               navItems.slice(0, 2).map((item) => (
                 <div
                   className={`flex items-center ${
-                    config.fontControls.navbarLinksItalics ? 'italic' : ''
+                    config.fontControls.navbarLinksItalics ? "italic" : ""
                   }`}
                 >
                   <FadeSlide slideDirection="right" triggerOnce={false}>
                     <Link href={item.path}>
                       <p
                         className={`text-white text-2xl px-1 hover:${
-                          ['#fff', '#ffffff'].some(
+                          ["#fff", "#ffffff"].some(
                             (clr) =>
                               clr ===
                               config.appSettings?.colors.navbarColor.toLowerCase()
                           )
-                            ? 'text-white'
-                            : 'text-neutral-900'
+                            ? "text-white"
+                            : "text-neutral-900"
                         } hover:scale-125  transition-all cursor-pointer`}
                         // style={{
                         //   ...titleFontCursive,
@@ -136,7 +136,7 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
               navItems.slice(2, 4).map((item) => (
                 <div
                   className={`flex items-center ${
-                    config.fontControls.navbarLinksItalics ? 'italic' : ''
+                    config.fontControls.navbarLinksItalics ? "italic" : ""
                   }`}
                   key={item.name}
                 >
@@ -144,13 +144,13 @@ const Navbar: NextPage<IProps> = ({ textColor = 'DARK', isFixed = true }) => {
                     <Link href={item.path}>
                       <p
                         className={`text-white text-2xl px-1  hover:${
-                          ['#fff', '#ffffff'].some(
+                          ["#fff", "#ffffff"].some(
                             (clr) =>
                               clr ===
                               config.appSettings?.colors.navbarColor.toLowerCase()
                           )
-                            ? 'text-white'
-                            : 'text-neutral-900'
+                            ? "text-white"
+                            : "text-neutral-900"
                         }  hover:scale-125  transition-all cursor-pointer`}
                       >
                         {item.name}
