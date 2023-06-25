@@ -63,9 +63,9 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
         <div
           className="relative flex w-screen py-12 md:py-0 lg:h-screen flex-col lg:flex-row items-center px-0 sm:px-24 text-white"
           style={{
-            background: `url(
-            ${config.contentControls.bannerImage}
-            )`,
+            // background: `url(
+            // ${config.contentControls.bannerImage}
+            // )`,
             // add a animated candy background from google images
 
             backgroundSize: "cover",
@@ -114,9 +114,18 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
               </p>
             </Fade>
             <FadeSlide slideDirection="up">
-              <Link href="/about">
-                <Button>Explore</Button>
-              </Link>
+              <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+                <Link href="/about">
+                  <Button>Explore</Button>
+                </Link>
+                <Link href="/contact">
+                  <Button className="text-black"
+                  style={{
+                    backgroundColor: "#fff",
+                  }}
+                  >Contact Us</Button>
+                </Link>
+              </div>
             </FadeSlide>
           </div>
 
