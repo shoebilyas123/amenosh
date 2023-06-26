@@ -119,11 +119,14 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
                   <Button>Explore</Button>
                 </Link>
                 <Link href="/contact">
-                  <Button className="text-black"
-                  style={{
-                    backgroundColor: "#fff",
-                  }}
-                  >Contact Us</Button>
+                  <Button
+                    className="text-black"
+                    style={{
+                      backgroundColor: "#fff",
+                    }}
+                  >
+                    Contact Us
+                  </Button>
                 </Link>
               </div>
             </FadeSlide>
@@ -148,7 +151,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
             style={{
               // background: `linear-gradient(${config.appSettings.colors.bannerGradientDirection}, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
               background: `url(
-             https://cdn.dribbble.com/users/156849/screenshots/6993098/32.gif
+             https://i.giphy.com/media/dZLWXI8VO0oSurblwN/giphy.webp
               )`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
