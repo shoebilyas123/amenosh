@@ -1,17 +1,17 @@
 // node_module imports
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // local Imports
-import Navbar from '~/components/Navbar';
-import { Footer, SectionContact } from '~/components/section';
-import { GetServerSideProps, NextPage } from 'next';
-import { getProductList } from '~/lib/graphcms';
-import { IProductList } from '~/interfaces/product';
-import { ICommonProps } from '~/interfaces/common';
-import { useConfig } from '~/store';
-import { H1 } from '~/components/atoms/headings';
-import ImageCarousel from '~/components/molecules/imageCarousel';
-import DynamicHead from '~/components/Document/DynamicHead';
+import Navbar from "~/components/Navbar";
+import { Footer, SectionContact } from "~/components/section";
+import { GetServerSideProps, NextPage } from "next";
+import { getProductList } from "~/lib/graphcms";
+import { IProductList } from "~/interfaces/product";
+import { ICommonProps } from "~/interfaces/common";
+import { useConfig } from "~/store";
+import { H1 } from "~/components/atoms/headings";
+import ImageCarousel from "~/components/molecules/imageCarousel";
+import DynamicHead from "~/components/Document/DynamicHead";
 
 interface IProps extends ICommonProps {
   productImages: Array<string>;
@@ -43,21 +43,26 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
             <div className="w-[100%]">
               <H1 className="font-bold text-2xl mb-4">{product.title}</H1>
               <p className="text-xl font-bold mb-4">
-                Price -{' '}
-                <span className="text-green-900"> &#x20B9;{price || ''}</span>
+                Price -{" "}
+                <span className="text-green-900"> &#x20B9;{price || ""}</span>
               </p>
               <div>
                 <hr className="mt-4 mb-2" />
 
                 <p>
-                  {(product.aboutProduct || '')
-                    .split('\n')
-                    .map((str: string) => {
+                  {(product.aboutProduct || "")
+                    .split("\n")
+                    .map((str: string, index: number) => {
                       return (
-                        <>
-                          <span>{str}</span>
-                          <br />
-                        </>
+                        <p
+                          key={index}
+                          className={`${
+                            index === 0 ? "text-xl font-bold" : "text-lg"
+                          }
+                       `}
+                        >
+                          {str}
+                        </p>
                       );
                     })}
                 </p>
@@ -66,25 +71,31 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
             </div>
 
             <div className="w-[100%]">
-              <H1
-                className="text-lg bg-slate-500 py-2 font-medium w-full text-center"
-                style={{
-                  background: colors.secondary,
-                  color: 'white',
-                }}
-              >
-                Details
-              </H1>
+              <h1 className="font-bold text-2xl mb-4">Details</h1>
               {detailsKeys && (
-                <table className="table-auto border w-[100%]">
-                  <tbody className="space-y-2">
+                //create a animated table with 3d effect
+                <table
+                  className="table-auto  w-[100%]
+                rounded-lg
+                overflow-hidden
+                shadow-lg my-4
+                border-collapse
+                border-2 border-gray-200
+                divide-y divide-gray-200
+
+                "
+                >
+                  <tbody className="bg-white divide-y divide-gray-200">
                     {detailsKeys?.map((Dkey: string, index: number) => (
+                      //make colors look good
                       <tr
                         className={`${
-                          index % 2 === 0 ? 'bg-slate-100' : 'bg-white'
+                          index % 2 === 0 ? "bg-gray-50" : "bg-white"
                         }`}
+                        key={index}
                       >
                         <td className="px-4 py-2">{Dkey}</td>
+
                         <td>
                           {
                             // @ts-ignore
@@ -111,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   query,
 }) => {
   const product: any = await getProductList({
-    name: (query.productId as string) || '',
+    name: (query.productId as string) || "",
   });
 
   if (!product || !product[0]) {
@@ -120,8 +131,8 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const images = product.map((prod: IProductList) => prod.images).flat();
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
   );
 
   return {
