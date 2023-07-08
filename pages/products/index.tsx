@@ -1,29 +1,29 @@
-import React from 'react';
-import { GetServerSideProps, NextPage } from 'next';
+import React from "react";
+import { GetServerSideProps, NextPage } from "next";
 
-import Brand from '~/components/molecules/brand';
-import ProductList from '~/components/molecules/productlist/index';
-import Navbar from '~/components/Navbar';
-import { Footer, SectionContact } from '~/components/section';
-import { IProductList } from '~/interfaces/product';
-import { getProductList } from '~/lib/graphcms';
-import { groupBy } from 'lodash';
-import { ICommonProps } from '~/interfaces/common';
-import DynamicHead from '~/components/Document/DynamicHead';
+import Brand from "~/components/molecules/brand";
+import ProductList from "~/components/molecules/productlist/index";
+import Navbar from "~/components/Navbar";
+import { Footer, SectionContact } from "~/components/section";
+import { IProductList } from "~/interfaces/product";
+import { getProductList } from "~/lib/graphcms";
+import { groupBy } from "lodash";
+import { ICommonProps } from "~/interfaces/common";
+import DynamicHead from "~/components/Document/DynamicHead";
 
 interface IProps extends ICommonProps {
   products: IProductList[];
 }
 
 const Products: NextPage<IProps> = ({ products }) => {
-  const productsByBrand = groupBy(products, 'brand');
+  const productsByBrand = groupBy(products, "brand");
 
   return (
     <>
       <DynamicHead
-        title={'Amenosh Products'}
+        title={"Amenosh Products"}
         description={
-          'Clumsy candy is an in-house brand of AMENOSH with sugar-boiled candies in six unique highly exciting and delicious flavors. Clumsy candies are made with the choicest ingredients to WOW our customers. We use fruit powders and active ingredients in most of our candies.s'
+          "Clumsy candy is an in-house brand of AMENOSH with sugar-boiled candies in six unique highly exciting and delicious flavors. Clumsy candies are made with the choicest ingredients to WOW our customers. We use fruit powders and active ingredients in most of our candies.s"
         }
       />
 
@@ -50,8 +50,8 @@ const Products: NextPage<IProps> = ({ products }) => {
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const products = await getProductList({});
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
   );
 
   return { props: { products } };
