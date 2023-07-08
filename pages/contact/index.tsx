@@ -5,7 +5,7 @@ import Footer from "~/components/section/footer";
 import Contact from "~/components/section/contact/index";
 import { ICommonProps } from "~/interfaces/common";
 import { GetServerSideProps, NextPage } from "next";
-import DynamicHead from "~/components/card/Document/DynamicHead";
+import DynamicHead from "~/components/Document/DynamicHead";
 
 const ContactUs: NextPage<ICommonProps> = ({}) => {
   return (
