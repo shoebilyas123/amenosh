@@ -72,25 +72,24 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
 
             <div className="w-[100%]">
               <h1 className="font-bold text-2xl mb-4">Details</h1>
-              {detailsKeys && (
-                //create a animated table with 3d effect
-                <table
-                  className="table-auto  w-[100%]
-                rounded-lg
-                overflow-hidden
-                shadow-lg my-4
-                border-collapse
-                border-2 border-gray-200
-                divide-y divide-gray-200
 
-                "
+              {detailsKeys && (
+                <table
+                  // create a colorful gradient for the table
+                  className="table-auto w-[100%] rounded-lg overflow-hidden shadow-lg my-4 border-collapse border-2 border-red-200 divide-y divide-red-200
+                  hover:shadow-xl transition duration-300 ease-in-out hover:scale-105 transform hover:rotate-1 hover:cursor-pointer
+                hover:bg-gradient-to-r hover:from-blue-200 hover:to-blue-300
+                hover:text-lg hover:font-semi-bold
+                  "
                 >
                   <tbody className="bg-white divide-y divide-gray-200">
                     {detailsKeys?.map((Dkey: string, index: number) => (
-                      //make colors look good
+                      //make gradient for each row using red and blue colors
                       <tr
                         className={`${
-                          index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                          index % 2 === 0
+                            ? "bg-gradient-to-r from-red-300 to-red-400"
+                            : "bg-gradient-to-r from-blue-300 to-blue-400"
                         }`}
                         key={index}
                       >
