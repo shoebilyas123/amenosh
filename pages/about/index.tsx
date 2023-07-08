@@ -28,7 +28,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
     },
   } = useConfig();
 
-  const content = aboutContent.split("\n");
+  const content = aboutContent?.split("\n");
   const images = productImages?.map((img) => {
     return {
       url: img,
@@ -156,7 +156,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
                 <div className="mx-auto max-w-7xl px-6 pb-32 pt-4 sm:pt-60 lg:px-8 lg:pt-8">
                   <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                     <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                      <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                      <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl text-center lg:text-left md:text-left ">
                         {aboutTitle}
                       </h1>
                       <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
@@ -228,7 +228,7 @@ const About: NextPage<IProps> = ({ productImages }) => {
           </main>
         </div>
         <div className="flex flex-col px-6 gap-8 max-w-2xl lg:max-w-7xl lg:px-8 md:max-w-5xl mx-auto mdflex-row lg:flex-row mb-16  ">
-          {content?.slice(1).map((card, index) => (
+          {content?.slice(1)?.map((card, index) => (
             <div
               key={index}
               //create light blue and red cards that look 3d and pop out on hover and have a shadow and increase size of the card
@@ -240,8 +240,8 @@ const About: NextPage<IProps> = ({ productImages }) => {
               }
               `}
             >
-              <div className="text-base leading-7">
-                <p className="mt-2 text-gray-100">{card}</p>
+              <div className="text-bold leading-7">
+                <p className="mt-2 text-gray-100 text-lg">{card}</p>
               </div>
             </div>
           ))}
