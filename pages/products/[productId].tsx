@@ -84,12 +84,10 @@ const ProductDescription: NextPage<IProps> = ({ productImages, product }) => {
                 >
                   <tbody className="bg-white divide-y divide-gray-200">
                     {detailsKeys?.map((Dkey: string, index: number) => (
-                      //make gradient for each row using red and blue colors
+                      //make gradient for each row using random color
                       <tr
                         className={`${
-                          index % 2 === 0
-                            ? "bg-gradient-to-r from-red-300 to-red-400"
-                            : "bg-gradient-to-r from-blue-300 to-blue-400"
+                          index % 2 === 0 ? "bg-red-100" : "bg-blue-100"
                         }`}
                         key={index}
                       >

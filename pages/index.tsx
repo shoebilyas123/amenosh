@@ -38,16 +38,16 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
     }px)`;
   };
 
-  useEffect(() => {
-    if (waveRef && !isServer) {
-      waveRef.current.style.transition = "all .2 ease-in-out 0";
-      document.body?.addEventListener("mousemove", mouseMoveWave);
-    }
+  // useEffect(() => {
+  //   if (waveRef && !isServer) {
+  //     waveRef.current.style.transition = "all .2 ease-in-out 0";
+  //     document.body?.addEventListener("mousemove", mouseMoveWave);
+  //   }
 
-    return () => {
-      document?.body.removeEventListener("mousemove", mouseMoveWave);
-    };
-  }, [waveRef]);
+  //   return () => {
+  //     document?.body.removeEventListener("mousemove", mouseMoveWave);
+  //   };
+  // }, [waveRef]);
 
   return (
     <>
@@ -70,12 +70,18 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
 
             backgroundSize: "cover",
             position: "relative",
-            color: "#FFF",
+            color: "black",
             textAlign: "center",
             overflow: "hidden",
           }}
         >
-          <div className="space-y-8 mt-8 mb-8 flex flex-col items-center z-50">
+          <div
+            className="space-y-8 mt-8 mb-8 flex flex-col items-center z-50
+          shadow-2xl border-2   bg-transparent bg-opacity-80
+          hover:scale-105 transform
+          transition-all duration-500 ease-in-out p-4 rounded-xl
+          "
+          >
             <FadeSlide slideDirection="down">
               <h1
                 className={`font-bold text-4xl ${
@@ -114,7 +120,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
               </p>
             </Fade>
             <FadeSlide slideDirection="up">
-              <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+              <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 ">
                 <Link href="/about">
                   <Button>Explore</Button>
                 </Link>
@@ -133,7 +139,7 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
           </div>
 
           <div className="relative z-50 lg:w-[55vw] lg:h-[55vh] w-[100vw] h-fit mt-12  px-2 lg:px-24 lg:mt-0 top-0 left-0"></div>
-          <svg
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 320"
             className="hidden md:block left-0 bottom-0 absolute w-screen z-20"
@@ -145,13 +151,13 @@ const Home: NextPage<IProps> = ({ products, candyWrappers }) => {
               fillOpacity="1"
               d="M0,224L48,213.3C96,203,192,181,288,170.7C384,160,480,160,576,176C672,192,768,224,864,229.3C960,235,1056,213,1152,176C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
             ></path>
-          </svg>
+          </svg> */}
           <div
             className="w-[100vw] h-[100%] absolute top-0 left-0 -z-5"
             style={{
               // background: `linear-gradient(${config.appSettings.colors.bannerGradientDirection}, ${config.appSettings.colors.bannerColor},${config?.appSettings?.colors.bannerColor}, rgba(0,0,0,0))`,
               background: `url(
-             https://i.giphy.com/media/dZLWXI8VO0oSurblwN/giphy.webp
+           https://cookingpanda.com/cdn/shop/articles/Halloween_Candy_4.gif?v=1654059000
               )`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
